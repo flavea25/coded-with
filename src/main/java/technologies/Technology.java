@@ -6,14 +6,18 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Technology {
+    //TODO check all...
     MAVEN("Maven", RuleType.FILE_NAME, Category.BUILD, "pom.xml"),
-    ANGULAR("Angular", RuleType.FILE_NAME, Category.FRAMEWORK, "angular.json"), //TODO check if true:))
+    GRADLE("Gradle", RuleType.FILE_NAME, Category.BUILD, "build.gradle"),
+    ANGULAR("Angular", RuleType.FILE_NAME, Category.FRAMEWORK, "angular.json"),
 
     INTELLIJ_IDEA("IntelliJ Idea", RuleType.FOLDER_NAME, Category.IDE, ".idea"),
     ECLIPSE("Eclipse IDE", RuleType.FILE_CONTENT, Category.IDE, "<name>org.eclipse.jdt.core.javabuilder</name>"), //TODO file .project (POATE FI SI ALCEVA?? -> check doar dc exista "eclipse")
 
-    GIT_HUB("GitHub", RuleType.FILE_CONTENT, Category.CI_CD, "url = https://github.com/"), //TODO from folder .git -> file config
-    BITBUCKET("BitBucket", RuleType.FILE_CONTENT, Category.CI_CD, "url = https://bitbucket.org/"); //TODO check if true..
+    GIT_HUB("GitHub", RuleType.FILE_CONTENT, Category.CI_CD, "url = https://github.com/"), //TODO .git/config
+    DOCKER("Docker", RuleType.FILE_NAME, Category.CI_CD, "Dockerfile"),
+    JENKINS("Jenkins", RuleType.FILE_NAME, Category.CI_CD, "Jenkinsfile"),
+    BITBUCKET("BitBucket", RuleType.FILE_CONTENT, Category.CI_CD, "url = https://bitbucket.org/");
 
     private final String name;
     private final RuleType ruleType;
