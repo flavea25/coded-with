@@ -1,3 +1,5 @@
+import services.FileService;
+import services.FileServiceImpl;
 import services.TechnologyService;
 import services.TechnologyServiceImpl;
 import technologies.Technology;
@@ -14,10 +16,20 @@ public class Main {
         return result.get();
     }
 
+    //ROOT: "C:/Users/flavi/IdeaProjects/firstmaven"
+    //SVV: "C:/Users/flavi/git/SVV"
+
     public static void main(String[] args) {
         TechnologyService technologyService = new TechnologyServiceImpl(); //TODO inject
+        FileServiceImpl fileService = new FileServiceImpl();
 
-        technologyService.getUsedTechnologiesByCategory("C:/Users/flavi/IdeaProjects/firstmaven")
-                         .forEach((category, technologies) -> System.out.println(category.name() + ": " + getTechnologiesNames(technologies)));
+//        fileService.printAllFilesFromFolder("C:/Users/flavi/git/SVV", "");
+//        fileService.printFileLines("C:/Users/flavi/git/SVV/webserver/.project");
+
+//        fileService.printAllFilesFromFolder("C:/Users/flavi/IdeaProjects/firstmaven/.git", "");
+//        fileService.printFileLines("C:/Users/flavi/IdeaProjects/firstmaven/.git/config");
+
+//        technologyService.getUsedTechnologiesByCategory("C:/Users/flavi/IdeaProjects/firstmaven")
+//                         .forEach((category, technologies) -> System.out.println(category.name() + ": " + getTechnologiesNames(technologies)));
     }
 }
