@@ -1,11 +1,12 @@
 import services.FileService;
+import services.FileServiceImpl;
 
 public class Main {
 
     public static void main(String[] args) {
-        FileService fileService = new FileService();
+        FileService fileService = new FileServiceImpl();
 
-//        fileService.printFileLines("C:/Users/flavi/IdeaProjects/firstmaven/pom.xml");
-        fileService.printAllFilesFromFolder("C:/Users/flavi/IdeaProjects/firstmaven","");
+//        fileService.getFolderNames("C:/Users/flavi/IdeaProjects/firstmaven").forEach(System.out::println);
+//        fileService.getFilePaths("C:/Users/flavi/IdeaProjects/firstmaven").forEach(System.out::println);
     }
 }
