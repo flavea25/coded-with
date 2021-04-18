@@ -70,16 +70,17 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public void findFilesAndFolders(String root, List<String> filePaths, List<String> folders) {
+    public void findFilesAndFolders(String root, List<String> filePaths, List<String> files, List<String> folders) {
         File file = new File(root);
 
         if(file.isDirectory()) {
             folders.add(file.getName());
             for(File f: Objects.requireNonNull(file.listFiles())) {
-                findFilesAndFolders(root + "/" + f.getName(), filePaths, folders);
+                findFilesAndFolders(root + "/" + f.getName(), filePaths, files, folders);
             }
         }
         else {
+            files.add(file.getName());
             filePaths.add(root);
         }
     }
