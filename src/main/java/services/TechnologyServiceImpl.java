@@ -1,12 +1,16 @@
 package services;
 
+import com.google.inject.Inject;
 import technologies.Category;
 import technologies.Technology;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TechnologyServiceImpl implements TechnologyService{
-    private final FileService fileService = new FileServiceImpl(); //TODO inject & remove final?
+
+    @Inject
+    FileService fileService;
 
     @Override
     public List<Technology> getUsedTechnologies(String root) {
@@ -53,8 +57,22 @@ public class TechnologyServiceImpl implements TechnologyService{
             sortedTechnologies.replace(t.getCategory(), existingTechnologies);
         });
 
-        //TODO maybe remove categories with no values?
+        Map<Category, List<Technology>> actualSortedTechnologies = new HashMap<>();
+        sortedTechnologies.forEach((key, value) -> {
+            if(!sortedTechnologies.get(key).isEmpty()) {
+                actualSortedTechnologies.put(key, value);
+            }
+        });
 
-        return sortedTechnologies;
+        return actualSortedTechnologies;
+    }
+
+    @Override
+    public String getTechnologiesNames(List<Technology> technologies) {
+        AtomicReference<String> result = new AtomicReference<>("");
+
+        technologies.forEach(t -> result.getAndSet(t.getName() + ", "));
+
+        return result.get();
     }
 }
