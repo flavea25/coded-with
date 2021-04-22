@@ -1,6 +1,8 @@
 package services;
 
 import lombok.extern.slf4j.Slf4j;
+import technologies.Technology;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -83,6 +85,15 @@ public class FileServiceImpl implements FileService{
             files.add(file.getName());
             filePaths.add(root);
         }
+    }
+
+    @Override
+    public boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
+        var oPath = filePaths.stream()
+                                            .filter(p -> t.getFileName() == null || p.endsWith(t.getFileName()))
+                                            .filter(p -> isTextInFile(p, t.getCondition()))
+                                            .findAny();
+        return oPath.isPresent();
     }
 
     @Override

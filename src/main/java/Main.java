@@ -14,7 +14,7 @@ public class Main {
 //        fileService.printAllFilesFromFolder("C:/Users/flavi/git/SVV", "");
 //        fileService.printFileLines("C:/Users/flavi/git/SVV/webserver/.project");
 
-//        fileService.printAllFilesFromFolder("C:/Users/flavi/IdeaProjects/firstmaven/.git", "");
+        fileService.printAllFilesFromFolder("C:/Users/flavi/IdeaProjects/firstmaven/.git", "");
 //        fileService.printFileLines("C:/Users/flavi/IdeaProjects/firstmaven/.git/config");
 
 //        technologyService.getUsedTechnologiesByCategory("C:/Users/flavi/IdeaProjects/firstmaven")

@@ -35,7 +35,9 @@ public class TechnologyServiceImpl implements TechnologyService{
                     }
                     break;
                 case FILE_CONTENT:
-                    //TODO for each filePath: get file -> if it contains content => add technology; probs outside this switch
+                    if(fileService.foundTechnologyInPaths(filePaths, t)) {
+                        technologies.add(t);
+                    }
                     break;
                 default: break;
             }
