@@ -90,7 +90,7 @@ public class FileServiceImpl implements FileService{
     @Override
     public boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
         var oPath = filePaths.stream()
-                                            .filter(p -> t.getFileName() == null || p.endsWith(t.getFileName()))
+                                            .filter(p -> t.getPathEnding() == null || p.endsWith(t.getPathEnding()))
                                             .filter(p -> isTextInFile(p, t.getCondition()))
                                             .findAny();
         return oPath.isPresent();

@@ -24,5 +24,5 @@ public enum Technology {
     private final RuleType ruleType;
     private final Category category;
     private final String condition;
-    private final String fileName;
+    private final String pathEnding;
 }
