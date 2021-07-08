@@ -1,4 +1,4 @@
-package services;
+package services.basic;
 
 import lombok.extern.slf4j.Slf4j;
 import technologies.Technology;
@@ -8,8 +8,9 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 @Slf4j
-public class FileServiceImpl implements FileService{
+public class BasicFileServiceImpl implements BasicFileService{
 
+    @Override
     public void printFileLines(String root) {
         try {
             File file = new File(root);
@@ -25,6 +26,7 @@ public class FileServiceImpl implements FileService{
         }
     }
 
+    @Override
     public void printAllFilesFromFolder(String root, String indents) {
         File file = new File(root);
 

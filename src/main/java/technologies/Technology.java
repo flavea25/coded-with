@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Technology {
-    //TODO check all...
     MAVEN("Maven", RuleType.FILE_NAME, Category.BUILD, "pom.xml", null),
     GRADLE("Gradle", RuleType.FILE_NAME, Category.BUILD, "build.gradle", null),
 
