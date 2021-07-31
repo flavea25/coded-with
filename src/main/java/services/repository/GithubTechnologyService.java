@@ -12,7 +12,7 @@ public class GithubTechnologyService extends TechnologyService {
     RepositoryFileService fileService;
 
     @Override
-    public List<Technology> getUsedTechnologies(String root) { //TODO
+    public List<Technology> getUsedTechnologies(String root) { //TODO last
         return null;
     }
 }
