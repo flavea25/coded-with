@@ -1,11 +1,11 @@
 package services.repository;
 
-import services.FileService;
-
 import java.util.List;
 
-public interface RepositoryFileService extends FileService {
+public interface RepositoryFileService {
     boolean foundFileInRepository(String fileName, String repositoryName);
 
-    List<String> getDirectoriesFromRepository(String repository);
+    List<String> getDirectoriesFromRepository(String repositoryName, String branchName);
+
+    boolean isTextInFile(String repository, String root, String text);
 }

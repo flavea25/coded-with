@@ -1,11 +1,12 @@
 package services.basic;
 
-import services.FileService;
 import technologies.Technology;
 
 import java.util.List;
 
-public interface BasicFileService extends FileService {
+public interface BasicFileService {
+    boolean isTextInFile(String root, String text);
+
     List<String> getFilePaths(String root);
 
     List<String> getFolderNames(String root);

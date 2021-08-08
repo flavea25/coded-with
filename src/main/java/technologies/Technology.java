@@ -12,7 +12,7 @@ public enum Technology {
     ANGULAR("Angular", RuleType.FILE_NAME, Category.FRAMEWORK, "angular.json", null),
 
     INTELLIJ_IDEA("IntelliJ Idea", RuleType.FOLDER_NAME, Category.IDE, ".idea", null),
-    ECLIPSE("Eclipse IDE", RuleType.FILE_CONTENT, Category.IDE, "<name>org.eclipse.jdt.core.javabuilder</name>", ".project"),
+    ECLIPSE("Eclipse IDE", RuleType.FILE_CONTENT, Category.IDE, "org.eclipse.jdt.core.javabuilder", ".project"), //<name>org.eclipse.jdt.core.javabuilder</name>
 
     GIT_HUB("GitHub", RuleType.FILE_CONTENT, Category.CI_CD, "url = https://github.com/", ".git/config"),
     DOCKER("Docker", RuleType.FILE_NAME, Category.CI_CD, "Dockerfile", null),
