@@ -9,9 +9,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
@@ -66,10 +64,10 @@ public class GithubFileServiceImpl implements RepositoryFileService{
     }
 
     @Override
-    public List<String> getDirectoriesFromRepository(String repositoryName, String branchName) {
-        List<String> directories = new ArrayList<>();
+    public Set<String> getDirectoriesFromRepository(String repositoryName) {
+        Set<String> directories = new HashSet<>();
 
-        Map<String, Object> jsonMap = makeRESTCall(GITHUB_API_BASE_URL + "repos/" + repositoryName + "/branches/" + (branchName != null ? branchName : "master"));
+        Map<String, Object> jsonMap = makeRESTCall(GITHUB_API_BASE_URL + "repos/" + repositoryName + "/branches/master");
 
         //Path in JSON = root > commit > commit > tree > url
         String treeApiUrl = gson.toJsonTree(jsonMap)
@@ -83,20 +81,31 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         assert jsonTreeMap != null;
         for (Map<String, Object> obj : (List<Map<String, Object>>) jsonTreeMap.get("tree")) {
             if (obj.get("type").equals("tree")) {
-                directories.add((String) obj.get("path"));
+                int startIndex = Math.max(((String)obj.get("path")).lastIndexOf("/"), 0);
+                directories.add(((String) obj.get("path")).substring(startIndex));
             }
         }
 
         return directories;
     }
 
+    @Override
     public String getRepositoryNameFromUrl(String url) {
-        return null;
-    } //TODO last?
+        String editedUrl = url.substring(url.indexOf(".com/") + 5);
+        String owner = editedUrl.substring(0, editedUrl.indexOf('/'));
+        editedUrl = editedUrl.substring(editedUrl.indexOf(owner) + owner.length() + 1);
+        String repo = editedUrl.substring(0, editedUrl.indexOf('/'));
+        return owner + '/' + repo;
+    }
 
-    public String getBranchFromUrl(String url) { //TODO last?
-        return null;
-    } //TODO last?
+    public String getBranchFromUrl(String url) {
+        String repositoryName = getRepositoryNameFromUrl(url);
+        String editedUrl = url.substring(url.indexOf(repositoryName) + repositoryName.length());
+        if(!editedUrl.startsWith("/tree/")) {
+            return null;
+        }
+        return editedUrl.substring(6);
+    }
 
     public void printBranches(String repositoryUrl) {
         try {

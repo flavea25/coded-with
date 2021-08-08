@@ -17,7 +17,7 @@ public class Main {
 //        RepositoryFileService fileService = injector.getInstance(RepositoryFileService.class);
         GithubFileServiceImpl fileService = new GithubFileServiceImpl();
 
-        log.info("" + fileService.isTextInFile("flavea25/SVV", ".project", "org.eclipse.jdt.core.javabuilder"));
+        log.info("" + fileService.getRepositoryNameFromUrl("to"));
 
 
         //TODO normal fileService
