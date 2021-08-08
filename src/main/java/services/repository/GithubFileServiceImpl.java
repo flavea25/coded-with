@@ -98,15 +98,6 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         return owner + '/' + repo;
     }
 
-    public String getBranchFromUrl(String url) {
-        String repositoryName = getRepositoryNameFromUrl(url);
-        String editedUrl = url.substring(url.indexOf(repositoryName) + repositoryName.length());
-        if(!editedUrl.startsWith("/tree/")) {
-            return null;
-        }
-        return editedUrl.substring(6);
-    }
-
     public void printBranches(String repositoryUrl) {
         try {
             Git.lsRemoteRepository()
