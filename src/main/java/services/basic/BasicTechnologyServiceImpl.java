@@ -6,7 +6,7 @@ import technologies.Technology;
 
 import java.util.*;
 
-public class BasicTechnologyServiceImpl extends TechnologyService {
+public class BasicTechnologyServiceImpl extends TechnologyService implements BasicTechnologyService{
 
     @Inject
     BasicFileService fileService;

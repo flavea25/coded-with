@@ -1,36 +1,33 @@
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import services.repository.GithubFileServiceImpl;
-
-import java.io.IOException;
+import services.MyInjector;
+import services.TechnologyService;
+import services.basic.BasicTechnologyService;
+import services.basic.BasicTechnologyServiceImpl;
 
 @Slf4j
 public class Main {
+    public static void main(String[] args) {
+        runComplexMain();
+    }
+
+    //GitHub: https://github.com/flavea25/licenta SAU /SVV
+    private static void runComplexMain() {
+        Injector injector = Guice.createInjector(new MyInjector());
+        TechnologyService technologyService = injector.getInstance(TechnologyService.class);
+
+        technologyService.getUsedTechnologiesByCategory("https://github.com/flavea25/SVV")
+                .forEach((category, technologies) -> log.info(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
+    }
+
     //ROOT: "C:/Users/flavi/IdeaProjects/firstmaven"
     //SVV: "C:/Users/flavi/git/SVV"
-    //GitHub: https://github.com/flavea25/licenta SAU /SVV
+    private static void runBasicMain() {
+        Injector injector = Guice.createInjector(new MyInjector());
+        BasicTechnologyService technologyService = injector.getInstance(BasicTechnologyService.class);
 
-    public static void main(String[] args) throws IOException, GitAPIException {
-//        Injector injector = Guice.createInjector(new MyInjector());
-//        RepositoryFileService fileService = injector.getInstance(RepositoryFileService.class);
-        GithubFileServiceImpl fileService = new GithubFileServiceImpl();
-
-        log.info("" + fileService.getRepositoryNameFromUrl("to"));
-
-
-        //TODO normal fileService
-//        TechnologyService technologyService = injector.getInstance(BasicTechnologyServiceImpl.class);
-//        BasicFileService fileService = injector.getInstance(BasicFileService.class);
-//
-//        fileService.printAllFilesFromFolder("C:/Users/flavi/git/SVV", "");
-//        fileService.printFileLines("C:/Users/flavi/git/SVV/webserver/.project");
-//
-//        fileService.printAllFilesFromFolder("C:/Users/flavi/IdeaProjects/firstmaven/.git", "");
-//        fileService.printFileLines("C:/Users/flavi/IdeaProjects/firstmaven/.git/config");
-//
-//        technologyService.getUsedTechnologiesByCategory("C:/Users/flavi/IdeaProjects/firstmaven")
-//                         .forEach((category, technologies) -> System.out.println(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
+        ((BasicTechnologyServiceImpl)technologyService).getUsedTechnologiesByCategory("C:/Users/flavi/IdeaProjects/firstmaven")
+                .forEach((category, technologies) -> System.out.println(category.name() + ": " + ((BasicTechnologyServiceImpl)technologyService).getTechnologiesNames(technologies)));
     }
 }

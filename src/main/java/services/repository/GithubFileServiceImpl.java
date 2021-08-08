@@ -26,7 +26,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         try {
             return gson.fromJson(request.execute().returnContent().asString(), Map.class);
         } catch (IOException ignored) {
-            log.error("Error while executing the request!");
+            log.error("Error while executing the request!: " + restUrl); //TODO analyze error: wrong request or request rate exceeded? : https://api.github.com/rate_limit
             return null;
         }
     }
@@ -41,11 +41,13 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         }
 
         AtomicBoolean foundText = new AtomicBoolean(false);
-        gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray().forEach(item -> {
-            if(item.getAsJsonObject().get("path").toString().endsWith(pathEnding + "\"")) {
-                foundText.set(true);
-            }
-        });
+        if(searchResult != null) {
+            gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray().forEach(item -> {
+                if(item.getAsJsonObject().get("path").toString().endsWith(pathEnding + "\"")) {
+                    foundText.set(true);
+                }
+            });
+        }
 
         return foundText.get();
     }
@@ -56,11 +58,6 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
 
         return searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0;
-
-//        gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray()
-//                .forEach(r -> log.info("\n\tFile: " + r.getAsJsonObject().get("name") +
-//                        "\n\t\t | Repo: " + r.getAsJsonObject().get("repository").getAsJsonObject().get("html_url") +
-//                        "\n\t\t | Path: " + r.getAsJsonObject().get("path")));
     }
 
     @Override
@@ -70,19 +67,20 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         Map<String, Object> jsonMap = makeRESTCall(GITHUB_API_BASE_URL + "repos/" + repositoryName + "/branches/master");
 
         //Path in JSON = root > commit > commit > tree > url
-        String treeApiUrl = gson.toJsonTree(jsonMap)
-                .getAsJsonObject().get("commit")
-                .getAsJsonObject().get("commit")
-                .getAsJsonObject().get("tree")
-                .getAsJsonObject().get("url")
-                .getAsString();
-        Map<String, Object> jsonTreeMap = makeRESTCall(treeApiUrl + "?recursive=1");
+        if(jsonMap != null) {
+            String treeApiUrl = gson.toJsonTree(jsonMap)
+                    .getAsJsonObject().get("commit")
+                    .getAsJsonObject().get("commit")
+                    .getAsJsonObject().get("tree")
+                    .getAsJsonObject().get("url")
+                    .getAsString();
+            Map<String, Object> jsonTreeMap = makeRESTCall(treeApiUrl + "?recursive=1");
 
-        assert jsonTreeMap != null;
-        for (Map<String, Object> obj : (List<Map<String, Object>>) jsonTreeMap.get("tree")) {
-            if (obj.get("type").equals("tree")) {
-                int startIndex = Math.max(((String)obj.get("path")).lastIndexOf("/"), 0);
-                directories.add(((String) obj.get("path")).substring(startIndex));
+            for (Map<String, Object> obj : (List<Map<String, Object>>) jsonTreeMap.get("tree")) {
+                if (obj.get("type").equals("tree")) {
+                    int startIndex = Math.max(((String)obj.get("path")).lastIndexOf("/"), 0);
+                    directories.add(((String) obj.get("path")).substring(startIndex));
+                }
             }
         }
 
@@ -94,7 +92,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         String editedUrl = url.substring(url.indexOf(".com/") + 5);
         String owner = editedUrl.substring(0, editedUrl.indexOf('/'));
         editedUrl = editedUrl.substring(editedUrl.indexOf(owner) + owner.length() + 1);
-        String repo = editedUrl.substring(0, editedUrl.indexOf('/'));
+        String repo = editedUrl.substring(0, editedUrl.contains("/") ? editedUrl.indexOf('/') : editedUrl.length());
         return owner + '/' + repo;
     }
 
