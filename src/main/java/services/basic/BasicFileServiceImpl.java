@@ -8,29 +8,25 @@ import org.eclipse.jgit.util.FileUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
 
-    private static final String PATH_TO_CLONE = "cloned repositories/"; //TODO if I keep them : src/main/resources
+    private static final String PATH_TO_CLONE = "cloned repositories/";
 
     private static final String REPOSITORY_LINK_START = "https://github.com/";
 
     @Override
     public boolean isTextInFile(String root, String text) {
         try {
-            File file = new File(root);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                if(scanner.nextLine().contains(text)) {
-                    return true;
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            log.error("Error when parsing file!");
+            return Files.readAllLines(Path.of(root)).stream()
+                    .anyMatch(l -> l.contains(text));
+        } catch (IOException e) {
+            log.error("Exception occurred when reading lines from a file!");
             e.printStackTrace();
         }
 
@@ -66,25 +62,34 @@ public class BasicFileServiceImpl implements BasicFileService{
     }
 
     private void cloneRepositoryAtPath(String repositoryUrl, String path) {
-        try { //TODO if exists -> delete
-            Git.cloneRepository()
-                    .setURI(repositoryUrl)
-                    .setDirectory(Paths.get(path).toFile())
-                    .call();
+        try {
+            deleteDestinationIfExistent(path);
+            Git git = Git.cloneRepository()
+                         .setURI(repositoryUrl)
+                         .setDirectory(Paths.get(path).toFile())
+                         .call();
+            git.close();
         } catch (GitAPIException e) {
             log.error("Exception occurred while cloning repository!");
             e.printStackTrace();
         }
     }
 
+    private void deleteDestinationIfExistent(String path) {
+        File toDelete = new File(path);
+        if(toDelete.exists()) {
+            try {
+                FileUtils.delete(toDelete, 1);
+            } catch (IOException e) {
+                log.error("Exception occurred while deleting folder!");
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void deleteClonedRepository() {
-        try { //TODO check if folder exists!
-            FileUtils.delete(new File(PATH_TO_CLONE), 1);
-        } catch (IOException e) {
-            log.error("Exception occurred while deleting folder!");
-            e.printStackTrace();
-        }
+        deleteDestinationIfExistent(PATH_TO_CLONE);
     }
 
     private void printBranches(String repositoryUrl) {
