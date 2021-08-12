@@ -12,10 +12,9 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
     BasicFileService fileService;
 
     @Override
-    public List<Technology> getUsedTechnologies(String path) {
+    public List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies) {
         List<Technology> technologies = new ArrayList<>();
 
-        List<Technology> allTechnologies = Arrays.asList(Technology.values());
         List<String> filePaths = new ArrayList<>();
         List<String> fileNames = new ArrayList<>();
         fileService.findFilesAndFolders(path, filePaths, fileNames);

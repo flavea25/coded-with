@@ -8,10 +8,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class TechnologyService {
 
-    public abstract List<Technology> getUsedTechnologies(String path);
+    public abstract List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies);
 
-    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(String root) {
-        List<Technology> technologies = getUsedTechnologies(root);
+    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(String root, List<Technology> allTechnologies) {
+        List<Technology> technologies = getUsedTechnologies(root, allTechnologies);
         Map<Category, List<Technology>> sortedTechnologies = new HashMap<>();
 
         Arrays.asList(Category.values()).forEach(c -> sortedTechnologies.put(c, new ArrayList<>()));

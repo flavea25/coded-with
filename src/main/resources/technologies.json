@@ -1,0 +1,68 @@
+[
+   {
+      "name" : "Maven",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "content" : "pom.xml"
+   },
+   {
+      "name" : "Gradle",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "content" : "build.gradle"
+   },
+
+
+
+   {
+      "name" : "Angular",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRAMEWORK",
+      "content" : "angular.json"
+   },
+
+
+
+   {
+      "name" : "IntelliJ Idea",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "content" : ".idea"
+   },
+   {
+      "name" : "Eclipse IDE",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "content" : "<name>org.eclipse.jdt.core.javabuilder</name>",
+      "condition" : ".project"
+   },
+
+
+
+   {
+      "name" : "GitHub",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "content" : "url = https://github.com/",
+      "condition" : ".git/config"
+   },
+   {
+      "name" : "Docker",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "content" : "Dockerfile"
+   },
+   {
+      "name" : "Jenkins",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "content" : "Jenkinsfile"
+   },
+   {
+      "name" : "BitBucket",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "content" : "url = https://bitbucket.org/",
+      "condition" : ".git/config"
+   }
+]

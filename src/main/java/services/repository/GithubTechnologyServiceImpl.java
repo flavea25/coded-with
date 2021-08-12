@@ -5,7 +5,6 @@ import services.TechnologyService;
 import technologies.Technology;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -15,10 +14,9 @@ public class GithubTechnologyServiceImpl extends TechnologyService implements Re
     RepositoryFileService fileService;
 
     @Override
-    public List<Technology> getUsedTechnologies(String repository) {
+    public List<Technology> getUsedTechnologies(String repository, List<Technology> allTechnologies) {
         List<Technology> technologies = new ArrayList<>();
 
-        List<Technology> allTechnologies = Arrays.asList(Technology.values());
         String repositoryName = fileService.getRepositoryNameFromUrl(repository);
         Set<String> folderNames = fileService.getDirectoriesFromRepository(repositoryName);
 
