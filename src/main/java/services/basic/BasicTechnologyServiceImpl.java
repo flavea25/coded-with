@@ -18,18 +18,13 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         List<Technology> allTechnologies = Arrays.asList(Technology.values());
         List<String> filePaths = new ArrayList<>();
         List<String> fileNames = new ArrayList<>();
-        List<String> folderNames = new ArrayList<>();
-        fileService.findFilesAndFolders(path, filePaths, fileNames, folderNames);
+        fileService.findFilesAndFolders(path, filePaths, fileNames);
 
         allTechnologies.forEach(t -> {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:
-                    if (folderNames.contains(t.getCondition())) {
-                        technologies.add(t);
-                    }
-                    break;
                 case FILE_NAME:
-                    if (fileNames.contains(t.getCondition())) {
+                    if (fileNames.contains(t.getContent())) {
                         technologies.add(t);
                     }
                     break;

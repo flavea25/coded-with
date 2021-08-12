@@ -61,13 +61,13 @@ public class BasicFileServiceImpl implements BasicFileService{
     }
 
     @Override
-    public void findFilesAndFolders(String root, List<String> filePaths, List<String> files, List<String> folders) {
+    public void findFilesAndFolders(String root, List<String> filePaths, List<String> files) {
         File file = new File(root);
 
         if(file.isDirectory()) {
-            folders.add(file.getName());
+            files.add(file.getName());
             for(File f: Objects.requireNonNull(file.listFiles())) {
-                findFilesAndFolders(root + "/" + f.getName(), filePaths, files, folders);
+                findFilesAndFolders(root + "/" + f.getName(), filePaths, files);
             }
         }
         else {
@@ -79,8 +79,8 @@ public class BasicFileServiceImpl implements BasicFileService{
     @Override
     public boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
         var oPath = filePaths.stream()
-                                            .filter(p -> t.getPathEnding() == null || p.endsWith(t.getPathEnding()))
-                                            .filter(p -> isTextInFile(p, t.getCondition()))
+                                            .filter(p -> t.getCondition() == null || p.endsWith(t.getCondition()))
+                                            .filter(p -> isTextInFile(p, t.getContent()))
                                             .findAny();
         return oPath.isPresent();
     }

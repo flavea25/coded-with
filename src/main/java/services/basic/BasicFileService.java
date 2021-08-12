@@ -11,7 +11,7 @@ public interface BasicFileService {
 
     List<String> getFolderNames(String root);
 
-    void findFilesAndFolders(String root, List<String> filePaths, List<String> files, List<String> folders);
+    void findFilesAndFolders(String root, List<String> filePaths, List<String> files);
 
     boolean foundTechnologyInPaths(List<String> filePaths, Technology t);
 
