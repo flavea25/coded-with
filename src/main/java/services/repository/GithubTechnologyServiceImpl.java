@@ -1,6 +1,7 @@
 package services.repository;
 
 import com.google.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 import services.TechnologyService;
 import technologies.Technology;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 public class GithubTechnologyServiceImpl extends TechnologyService implements RepositoryTechnologyService {
 
     @Inject
@@ -15,6 +17,11 @@ public class GithubTechnologyServiceImpl extends TechnologyService implements Re
 
     @Override
     public List<Technology> getUsedTechnologies(String repository, List<Technology> allTechnologies) {
+        if(allTechnologies == null) {
+            log.info("Checking for no technologies - please check your JSON file!");
+            return new ArrayList<>();
+        }
+
         List<Technology> technologies = new ArrayList<>();
 
         String repositoryName = fileService.getRepositoryNameFromUrl(repository);

@@ -1,11 +1,13 @@
 package services.basic;
 
 import com.google.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 import services.TechnologyService;
 import technologies.Technology;
 
 import java.util.*;
 
+@Slf4j
 public class BasicTechnologyServiceImpl extends TechnologyService {
 
     @Inject
@@ -13,6 +15,11 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
 
     @Override
     public List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies) {
+        if(allTechnologies == null || allTechnologies.isEmpty()) {
+            log.info("Checking for no technologies - please check your JSON file!");
+            return new ArrayList<>();
+        }
+
         List<Technology> technologies = new ArrayList<>();
 
         List<String> filePaths = new ArrayList<>();
