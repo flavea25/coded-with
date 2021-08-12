@@ -29,7 +29,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
                     }
                     break;
                 case FILE_CONTENT:
-                    if(fileService.foundTechnologyInPaths(filePaths, t)) {
+                    if(foundTechnologyInPaths(filePaths, t)) {
                         technologies.add(t);
                     }
                     break;
@@ -38,5 +38,13 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         });
 
         return technologies;
+    }
+
+    private boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
+        var oPath = filePaths.stream()
+                .filter(p -> t.getCondition() == null || p.endsWith(t.getCondition()))
+                .filter(p -> fileService.isTextInFile(p, t.getContent()))
+                .findAny();
+        return oPath.isPresent();
     }
 }
