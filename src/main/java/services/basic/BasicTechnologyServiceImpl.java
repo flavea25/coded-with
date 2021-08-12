@@ -37,6 +37,8 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
             }
         });
 
+        fileService.deleteClonedRepository(); //TODO stop printing DEBUG messages :(((
+
         return technologies;
     }
 

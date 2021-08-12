@@ -3,16 +3,20 @@ package services.basic;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.util.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
 
-    private static final String PATH_TO_CLONE = "Downloads"; //TODO find acceptable path??
+    private static final String PATH_TO_CLONE = "cloned repositories/"; //TODO if I keep them : src/main/resources
+
+    private static final String REPOSITORY_LINK_START = "https://github.com/";
 
     @Override
     public boolean isTextInFile(String root, String text) {
@@ -34,15 +38,15 @@ public class BasicFileServiceImpl implements BasicFileService{
     }
 
     @Override
-    public void findFilesAndFolders(String path, List<String> filePaths, List<String> fileNames) {
-        boolean isRepository = path.startsWith("https://");
+    public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames) {
+        boolean isRepository = source.startsWith(REPOSITORY_LINK_START);
         if(isRepository) {
-            cloneRepositoryBranchAtPath(path, "master", PATH_TO_CLONE); //TODO get branch from link???
-            findFilesAndFoldersLocally(PATH_TO_CLONE, filePaths, fileNames); //TODO check if it's really there
-            deleteClonedRepository(PATH_TO_CLONE); //TODO check if it's really there
+            String path = PATH_TO_CLONE + source.substring(source.indexOf(REPOSITORY_LINK_START) + REPOSITORY_LINK_START.length());
+            cloneRepositoryAtPath(source, path);
+            findFilesAndFoldersLocally(path, filePaths, fileNames);
         }
         else {
-            findFilesAndFoldersLocally(path, filePaths, fileNames);
+            findFilesAndFoldersLocally(source, filePaths, fileNames);
         }
     }
 
@@ -61,11 +65,10 @@ public class BasicFileServiceImpl implements BasicFileService{
         }
     }
 
-    private void cloneRepositoryBranchAtPath(String repositoryUrl, String branch, String path) { //TODO return string of the actual path..?
-        try {
+    private void cloneRepositoryAtPath(String repositoryUrl, String path) {
+        try { //TODO if exists -> delete
             Git.cloneRepository()
                     .setURI(repositoryUrl)
-                    .setBranch(branch)
                     .setDirectory(Paths.get(path).toFile())
                     .call();
         } catch (GitAPIException e) {
@@ -74,8 +77,14 @@ public class BasicFileServiceImpl implements BasicFileService{
         }
     }
 
-    private void deleteClonedRepository(String path) {
-        //TODO implement
+    @Override
+    public void deleteClonedRepository() {
+        try { //TODO check if folder exists!
+            FileUtils.delete(new File(PATH_TO_CLONE), 1);
+        } catch (IOException e) {
+            log.error("Exception occurred while deleting folder!");
+            e.printStackTrace();
+        }
     }
 
     private void printBranches(String repositoryUrl) {

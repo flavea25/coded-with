@@ -37,7 +37,7 @@ public class Main {
     private static void runIntermediateMain() {
         TechnologyService technologyService = injector.getInstance(TechnologyService.class);
 
-        technologyService.getUsedTechnologiesByCategory("https://github.com/flavea25/licenta/SVV")
+        technologyService.getUsedTechnologiesByCategory("https://github.com/flavea25/SVV")
                 .forEach((category, technologies) -> log.info(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
     }
 }
