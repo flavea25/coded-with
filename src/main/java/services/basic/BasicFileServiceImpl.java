@@ -1,30 +1,17 @@
 package services.basic;
 
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import technologies.Technology;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
-
-    @Override
-    public void printFileLines(String root) {
-        try {
-            File file = new File(root);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                log.info("\t" + scanner.nextLine());
-            }
-
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            log.error("Error when opening file!");
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void printAllFilesFromFolder(String root, String indents) {
@@ -115,5 +102,51 @@ public class BasicFileServiceImpl implements BasicFileService{
         }
 
         return false;
+    }
+
+    @Override
+    public void cloneRepositoryBranchAtPath(String repositoryUrl, String branch, String path) { //TODO return string of the actual path..?
+        try {
+            Git.cloneRepository()
+                    .setURI(repositoryUrl)
+                    .setBranch(branch)
+                    .setDirectory(Paths.get(path).toFile())
+                    .call();
+        } catch (GitAPIException e) {
+            log.error("Exception occurred while cloning repository!");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteClonedRepository(String path) {
+        //TODO implement
+    }
+
+    public void printBranches(String repositoryUrl) {
+        try {
+            Git.lsRemoteRepository()
+                    .setRemote(repositoryUrl)
+                    .call()
+                    .forEach(c -> log.info(c.getName()));
+        } catch (GitAPIException e) {
+            log.error("Exception occurred while printing repository branches!");
+            e.printStackTrace();
+        }
+    }
+
+    public void printFileLines(String root) {
+        try {
+            File file = new File(root);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                log.info("\t" + scanner.nextLine());
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            log.error("Error when opening file!");
+            e.printStackTrace();
+        }
     }
 }

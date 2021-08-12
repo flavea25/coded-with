@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class GithubTechnologyService extends TechnologyService {
+public class GithubTechnologyServiceImpl extends TechnologyService implements RepositoryTechnologyService {
 
     @Inject
     RepositoryFileService fileService;

@@ -4,11 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.fluent.Request;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -94,30 +91,5 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         editedUrl = editedUrl.substring(editedUrl.indexOf(owner) + owner.length() + 1);
         String repo = editedUrl.substring(0, editedUrl.contains("/") ? editedUrl.indexOf('/') : editedUrl.length());
         return owner + '/' + repo;
-    }
-
-    public void printBranches(String repositoryUrl) {
-        try {
-            Git.lsRemoteRepository()
-                    .setRemote(repositoryUrl)
-                    .call()
-                    .forEach(c -> log.info(c.getName()));
-        } catch (GitAPIException e) {
-            log.error("Exception occurred while printing repository branches!");
-            e.printStackTrace();
-        }
-    }
-
-    public void cloneRepositoryBranchAtPath(String repositoryUrl, String branch, String path) {
-        try {
-            Git.cloneRepository()
-                    .setURI(repositoryUrl)
-                    .setBranch(branch)
-                    .setDirectory(Paths.get(path).toFile())
-                    .call();
-        } catch (GitAPIException e) {
-            log.error("Exception occurred while cloning repository!");
-            e.printStackTrace();
-        }
     }
 }

@@ -17,5 +17,7 @@ public interface BasicFileService {
 
     void printAllFilesFromFolder(String s, String s1);
 
-    void printFileLines(String s);
+    void cloneRepositoryBranchAtPath(String repository, String branch, String path);
+
+    void deleteClonedRepository(String path);
 }
