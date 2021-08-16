@@ -8,7 +8,8 @@ public class Main {
     //GitHub: "https://github.com/flavea25/licenta" OR /SVV
     //ROOT: "C:/Users/flavi/IdeaProjects/firstmaven"
     //SVV: "C:/Users/flavi/git/SVV"
-    public static void main(String[] args) { //TODO take links/paths as arguments
+    //tools: "C:/Users/flavi/IdeaProjects/firstmaven/src/main/resources/technologies.json"
+    public static void main(String[] args) {
         if(args.length != 2) {
             log.error("Not enough arguments!! - Please pass:\n\t 1. Path/link to analyzed project, and \n\t 2. Path to a JSON file containing the searched-for technologies!");
         }
