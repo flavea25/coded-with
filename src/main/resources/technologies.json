@@ -11,6 +11,18 @@
       "category" : "BUILD",
       "content" : "build.gradle"
    },
+   {
+      "name" : "Gant",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "content" : "build.gant"
+   },
+   {
+      "name" : "Ant",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "content" : "build.xml"
+   },
 
 
 
@@ -64,5 +76,33 @@
       "category" : "CI_CD",
       "content" : "url = https://bitbucket.org/",
       "condition" : ".git/config"
+   },
+   {
+      "name" : "Travis CI",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "content" : ".travis.yml"
+   },
+   {
+      "name" : "CircleCI",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "content" : "config.yml",
+      "condition" : ".circleci"
+   },
+
+
+
+   {
+      "name" : "Yarn",
+      "ruleType" : "FILE_NAME",
+      "category" : "OTHER",
+      "content" : "yarn.lock"
+   },
+   {
+      "name" : "VSCode (Visual Studio Code)",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "OTHER",
+      "content" : ".vscode"
    }
 ]

@@ -30,7 +30,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:
                 case FILE_NAME:
-                    if (fileNames.contains(t.getContent())) {
+                    if (fileNames.contains(t.getContent()) && foundTechnologyInPaths(filePaths, t)) {
                         technologies.add(t);
                     }
                     break;
@@ -49,10 +49,20 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
     }
 
     private boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
-        var oPath = filePaths.stream()
-                .filter(p -> t.getCondition() == null || p.endsWith(t.getCondition()))
-                .filter(p -> fileService.isTextInFile(p, t.getContent()))
-                .findAny();
-        return oPath.isPresent();
+        if(t.getCondition() == null || t.getCondition().isBlank()) {
+            return true;
+        }
+
+        if("FILE_CONTENT".equals(t.getRuleType().toString())) {
+            return filePaths.stream()
+                    .filter(p -> p.endsWith(t.getCondition()))
+                    .anyMatch(p -> fileService.isTextInFile(p, t.getContent()));
+        }
+        else if("FILE_NAME".equals(t.getRuleType().toString())) {
+            return filePaths.stream()
+                    .anyMatch(p -> p.endsWith(t.getCondition() + "/" + t.getContent()));
+        }
+
+        return true;
     }
 }
