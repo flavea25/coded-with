@@ -43,6 +43,95 @@
 
 
    {
+      "name" : "JUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import org.junit.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "Mockito",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import org.mockito.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "WireMock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "new WireMockServer(",
+      "condition" : ".java"
+   },
+   {
+      "name" : "TestNG",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "content" : "testng.xml"
+   },
+   {
+      "name" : "Selenium",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import org.openqa.selenium.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "Spock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import spock.",
+      "condition" : ".groovy"
+   },
+   {
+      "name" : "Geb",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import geb.",
+      "condition" : ".groovy"
+   },
+   {
+      "name" : "HTTPUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "content" : "import com.meterware.httpunit.",
+      "condition" : ".java"
+   },
+
+
+
+   {
+      "name" : "Karate",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "content" : "import com.intuit.karate.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "Cucumber",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "content" : "import io.cucumber.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "JBehave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "content" : "import org.jbehave.",
+      "condition" : ".java"
+   },
+   {
+      "name" : "Serenity",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "content" : "import net.serenitybdd.",
+      "condition" : ".java"
+   },
+
+
+
+   {
       "name" : "IntelliJ Idea",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
