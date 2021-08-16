@@ -62,6 +62,7 @@ public class BasicFileServiceImpl implements BasicFileService{
     }
 
     private void cloneRepositoryAtPath(String repositoryUrl, String path) {
+        log.info("Cloning repository...");
         try {
             deleteDestinationIfExistent(path);
             Git git = Git.cloneRepository()
@@ -78,6 +79,7 @@ public class BasicFileServiceImpl implements BasicFileService{
     private void deleteDestinationIfExistent(String path) {
         File toDelete = new File(path);
         if(toDelete.exists()) {
+            log.info("Deleting local copy of repository...");
             try {
                 FileUtils.delete(toDelete, 1);
             } catch (IOException e) {

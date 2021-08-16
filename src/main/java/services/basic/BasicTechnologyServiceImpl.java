@@ -16,7 +16,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
     @Override
     public List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies) {
         if(allTechnologies == null || allTechnologies.isEmpty()) {
-            log.info("Checking for no technologies - please check your JSON file!");
+            log.info("Checking for zero technologies - please check your JSON file!");
             return new ArrayList<>();
         }
 
@@ -26,6 +26,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         List<String> fileNames = new ArrayList<>();
         fileService.findFilesAndFolders(path, filePaths, fileNames);
 
+        log.info("Searching for used technologies...");
         allTechnologies.forEach(t -> {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:

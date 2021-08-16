@@ -24,6 +24,7 @@ public abstract class TechnologyService {
         List<Technology> technologies = getUsedTechnologies(root, allTechnologies);
         Map<Category, List<Technology>> sortedTechnologies = new HashMap<>();
 
+        log.info("Sorting used technologies...");
         Arrays.asList(Category.values()).forEach(c -> sortedTechnologies.put(c, new ArrayList<>()));
 
         technologies.forEach(t -> {
@@ -51,6 +52,7 @@ public abstract class TechnologyService {
     }
 
     public List<Technology> getAllTechnologiesFromFile(String path) {
+        log.info("Loading all technologies...");
         File source = new File(path);
         if(source.exists()) {
             try {

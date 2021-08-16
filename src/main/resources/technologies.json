@@ -32,6 +32,13 @@
       "category" : "FRAMEWORK",
       "content" : "angular.json"
    },
+   {
+      "name" : "Spring",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "content" : "<beans ",
+      "condition" : ".xml"
+   },
 
 
 
@@ -104,5 +111,11 @@
       "ruleType" : "FOLDER_NAME",
       "category" : "OTHER",
       "content" : ".vscode"
+   },
+   {
+      "name" : "JRebel",
+      "ruleType" : "FILE_NAME",
+      "category" : "OTHER",
+      "content" : "rebel.xml"
    }
 ]
