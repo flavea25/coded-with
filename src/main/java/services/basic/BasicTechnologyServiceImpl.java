@@ -3,9 +3,14 @@ package services.basic;
 import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import services.TechnologyService;
+import technologies.BuildTools;
 import technologies.Technology;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class BasicTechnologyServiceImpl extends TechnologyService {
@@ -20,14 +25,16 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
             return new ArrayList<>();
         }
 
-        List<Technology> technologies = new ArrayList<>();
-
         List<String> filePaths = new ArrayList<>();
         List<String> fileNames = new ArrayList<>();
         fileService.findFilesAndFolders(path, filePaths, fileNames);
+        List<Technology> searchedTechnologies = new ArrayList<>(allTechnologies);
 
         log.info("Searching for used technologies...");
-        allTechnologies.forEach(t -> {
+        List<Technology> technologies = getTechnologiesFromDependencies(fileNames, filePaths, searchedTechnologies);
+        searchedTechnologies.removeAll(technologies);
+
+        searchedTechnologies.forEach(t -> {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:
                 case FILE_NAME:
@@ -48,6 +55,46 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         fileService.deleteClonedRepository();
 
         return technologies;
+    }
+
+    private List<Technology> getTechnologiesFromDependencies(List<String> fileNames, List<String> filePaths, List<Technology> allTechnologies) {
+        List<Technology> foundTechnologies = new ArrayList<>();
+        List<Technology> searchedTechnologies = allTechnologies.stream().filter(t -> t.getDependencies() != null && !t.getDependencies().isEmpty()).collect(Collectors.toList());
+
+        Arrays.stream(BuildTools.values())
+                .filter(bt -> fileNames.contains(bt.getFileName()))
+                .forEach(bt -> filePaths.stream()
+                        .filter(p -> p.endsWith(bt.getFileName()))
+                        .forEach(p -> {
+                            Set<Technology> foundNow = findDependenciesFromFile(p, searchedTechnologies);
+                            foundTechnologies.addAll(foundNow);
+                            searchedTechnologies.removeAll(foundNow);
+                        }));
+
+        return foundTechnologies;
+    }
+
+    private Set<Technology> findDependenciesFromFile(String path, List<Technology> searchedTechnologies) {
+        Set<Technology> foundTechnologies = new HashSet<>();
+        String fileContent = null;
+
+        try {
+            fileContent = Files.readString(Path.of(path));
+        } catch (IOException e) {
+            log.error("Exception occurred when reading lines from a file!");
+            e.printStackTrace();
+        }
+
+        if(fileContent != null && !fileContent.isBlank()) {
+            String finalFileContent = fileContent;
+            searchedTechnologies.forEach(t -> t.getDependencies().forEach(d -> {
+                if(finalFileContent.contains(d)) {
+                    foundTechnologies.add(t);
+                }
+            }));
+        }
+
+        return foundTechnologies;
     }
 
     private boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {

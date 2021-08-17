@@ -37,7 +37,8 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "FRAMEWORK",
       "contents" : ["<beans "],
-      "conditions" : [".xml"]
+      "conditions" : [".xml"],
+      "dependencies" : ["org.springframework"]
    },
 
 
@@ -47,55 +48,71 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.junit."],
-      "conditions" : [".java"]
+      "conditions" : [".java", ".groovy"],
+      "dependencies" : ["org.junit", "cucumber-junit", "junit"]
    },
    {
       "name" : "Mockito",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.mockito."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["org.mockito"]
    },
    {
       "name" : "WireMock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["new WireMockServer("],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["com.github.tomakehurst"]
    },
    {
       "name" : "TestNG",
       "ruleType" : "FILE_NAME",
       "category" : "TESTING",
-      "contents" : ["testng.xml"]
+      "contents" : ["testng.xml"],
+      "dependencies" : ["org.testng"]
    },
    {
       "name" : "Selenium",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.openqa.selenium."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["org.seleniumhq.selenium"]
    },
    {
       "name" : "Spock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "contents" : ["import spock."],
-      "conditions" : [".groovy"]
+      "contents" : ["import spock.", "import geb.spock."],
+      "conditions" : [".groovy"],
+      "dependencies" : ["org.spockframework", "geb.spock"]
    },
    {
       "name" : "Geb",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import geb."],
-      "conditions" : [".groovy"]
+      "conditions" : [".groovy"],
+      "dependencies" : ["org.gebish"]
    },
    {
       "name" : "HTTPUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import com.meterware.httpunit."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["com.meterware.httpunit", "org.kohsuke.httpunit", "httpunit"]
+   },
+   {
+      "name" : "HTMLUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["new HtmlUnitDriver("],
+      "conditions" : [".java"],
+      "dependencies" : ["net.sourceforge.htmlunit", "htmlunit-driver"]
    },
 
 
@@ -105,28 +122,32 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import com.intuit.karate."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["com.intuit.karate"]
    },
    {
       "name" : "Cucumber",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import io.cucumber."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["io.cucumber"]
    },
    {
       "name" : "JBehave",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import org.jbehave."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["org.jbehave"]
    },
    {
       "name" : "Serenity",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import net.serenitybdd."],
-      "conditions" : [".java"]
+      "conditions" : [".java"],
+      "dependencies" : ["net.serenity-bdd"]
    },
 
 

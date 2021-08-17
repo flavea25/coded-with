@@ -46,7 +46,7 @@ public abstract class TechnologyService {
     public String getTechnologiesNames(List<Technology> technologies) {
         AtomicReference<String> result = new AtomicReference<>("");
 
-        technologies.forEach(t -> result.getAndSet(t.getName() + ", "));
+        technologies.forEach(t -> result.set(result.get() + t.getName() + ", "));
 
         return result.get();
     }

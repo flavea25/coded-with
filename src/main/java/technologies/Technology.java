@@ -16,11 +16,14 @@ public class Technology {
 
     private final List<String> conditions; //can be containing file for FILE_CONTENT or containing folder for FILE_NAME
 
-    public Technology(String name, String ruleType, String category, List<String> contents, List<String> conditions) {
+    private final List<String> dependencies;
+
+    public Technology(String name, String ruleType, String category, List<String> contents, List<String> conditions, List<String> dependencies) {
         this.name = name;
         this.ruleType = RuleType.valueOf(ruleType);
         this.category = Category.valueOf(category);
         this.contents = contents;
         this.conditions = conditions;
+        this.dependencies = dependencies;
     }
 }
