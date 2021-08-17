@@ -2,6 +2,8 @@ package technologies;
 
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class Technology {
     private final String name;
@@ -10,15 +12,15 @@ public class Technology {
 
     private final Category category;
 
-    private final String content;
+    private final List<String> contents;
 
-    private final String condition; //can be containing file for FILE_CONTENT or containing folder for FILE_NAME
+    private final List<String> conditions; //can be containing file for FILE_CONTENT or containing folder for FILE_NAME
 
-    public Technology(String name, String ruleType, String category, String content, String condition) {
+    public Technology(String name, String ruleType, String category, List<String> contents, List<String> conditions) {
         this.name = name;
         this.ruleType = RuleType.valueOf(ruleType);
         this.category = Category.valueOf(category);
-        this.content = content;
-        this.condition = condition;
+        this.contents = contents;
+        this.conditions = conditions;
     }
 }

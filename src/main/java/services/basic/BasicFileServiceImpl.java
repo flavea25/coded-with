@@ -18,13 +18,13 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     private static final String PATH_TO_CLONE = "cloned repositories/";
 
-    private static final String REPOSITORY_LINK_START = "https://github.com/";
+    private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
 
     @Override
-    public boolean isTextInFile(String root, String text) {
+    public boolean isAnyTextInFile(String root, List<String> texts) {
         try {
             return Files.readAllLines(Path.of(root)).stream()
-                    .anyMatch(l -> l.contains(text));
+                    .anyMatch(l -> texts.stream().anyMatch(l::contains));
         } catch (IOException e) {
             log.error("Exception occurred when reading lines from a file!");
             e.printStackTrace();
@@ -35,13 +35,15 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     @Override
     public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames) {
-        boolean isRepository = source.startsWith(REPOSITORY_LINK_START);
+        boolean isRepository = source.startsWith(GITHUB_REPOSITORY_LINK_START);
         if(isRepository) {
-            String path = PATH_TO_CLONE + source.substring(source.indexOf(REPOSITORY_LINK_START) + REPOSITORY_LINK_START.length());
+            String path = PATH_TO_CLONE + source.substring(source.indexOf(GITHUB_REPOSITORY_LINK_START) + GITHUB_REPOSITORY_LINK_START.length());
             cloneRepositoryAtPath(source, path);
+            log.info("Finding files & folders...");
             findFilesAndFoldersLocally(path, filePaths, fileNames);
         }
         else {
+            log.info("Finding files & folders...");
             findFilesAndFoldersLocally(source, filePaths, fileNames);
         }
     }

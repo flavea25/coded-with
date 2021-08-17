@@ -31,7 +31,8 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:
                 case FILE_NAME:
-                    if (fileNames.contains(t.getContent()) && foundTechnologyInPaths(filePaths, t)) {
+                    log.info("" + t.getContents());
+                    if (t.getContents().stream().anyMatch(fileNames::contains) && foundTechnologyInPaths(filePaths, t)) {
                         technologies.add(t);
                     }
                     break;
@@ -50,18 +51,18 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
     }
 
     private boolean foundTechnologyInPaths(List<String> filePaths, Technology t) {
-        if(t.getCondition() == null || t.getCondition().isBlank()) {
+        if(t.getConditions() == null || t.getConditions().isEmpty()) {
             return true;
         }
 
         if("FILE_CONTENT".equals(t.getRuleType().toString())) {
             return filePaths.stream()
-                    .filter(p -> p.endsWith(t.getCondition()))
-                    .anyMatch(p -> fileService.isTextInFile(p, t.getContent()));
+                    .filter(p -> t.getConditions().stream().anyMatch(p::endsWith))
+                    .anyMatch(p -> fileService.isAnyTextInFile(p, t.getContents()));
         }
         else if("FILE_NAME".equals(t.getRuleType().toString())) {
             return filePaths.stream()
-                    .anyMatch(p -> p.endsWith(t.getCondition() + "/" + t.getContent()));
+                    .anyMatch(p -> t.getConditions().stream().anyMatch(f -> t.getContents().stream().anyMatch(c -> p.endsWith(f + "/" + c))));
         }
 
         return true;

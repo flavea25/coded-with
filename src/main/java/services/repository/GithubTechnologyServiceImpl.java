@@ -30,17 +30,17 @@ public class GithubTechnologyServiceImpl extends TechnologyService implements Re
         allTechnologies.forEach(t -> {
             switch (t.getRuleType()) {
                 case FOLDER_NAME:
-                    if (folderNames.contains(t.getContent())) {
+                    if (t.getContents().stream().anyMatch(folderNames::contains)) {
                         technologies.add(t);
                     }
                     break;
                 case FILE_NAME:
-                    if (fileService.foundFileInRepository(t.getContent(), repositoryName)) {
+                    if (fileService.foundAnyFileInRepository(t.getContents(), t.getConditions(), repositoryName)) {
                         technologies.add(t);
                     }
                     break;
                 case FILE_CONTENT:
-                    if(fileService.isTextInFile(repositoryName, t.getCondition(), t.getContent())) {
+                    if(fileService.isAnyTextInFile(repositoryName, t.getConditions(), t.getContents())) {
                         technologies.add(t);
                     }
                     break;

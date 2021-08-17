@@ -3,25 +3,25 @@
       "name" : "Maven",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
-      "content" : "pom.xml"
+      "contents" : ["pom.xml"]
    },
    {
       "name" : "Gradle",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
-      "content" : "build.gradle"
+      "contents" : ["build.gradle"]
    },
    {
       "name" : "Gant",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
-      "content" : "build.gant"
+      "contents" : ["build.gant"]
    },
    {
       "name" : "Ant",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
-      "content" : "build.xml"
+      "contents" : ["build.xml"]
    },
 
 
@@ -30,14 +30,14 @@
       "name" : "Angular",
       "ruleType" : "FILE_NAME",
       "category" : "FRAMEWORK",
-      "content" : "angular.json"
+      "contents" : ["angular.json"]
    },
    {
       "name" : "Spring",
       "ruleType" : "FILE_CONTENT",
       "category" : "FRAMEWORK",
-      "content" : "<beans ",
-      "condition" : ".xml"
+      "contents" : ["<beans "],
+      "conditions" : [".xml"]
    },
 
 
@@ -46,56 +46,56 @@
       "name" : "JUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import org.junit.",
-      "condition" : ".java"
+      "contents" : ["import org.junit."],
+      "conditions" : [".java"]
    },
    {
       "name" : "Mockito",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import org.mockito.",
-      "condition" : ".java"
+      "contents" : ["import org.mockito."],
+      "conditions" : [".java"]
    },
    {
       "name" : "WireMock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "new WireMockServer(",
-      "condition" : ".java"
+      "contents" : ["new WireMockServer("],
+      "conditions" : [".java"]
    },
    {
       "name" : "TestNG",
       "ruleType" : "FILE_NAME",
       "category" : "TESTING",
-      "content" : "testng.xml"
+      "contents" : ["testng.xml"]
    },
    {
       "name" : "Selenium",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import org.openqa.selenium.",
-      "condition" : ".java"
+      "contents" : ["import org.openqa.selenium."],
+      "conditions" : [".java"]
    },
    {
       "name" : "Spock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import spock.",
-      "condition" : ".groovy"
+      "contents" : ["import spock."],
+      "conditions" : [".groovy"]
    },
    {
       "name" : "Geb",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import geb.",
-      "condition" : ".groovy"
+      "contents" : ["import geb."],
+      "conditions" : [".groovy"]
    },
    {
       "name" : "HTTPUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
-      "content" : "import com.meterware.httpunit.",
-      "condition" : ".java"
+      "contents" : ["import com.meterware.httpunit."],
+      "conditions" : [".java"]
    },
 
 
@@ -104,29 +104,29 @@
       "name" : "Karate",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
-      "content" : "import com.intuit.karate.",
-      "condition" : ".java"
+      "contents" : ["import com.intuit.karate."],
+      "conditions" : [".java"]
    },
    {
       "name" : "Cucumber",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
-      "content" : "import io.cucumber.",
-      "condition" : ".java"
+      "contents" : ["import io.cucumber."],
+      "conditions" : [".java"]
    },
    {
       "name" : "JBehave",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
-      "content" : "import org.jbehave.",
-      "condition" : ".java"
+      "contents" : ["import org.jbehave."],
+      "conditions" : [".java"]
    },
    {
       "name" : "Serenity",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
-      "content" : "import net.serenitybdd.",
-      "condition" : ".java"
+      "contents" : ["import net.serenitybdd."],
+      "conditions" : [".java"]
    },
 
 
@@ -135,14 +135,14 @@
       "name" : "IntelliJ Idea",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
-      "content" : ".idea"
+      "contents" : [".idea"]
    },
    {
       "name" : "Eclipse IDE",
       "ruleType" : "FILE_CONTENT",
       "category" : "IDE",
-      "content" : "<name>org.eclipse.jdt.core.javabuilder</name>",
-      "condition" : ".project"
+      "contents" : ["<name>org.eclipse.jdt.core.javabuilder</name>"],
+      "conditions" : [".project"]
    },
 
 
@@ -151,40 +151,40 @@
       "name" : "GitHub",
       "ruleType" : "FILE_CONTENT",
       "category" : "CI_CD",
-      "content" : "url = https://github.com/",
-      "condition" : ".git/config"
+      "contents" : ["url = https://github.com/"],
+      "conditions" : [".git/config"]
    },
    {
       "name" : "Docker",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "content" : "Dockerfile"
+      "contents" : ["Dockerfile"]
    },
    {
       "name" : "Jenkins",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "content" : "Jenkinsfile"
+      "contents" : ["Jenkinsfile"]
    },
    {
       "name" : "BitBucket",
       "ruleType" : "FILE_CONTENT",
       "category" : "CI_CD",
-      "content" : "url = https://bitbucket.org/",
-      "condition" : ".git/config"
+      "contents" : ["url = https://bitbucket.org/"],
+      "conditions" : [".git/config"]
    },
    {
       "name" : "Travis CI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "content" : ".travis.yml"
+      "contents" : [".travis.yml"]
    },
    {
       "name" : "CircleCI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "content" : "config.yml",
-      "condition" : ".circleci"
+      "contents" : ["config.yml"],
+      "conditions" : [".circleci"]
    },
 
 
@@ -193,18 +193,18 @@
       "name" : "Yarn",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
-      "content" : "yarn.lock"
+      "contents" : ["yarn.lock"]
    },
    {
       "name" : "VSCode (Visual Studio Code)",
       "ruleType" : "FOLDER_NAME",
       "category" : "OTHER",
-      "content" : ".vscode"
+      "contents" : [".vscode"]
    },
    {
       "name" : "JRebel",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
-      "content" : "rebel.xml"
+      "contents" : ["rebel.xml"]
    }
 ]

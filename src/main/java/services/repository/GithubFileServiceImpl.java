@@ -29,32 +29,61 @@ public class GithubFileServiceImpl implements RepositoryFileService{
     }
 
     @Override
-    public boolean isTextInFile(String repositoryName, String pathEnding, String searchedText) {
-        String searchQuery = searchedText + "+repo:" + repositoryName;
-        Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
-
-        if(pathEnding == null) {
-            return searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0;
-        }
-
+    public boolean isAnyTextInFile(String repositoryName, List<String> pathEndings, List<String> searchedTexts) {
         AtomicBoolean foundText = new AtomicBoolean(false);
-        if(searchResult != null) {
-            gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray().forEach(item -> {
-                if(item.getAsJsonObject().get("path").toString().endsWith(pathEnding + "\"")) {
-                    foundText.set(true);
+
+        searchedTexts.forEach(t -> {
+            if(!foundText.get()) {
+                String searchQuery = t + "+repo:" + repositoryName;
+                Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
+
+                if(pathEndings == null || pathEndings.isEmpty()) {
+                    if(searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0) {
+                        foundText.set(true);
+                    }
                 }
-            });
-        }
+                else {
+                    if(searchResult != null) {
+                        gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray().forEach(item -> {
+                            if(pathEndings.stream().anyMatch(p -> item.getAsJsonObject().get("path").toString().endsWith(p + "\""))) {
+                                foundText.set(true);
+                            }
+                        });
+                    }
+                }
+            }
+        });
 
         return foundText.get();
     }
 
     @Override
-    public boolean foundFileInRepository(String fileName, String repositoryName) {
-        String searchQuery = "filename:" + fileName + "+repo:" + repositoryName;
-        Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
+    public boolean foundAnyFileInRepository(List<String> fileNames, List<String> conditions, String repositoryName) {
+        AtomicBoolean foundFile = new AtomicBoolean(false);
 
-        return searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0;
+        fileNames.forEach(f -> {
+            if(!foundFile.get()) {
+                String searchQuery = "filename:" + f + "+repo:" + repositoryName;
+                Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
+
+                if(conditions == null || conditions.isEmpty()) {
+                    if(searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0) {
+                        foundFile.set(true);
+                    }
+                }
+                else {
+                    if(searchResult != null) {
+                        gson.toJsonTree(searchResult).getAsJsonObject().get("items").getAsJsonArray().forEach(item -> {
+                            if(conditions.stream().anyMatch(folder -> item.getAsJsonObject().get("path").toString().endsWith(folder + "/" + f + "\""))) {
+                                foundFile.set(true);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+        return foundFile.get();
     }
 
     @Override
