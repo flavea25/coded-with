@@ -114,6 +114,46 @@
       "conditions" : [".java"],
       "dependencies" : ["net.sourceforge.htmlunit", "htmlunit-driver"]
    },
+   {
+      "name" : "Gauge",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import com.thoughtworks.gauge."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.thoughtworks.gauge"]
+   },
+   {
+      "name" : "Awaitility",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.awaitility."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.awaitility"]
+   },
+   {
+      "name" : "DBUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.dbunit."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.dbunit"]
+   },
+   {
+      "name" : "Hamcrest",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.hamcrest."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.hamcrest"]
+   },
+   {
+      "name" : "JSONAssert",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["JSONAssert.assertEquals(", "import org.skyscreamer.jsonassert."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.skyscreamer"]
+   },
 
 
 
@@ -165,6 +205,12 @@
       "contents" : ["<name>org.eclipse.jdt.core.javabuilder</name>"],
       "conditions" : [".project"]
    },
+   {
+      "name" : "VSCode (Visual Studio Code)",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : [".vscode"]
+   },
 
 
 
@@ -215,12 +261,6 @@
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["yarn.lock"]
-   },
-   {
-      "name" : "VSCode (Visual Studio Code)",
-      "ruleType" : "FOLDER_NAME",
-      "category" : "OTHER",
-      "contents" : [".vscode"]
    },
    {
       "name" : "JRebel",

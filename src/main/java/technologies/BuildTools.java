@@ -6,11 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum BuildTools {
-    MAVEN("Maven", "pom.xml"),
-    GRADLE("Gradle", "build.gradle"),
-    ANT("Ant", "build.xml"),
-    GANT("Gant", "build.gant");
+    MAVEN("pom.xml"),
+    GRADLE("build.gradle"),
+    ANT("build.xml"),
+    GANT("build.gant");
 
-    private String name;
     private String fileName;
 }
