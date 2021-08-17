@@ -54,7 +54,7 @@ public class BasicFileServiceImpl implements BasicFileService{
         if(file.isDirectory()) {
             fileNames.add(file.getName());
             for(File f: Objects.requireNonNull(file.listFiles())) {
-                findFilesAndFolders(root + "/" + f.getName(), filePaths, fileNames);
+                findFilesAndFoldersLocally(root + "/" + f.getName(), filePaths, fileNames);
             }
         }
         else {

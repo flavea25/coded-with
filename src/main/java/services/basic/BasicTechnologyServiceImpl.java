@@ -35,20 +35,21 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         searchedTechnologies.removeAll(technologies);
 
         searchedTechnologies.forEach(t -> {
-            switch (t.getRuleType()) {
-                case FOLDER_NAME:
-                case FILE_NAME:
-                    log.info("" + t.getContents());
-                    if (t.getContents().stream().anyMatch(fileNames::contains) && foundTechnologyInPaths(filePaths, t)) {
-                        technologies.add(t);
-                    }
-                    break;
-                case FILE_CONTENT:
-                    if(foundTechnologyInPaths(filePaths, t)) {
-                        technologies.add(t);
-                    }
-                    break;
-                default: break;
+            if(t.getRuleType() != null) {
+                switch (t.getRuleType()) {
+                    case FOLDER_NAME:
+                    case FILE_NAME:
+                        if (t.getContents().stream().anyMatch(fileNames::contains) && foundTechnologyInPaths(filePaths, t)) {
+                            technologies.add(t);
+                        }
+                        break;
+                    case FILE_CONTENT:
+                        if(foundTechnologyInPaths(filePaths, t)) {
+                            technologies.add(t);
+                        }
+                        break;
+                    default: break;
+                }
             }
         });
 

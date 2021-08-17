@@ -225,7 +225,7 @@
       "name" : "Docker",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["Dockerfile"]
+      "contents" : ["Dockerfile", "Dockerfile.assets"]
    },
    {
       "name" : "Jenkins",
@@ -253,6 +253,91 @@
       "contents" : ["config.yml"],
       "conditions" : [".circleci"]
    },
+   {
+      "name" : "TeamCity",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["settings.kts"],
+      "dependencies" : ["org.jetbrains.teamcity"]
+   },
+   {
+      "name" : "Bamboo",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["import com.atlassian.bamboo."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.atlassian.bamboo"]
+   },
+   {
+      "name" : "GitLab",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".gitlab-ci.yml"]
+   },
+   {
+      "name" : "Cirrus",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".cirrus.yml"]
+   },
+   {
+      "name" : "Azure Pipelines",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["azure-pipelines.yml", "azure-pipeline.yml"]
+   },
+   {
+      "name" : "GoCD",
+      "category" : "CI_CD",
+      "dependencies" : ["go-maven-poller", "cd.go", "com.oneandone.go", "com.thoughtworks.go", "https://nexus.gocd.io/"]
+   },
+   {
+      "name" : "Mule 3",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["mule-app.properties"]
+   },
+   {
+      "name" : "Mule 4",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["mule-artifact.json"]
+   },
+   {
+      "name" : "Mule",
+      "category" : "CI_CD",
+      "dependencies" : ["http://repository.mulesoft.org/", "org.mule"]
+   },
+
+
+
+   {
+      "name" : "Code Climate",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".codeclimate.yml"]
+   },
+   {
+      "name" : "SonarSource",
+      "category" : "ANALYSIS",
+      "dependencies" : ["org.sonarsource", "org.sonarqube"]
+   },
+   {
+      "name" : "Veracode",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "dependencies" : ["com.veracode"]
+   },
+   {
+      "name" : "SpotBugs",
+      "category" : "ANALYSIS",
+      "dependencies" : ["com.github.spotbugs", "spotbugs-maven-plugin", "com.h3xstream.findsecbugs", "</spotbugs>"]
+   },
+   {
+      "name" : "FindBugs",
+      "category" : "ANALYSIS",
+      "dependencies" : ["findbugs-maven-plugin", "apply plugin: 'findbugs'", "edu.umd.cs.findbugs.anttask.", "</findbugs>"]
+   },
 
 
 
@@ -260,12 +345,23 @@
       "name" : "Yarn",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
-      "contents" : ["yarn.lock"]
+      "contents" : ["yarn.lock", ".yarn.lock"]
    },
    {
       "name" : "JRebel",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["rebel.xml"]
+   },
+   {
+      "name" : "Azure Artifacts",
+      "category" : "OTHER",
+      "dependencies" : ["https://dev.azure.com/"]
+   },
+   {
+      "name" : "NPM",
+      "ruleType" : "FILE_NAME",
+      "category" : "OTHER",
+      "contents" : [".npmrc"]
    }
 ]
