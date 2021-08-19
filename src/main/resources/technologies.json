@@ -4,24 +4,31 @@
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["pom.xml"]
-   },
-   {
+   }, {
       "name" : "Gradle",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["build.gradle"]
-   },
-   {
+   }, {
       "name" : "Gant",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["build.gant"]
-   },
-   {
+   }, {
       "name" : "Ant",
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["build.xml"]
+   }, {
+      "name" : "Gulp",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["gulpfile.js", "gulpfile.ts", "gulpfile.babel.js", "Gulpfile.js"]
+   }, {
+      "name" : "SBT",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.sbt"]
    },
 
 
@@ -31,8 +38,7 @@
       "ruleType" : "FILE_NAME",
       "category" : "FRAMEWORK",
       "contents" : ["angular.json"]
-   },
-   {
+   }, {
       "name" : "Spring",
       "ruleType" : "FILE_CONTENT",
       "category" : "FRAMEWORK",
@@ -50,109 +56,119 @@
       "contents" : ["import org.junit."],
       "conditions" : [".java", ".groovy"],
       "dependencies" : ["org.junit", "cucumber-junit", "junit"]
-   },
-   {
+   }, {
       "name" : "Mockito",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.mockito."],
       "conditions" : [".java"],
       "dependencies" : ["org.mockito"]
-   },
-   {
+   }, {
       "name" : "WireMock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["new WireMockServer("],
       "conditions" : [".java"],
       "dependencies" : ["com.github.tomakehurst"]
-   },
-   {
+   }, {
       "name" : "TestNG",
       "ruleType" : "FILE_NAME",
       "category" : "TESTING",
       "contents" : ["testng.xml"],
       "dependencies" : ["org.testng"]
-   },
-   {
+   }, {
       "name" : "Selenium",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.openqa.selenium."],
       "conditions" : [".java"],
       "dependencies" : ["org.seleniumhq.selenium"]
-   },
-   {
+   }, {
       "name" : "Spock",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import spock.", "import geb.spock."],
       "conditions" : [".groovy"],
       "dependencies" : ["org.spockframework", "geb.spock"]
-   },
-   {
+   }, {
       "name" : "Geb",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import geb."],
       "conditions" : [".groovy"],
       "dependencies" : ["org.gebish"]
-   },
-   {
+   }, {
       "name" : "HTTPUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import com.meterware.httpunit."],
       "conditions" : [".java"],
       "dependencies" : ["com.meterware.httpunit", "org.kohsuke.httpunit", "httpunit"]
-   },
-   {
+   }, {
       "name" : "HTMLUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["new HtmlUnitDriver("],
       "conditions" : [".java"],
       "dependencies" : ["net.sourceforge.htmlunit", "htmlunit-driver"]
-   },
-   {
+   }, {
       "name" : "Gauge",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import com.thoughtworks.gauge."],
       "conditions" : [".java"],
       "dependencies" : ["com.thoughtworks.gauge"]
-   },
-   {
+   }, {
       "name" : "Awaitility",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.awaitility."],
       "conditions" : [".java"],
       "dependencies" : ["org.awaitility"]
-   },
-   {
+   }, {
       "name" : "DBUnit",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.dbunit."],
       "conditions" : [".java"],
       "dependencies" : ["org.dbunit"]
-   },
-   {
+   }, {
       "name" : "Hamcrest",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["import org.hamcrest."],
       "conditions" : [".java"],
       "dependencies" : ["org.hamcrest"]
-   },
-   {
+   }, {
       "name" : "JSONAssert",
       "ruleType" : "FILE_CONTENT",
       "category" : "TESTING",
       "contents" : ["JSONAssert.assertEquals(", "import org.skyscreamer.jsonassert."],
       "conditions" : [".java"],
       "dependencies" : ["org.skyscreamer"]
+   }, {
+      "name" : "Robot Framework",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : [""],
+      "conditions" : [".robot"],
+      "dependencies" : ["org.robotframework", "de.qualersoft.robotframework", "org.roboscratch.robot"]
+   }, {
+      "name" : "Katalon",
+      "category" : "TESTING",
+      "dependencies" : ["com.katalon"]
+   }, {
+      "name" : "Katalium",
+      "category" : "TESTING",
+      "dependencies" : ["<artifactId>katalium</artifactId>", "https://github.com/katalon-studio/katalium-framework"]
+   }, {
+      "name" : "TestProject",
+      "category" : "TESTING",
+      "dependencies" : ["io.testproject"]
+   }, {
+      "name" : "SoapUI",
+      "category" : "TESTING",
+      "dependencies" : ["com.smartbear.soapui", "https://www.soapui.org"]
    },
 
 
@@ -164,24 +180,21 @@
       "contents" : ["import com.intuit.karate."],
       "conditions" : [".java"],
       "dependencies" : ["com.intuit.karate"]
-   },
-   {
+   }, {
       "name" : "Cucumber",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import io.cucumber."],
       "conditions" : [".java"],
       "dependencies" : ["io.cucumber"]
-   },
-   {
+   }, {
       "name" : "JBehave",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import org.jbehave."],
       "conditions" : [".java"],
       "dependencies" : ["org.jbehave"]
-   },
-   {
+   }, {
       "name" : "Serenity",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
@@ -197,15 +210,13 @@
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
       "contents" : [".idea"]
-   },
-   {
+   }, {
       "name" : "Eclipse IDE",
       "ruleType" : "FILE_CONTENT",
       "category" : "IDE",
       "contents" : ["<name>org.eclipse.jdt.core.javabuilder</name>"],
       "conditions" : [".project"]
-   },
-   {
+   }, {
       "name" : "VSCode (Visual Studio Code)",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
@@ -215,99 +226,105 @@
 
 
    {
-      "name" : "GitHub",
-      "ruleType" : "FILE_CONTENT",
+      "name" : "GitHub Actions",
+      "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["url = https://github.com/"],
-      "conditions" : [".git/config"]
-   },
-   {
+      "contents" : ["workflows"],
+      "conditions" : [".github"]
+   }, {
       "name" : "Docker",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["Dockerfile", "Dockerfile.assets"]
-   },
-   {
+   }, {
       "name" : "Jenkins",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["Jenkinsfile"]
-   },
-   {
+   }, {
       "name" : "BitBucket",
-      "ruleType" : "FILE_CONTENT",
+      "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["url = https://bitbucket.org/"],
-      "conditions" : [".git/config"]
-   },
-   {
+      "contents" : ["bitbucket-pipelines.yml"]
+   }, {
       "name" : "Travis CI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : [".travis.yml"]
-   },
-   {
+   }, {
       "name" : "CircleCI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["config.yml"],
       "conditions" : [".circleci"]
-   },
-   {
+   }, {
       "name" : "TeamCity",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["settings.kts"],
       "dependencies" : ["org.jetbrains.teamcity"]
-   },
-   {
+   }, {
       "name" : "Bamboo",
       "ruleType" : "FILE_CONTENT",
       "category" : "CI_CD",
       "contents" : ["import com.atlassian.bamboo."],
       "conditions" : [".java"],
       "dependencies" : ["com.atlassian.bamboo"]
-   },
-   {
+   }, {
       "name" : "GitLab",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : [".gitlab-ci.yml"]
-   },
-   {
+   }, {
       "name" : "Cirrus",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : [".cirrus.yml"]
-   },
-   {
+   }, {
       "name" : "Azure Pipelines",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["azure-pipelines.yml", "azure-pipeline.yml"]
-   },
-   {
+   }, {
       "name" : "GoCD",
       "category" : "CI_CD",
       "dependencies" : ["go-maven-poller", "cd.go", "com.oneandone.go", "com.thoughtworks.go", "https://nexus.gocd.io/"]
-   },
-   {
+   }, {
       "name" : "Mule 3",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["mule-app.properties"]
-   },
-   {
+   }, {
       "name" : "Mule 4",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["mule-artifact.json"]
-   },
-   {
+   }, {
       "name" : "Mule",
       "category" : "CI_CD",
       "dependencies" : ["http://repository.mulesoft.org/", "org.mule"]
-   },
+   }, {
+      "name" : "Buddy",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["buddy.yml"]
+   }, {
+      "name" : "Semaphore",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["semaphore.yml"],
+      "conditions" : [".semaphore"]
+   }, {
+      "name" : "webapp.io (LayerCI)",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Layerfile"]
+   }, {
+   "name" : "Drone",
+   "ruleType" : "FILE_NAME",
+   "category" : "CI_CD",
+   "contents" : [".drone.yml"]
+},
 
 
 
@@ -316,27 +333,30 @@
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
       "contents" : [".codeclimate.yml"]
-   },
-   {
+   }, {
       "name" : "SonarSource",
       "category" : "ANALYSIS",
       "dependencies" : ["org.sonarsource", "org.sonarqube"]
-   },
-   {
+   }, {
       "name" : "Veracode",
       "ruleType" : "FILE_CONTENT",
       "category" : "ANALYSIS",
       "dependencies" : ["com.veracode"]
-   },
-   {
+   }, {
       "name" : "SpotBugs",
       "category" : "ANALYSIS",
       "dependencies" : ["com.github.spotbugs", "spotbugs-maven-plugin", "com.h3xstream.findsecbugs", "</spotbugs>"]
-   },
-   {
+   }, {
       "name" : "FindBugs",
       "category" : "ANALYSIS",
       "dependencies" : ["findbugs-maven-plugin", "apply plugin: 'findbugs'", "edu.umd.cs.findbugs.anttask.", "</findbugs>"]
+   }, {
+      "name" : "JMeter",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : [""],
+      "conditions" : [".jmx"],
+      "dependencies" : ["jmeter-maven-plugin", "jmeter-analysis-maven-plugin", "com.lazerycode.jmeter", "jmeter-plugins", "jmeter-gradle-plugin", "org.jmeterplugins"]
    },
 
 
@@ -346,19 +366,16 @@
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["yarn.lock", ".yarn.lock"]
-   },
-   {
+   }, {
       "name" : "JRebel",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["rebel.xml"]
-   },
-   {
+   }, {
       "name" : "Azure Artifacts",
       "category" : "OTHER",
       "dependencies" : ["https://dev.azure.com/"]
-   },
-   {
+   }, {
       "name" : "NPM",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
