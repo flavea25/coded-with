@@ -160,7 +160,7 @@
    }, {
       "name" : "Katalium",
       "category" : "TESTING",
-      "dependencies" : ["<artifactId>katalium</artifactId>", "https://github.com/katalon-studio/katalium-framework"]
+      "dependencies" : ["<artifactId>katalium</artifactId>", "katalium-framework"]
    }, {
       "name" : "TestProject",
       "category" : "TESTING",
@@ -371,10 +371,6 @@
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["rebel.xml"]
-   }, {
-      "name" : "Azure Artifacts",
-      "category" : "OTHER",
-      "dependencies" : ["https://dev.azure.com/"]
    }, {
       "name" : "NPM",
       "ruleType" : "FILE_NAME",
