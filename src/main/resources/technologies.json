@@ -29,6 +29,22 @@
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["build.sbt"]
+   }, {
+      "name" : "Please",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : [".plzconfig", "BUILD.plz"]
+   }, {
+      "name" : "Pants",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["patchy_pants'", "'squarepants"],
+      "conditions" : ["BUILD"]
+   }, {
+      "name" : "Jeka (Jerkar)",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["jekaw", "jekaw.bat", "jeka", "jeka.bat", ".jeka"]
    },
 
 
@@ -169,6 +185,34 @@
       "name" : "SoapUI",
       "category" : "TESTING",
       "dependencies" : ["com.smartbear.soapui", "https://www.soapui.org"]
+   }, {
+      "name" : "JWebUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import net.sourceforge.jwebunit.", "import static net.sourceforge.jwebunit."],
+      "conditions" : [".java"],
+      "dependencies" : ["net.sourceforge.jwebunit"]
+   }, {
+      "name" : "Selenide",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import static com.codeborne.selenide.", "import com.codeborne.selenide."],
+      "conditions" : [".java"],
+      "dependencies" : ["<artifactId>selenide</artifactId>", "com.codeborne:selenide", "com.codeborne.selenide"]
+   }, {
+      "name" : "Arquillian",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.jboss.arquillian.", "@RunWith(Arquillian.class)"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jboss.arquillian"]
+   }, {
+      "name" : "PowerMock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.powermock."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.powermock"]
    },
 
 
@@ -201,6 +245,41 @@
       "contents" : ["import net.serenitybdd."],
       "conditions" : [".java"],
       "dependencies" : ["net.serenity-bdd"]
+   }, {
+      "name" : "JDave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import jdave."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jdave"]
+   }, {
+      "name" : "EasyB",
+      "category" : "BDD",
+      "dependencies" : ["org.easyb"]
+   }, {
+      "name" : "FitNesse",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import fitnesse."],
+      "dependencies" : ["org.fitnesse", "fitnesse.org"]
+   }, {
+      "name" : "JDave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import jdave."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jdave"]
+   }, {
+      "name" : "Jnario",
+      "category" : "BDD",
+      "dependencies" : ["org.jnario"]
+   }, {
+      "name" : "Concordion",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import org.concordion.", "@RunWith(ConcordionRunner.class)"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.concordion"]
    },
 
 
@@ -320,11 +399,27 @@
       "category" : "CI_CD",
       "contents" : ["Layerfile"]
    }, {
-   "name" : "Drone",
-   "ruleType" : "FILE_NAME",
-   "category" : "CI_CD",
-   "contents" : [".drone.yml"]
-},
+      "name" : "Drone",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".drone.yml"]
+   }, {
+      "name" : "Wercker",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["wercker.yml"]
+   }, {
+      "name" : "Kubernetes",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["kubernetes.yaml", "kubernetes.yml"]
+   }, {
+      "name" : "CodeShip",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-services.yaml"]
+   },
+
 
 
 
@@ -339,7 +434,6 @@
       "dependencies" : ["org.sonarsource", "org.sonarqube"]
    }, {
       "name" : "Veracode",
-      "ruleType" : "FILE_CONTENT",
       "category" : "ANALYSIS",
       "dependencies" : ["com.veracode"]
    }, {
@@ -348,7 +442,9 @@
       "dependencies" : ["com.github.spotbugs", "spotbugs-maven-plugin", "com.h3xstream.findsecbugs", "</spotbugs>"]
    }, {
       "name" : "FindBugs",
+      "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
+      "content" : "findbugs.xml",
       "dependencies" : ["findbugs-maven-plugin", "apply plugin: 'findbugs'", "edu.umd.cs.findbugs.anttask.", "</findbugs>"]
    }, {
       "name" : "JMeter",
@@ -357,8 +453,56 @@
       "contents" : [""],
       "conditions" : [".jmx"],
       "dependencies" : ["jmeter-maven-plugin", "jmeter-analysis-maven-plugin", "com.lazerycode.jmeter", "jmeter-plugins", "jmeter-gradle-plugin", "org.jmeterplugins"]
+   },{
+      "name" : "Checkmarx",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import com.checkmarx."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.github.checkmarx-ltd", "org.checkmarx"]
+   }, {
+      "name" : "Gatling",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import io.gatling"],
+      "conditions" : [".scala"],
+      "dependencies" : ["io.gatling"]
+   }, {
+      "name" : "The Grinder",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["grinder.properties", "grinder.py"],
+      "dependencies" : ["net.grinder", "net.sf.grinder"]
+   }, {
+      "name" : "Checkstyle",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["checkstyle-suppressions.xml", "checkstyle.xml", "checkstyle_packages.xml"],
+      "dependencies" : ["plugin: 'checkstyle'", "maven-checkstyle-plugin", "com/puppycrawl/tools/checkstyle"]
+   }, {
+      "name" : "PMD",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["pmd.xml"],
+      "dependencies" : ["maven-pmd-plugin", "net.sourceforge.pmd", "id 'pmd'"]
+   }, {
+      "name" : "Codacy",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".codacyrc"]
+   }, {
+      "name" : "Coverity",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import com.synopsys.integration.coverity."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.synopsys.integration.coverity", "com.synopsys.integration:coverity"]
+   }, {
+      "name" : "Codecov",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["codecov.yml", "codecov.yaml"]
    },
-
 
 
    {
@@ -376,5 +520,14 @@
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : [".npmrc"]
+   }, {
+      "name" : "Apache Ivy",
+      "ruleType" : "FILE_NAME",
+      "category" : "OTHER",
+      "contents" : ["ivy.xml"]
+   }, {
+      "name" : "Azure Artifacts",
+      "category" : "OTHER",
+      "dependencies" : ["https://dev.azure.com/"]
    }
 ]

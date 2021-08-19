@@ -1,0 +1,109 @@
+BUILD: 8/10
+    Maven
+    Gradle
+    Gant
+    Ant
+    Gulp TODO JS ONLY
+    SBT (Simple Build Tool)
+    Pants
+    Please
+    Jeka (Jerkar)
+CI_CD:
+    GitHub
+    BitBucket
+    Jenkins
+    Docker
+    CircleCI
+    Travis CI
+    TeamCity
+    Bamboo
+    GitLab
+    Cirrus
+    Azure Pipelines
+    GoCD
+    Mule 3
+    Mule 4
+    Mule
+    Buddy
+    Semaphore
+    webapp.io (LayerCI)
+    Drone.io
+    Wercker
+    CodeShip
+FRAMEWORK: 2/20
+    Angular
+    Spring
+IDE: TODO remove section? -> DEVELOPMENT tools???
+    IntelliJ IDEa
+    Eclipse IDE
+    VSCode TODO almost an IDE *rolls eyes*
+TESTING:
+    JUnit
+    Mockito
+    WireMock
+    TestNG
+    Selenium
+    Spock
+    Geb
+    HTTPUnit
+    HTMLUnit
+    Gauge
+    Awaitility
+    DBUnit
+    Hamcrest
+    JSONAssert
+    Robot Framework
+    Katalon
+    Katalium
+    TestProject
+    SoapUI
+    JWebUnit
+    Selenide
+    Arquillian
+    PowerMock
+BDD:
+    Karate
+    Cucumber
+    JBehave
+    Serenity
+    JDave
+    EasyB
+    Fitnesse
+    JDave
+    Jnario
+    Concordion
+ANALYSIS: 6/10
+    Code Climate
+    SonarSource
+    Veracode
+    SpotBugs
+    FindBugs
+    JMeter
+    Checkmarx
+    Gatling
+    The Grinder
+    Checkstyle
+    PMD
+    Codacy
+    Coverity
+    Codecov
+OTHER:
+    Yarn TODO JS ONLY
+    NPM TODO JS ONLY
+    JRebel TODO PRODUCTIVITY TOOL
+    Apache Ivy TODO PACKAGE MANAGER
+    Azure Artifacts TODO PACKAGE MANAGER
+
+
+lines - 8 (-3JS -3IDE)
+
+
+
+{
+  "name" : "",
+  "ruleType" : "",
+  "category" : "",
+  "contents" : [""],
+  "conditions" : [""],
+  "dependencies" : [""]
+}
