@@ -61,6 +61,21 @@
       "contents" : ["<beans "],
       "conditions" : [".xml"],
       "dependencies" : ["org.springframework"]
+   }, {
+      "name" : "Struts",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRAMEWORK",
+      "contents" : ["struts-config.xml"]
+   }, {
+      "name" : "Hibernate",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRAMEWORK",
+      "contents" : ["hibernate.cfg.xml"],
+      "dependencies" : ["org.hibernate"]
+   }, {
+      "name" : "Wicket",
+      "category" : "FRAMEWORK",
+      "dependencies" : ["org.apache.wicket"]
    },
 
 
@@ -213,6 +228,11 @@
       "contents" : ["import org.powermock."],
       "conditions" : [".java"],
       "dependencies" : ["org.powermock"]
+   }, {
+      "name" : "Codeception",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["codeception.yml", "codeception.yaml"]
    },
 
 
@@ -300,6 +320,11 @@
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
       "contents" : [".vscode"]
+   }, {
+      "name" : "NetBeans",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : ["nbproject"]
    },
 
 
@@ -418,8 +443,13 @@
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-services.yaml"]
+   }, {
+      "name" : "CodeShip",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["pipeline.yml", "pipeline.yaml"],
+      "conditions" : ["buildkite"]
    },
-
 
 
 
@@ -502,6 +532,11 @@
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
       "contents" : ["codecov.yml", "codecov.yaml"]
+   }, {
+      "name" : "Embold",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["embold.yml", "embold.yaml"]
    },
 
 
@@ -521,7 +556,7 @@
       "category" : "OTHER",
       "contents" : [".npmrc"]
    }, {
-      "name" : "Apache Ivy",
+      "name" : "Ivy",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["ivy.xml"]
@@ -529,5 +564,14 @@
       "name" : "Azure Artifacts",
       "category" : "OTHER",
       "dependencies" : ["https://dev.azure.com/"]
+   }, {
+      "name" : "JFrog Artifactory",
+      "category" : "OTHER",
+      "dependencies" : ["org.jfrog.buildinfo", "artifactory-maven-plugin", "com.jfrog.artifactory", "org.jfrog:"]
+   }, {
+      "name" : "Logstash",
+      "ruleType" : "FILE_NAME",
+      "category" : "OTHER",
+      "contents" : ["logstash.yml", "logstash.yaml"]
    }
 ]
