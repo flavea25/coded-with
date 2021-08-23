@@ -1,14 +1,20 @@
-BUILD:
+BUILD: TODO add BUILD tools & PACKAGE_MANAGERS for: C#, C/C++, TypeScript, Python, Ruby, Rust, PHP, Kotlin, GO
     Maven
     Gradle
     Gant
     Ant
-    Gulp TODO JS ONLY
+    Gulp
     SBT (Simple Build Tool)
     Pants
     Please
     Jeka (Jerkar)
-CI_CD:
+PACKAGE_MANAGER:
+    Yarn
+    NPM
+    Ivy
+    Azure Artifacts
+    JFrog Artifactory
+CI_CD: TODO add Terraform, Ansible, AWS (chestii)
     GitHub
     BitBucket
     Jenkins
@@ -32,18 +38,27 @@ CI_CD:
     Kubernetes
     CodeShip
     Buildkite
-FRAMEWORK: 5/20
+LIBRARY:
+    ByteBuddy
+    JCTools
+    StreamEX
+    JNats
+    Akka
+FRAMEWORK: 7/20
     Angular
     Spring
-    Hibernate
+    Hibernate TODO ORM
+    Ebean TODO ORM
     Struts
     Wicket
-IDE: TODO remove section? -> DEVELOPMENT tools???
+    Dropwizard
+IDE:
     IntelliJ IDEa
     Eclipse IDE
-    VSCode TODO almost an IDE *rolls eyes*
+    Visual Studio
 TESTING:
     JUnit
+    Jupiter
     Mockito
     WireMock
     TestNG
@@ -95,17 +110,12 @@ ANALYSIS:
     Codecov
     Embold
 OTHER:
-    Yarn TODO JS ONLY
-    NPM TODO JS ONLY
     JRebel TODO PRODUCTIVITY TOOL
-    Ivy TODO PACKAGE MANAGER
-    Azure Artifacts TODO PACKAGE MANAGER
-    JFrog Artifactory TODO PACKAGE MANAGER
     Logstash TODO ETL TOOL
 
 
-NO. OF TOOLS: lines - 8CATEGORY (-3JS -3IDE)
-
+NO. OF TOOLS: lines - 10
+TODO add VISUALIZATION tools
 
 TEMPLATE:
 {

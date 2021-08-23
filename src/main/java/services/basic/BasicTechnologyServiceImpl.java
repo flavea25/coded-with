@@ -39,7 +39,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
                 switch (t.getRuleType()) {
                     case FOLDER_NAME:
                     case FILE_NAME:
-                        if (t.getContents().stream().anyMatch(fileNames::contains) && foundTechnologyInPaths(filePaths, t)) {
+                        if (t.getContents() != null && t.getContents().stream().anyMatch(fileNames::contains) && foundTechnologyInPaths(filePaths, t)) {
                             technologies.add(t);
                         }
                         break;

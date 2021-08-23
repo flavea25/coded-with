@@ -28,9 +28,10 @@ public abstract class TechnologyService {
         Arrays.asList(Category.values()).forEach(c -> sortedTechnologies.put(c, new ArrayList<>()));
 
         technologies.forEach(t -> {
-            List<Technology> existingTechnologies = sortedTechnologies.get(t.getCategory());
+            Category c = t.getCategory() != null ? t.getCategory() : Category.OTHER;
+            List<Technology> existingTechnologies = sortedTechnologies.get(c);
             existingTechnologies.add(t);
-            sortedTechnologies.replace(t.getCategory(), existingTechnologies);
+            sortedTechnologies.replace(c, existingTechnologies);
         });
 
         Map<Category, List<Technology>> actualSortedTechnologies = new HashMap<>();

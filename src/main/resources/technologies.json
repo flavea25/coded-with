@@ -50,6 +50,33 @@
 
 
    {
+      "name" : "Yarn",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["yarn.lock", ".yarn.lock"]
+   }, {
+      "name" : "NPM",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : [".npmrc"]
+   }, {
+      "name" : "Ivy",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["ivy.xml"]
+   }, {
+      "name" : "Azure Artifacts",
+      "category" : "PACKAGE_MANAGER",
+      "dependencies" : ["https://dev.azure.com/"]
+   }, {
+      "name" : "JFrog Artifactory",
+      "category" : "PACKAGE_MANAGER",
+      "dependencies" : ["org.jfrog.buildinfo", "artifactory-maven-plugin", "com.jfrog.artifactory", "org.jfrog:"]
+   },
+
+
+
+   {
       "name" : "Angular",
       "ruleType" : "FILE_NAME",
       "category" : "FRAMEWORK",
@@ -76,6 +103,56 @@
       "name" : "Wicket",
       "category" : "FRAMEWORK",
       "dependencies" : ["org.apache.wicket"]
+   }, {
+      "name" : "Dropwizard",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["import io.dropwizard."],
+      "conditions" : [".java"],
+      "dependencies" : ["io.dropwizard"]
+   }, {
+      "name" : "Ebean",
+      "category" : "FRAMEWORK",
+      "dependencies" : ["io.ebean"]
+   },
+
+
+
+   {
+      "name" : "JCTools",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import org.jctools."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jctools"]
+   }, {
+      "name" : "StreamEX",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import one.util.streamex."],
+      "conditions" : [".java"],
+      "dependencies" : ["<artifactId>streamex</artifactId>"]
+   }, {
+      "name" : "JNats",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import io.nats."],
+      "conditions" : [".java"],
+      "dependencies" : ["io.nats"]
+   }, {
+      "name" : "ByteBuddy",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["new ByteBuddy(", "import net.bytebuddy."],
+      "conditions" : [".java"],
+      "dependencies" : ["net.bytebuddy"]
+   }, {
+      "name" : "Akka",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["import akka."],
+      "conditions" : [".java", ".scala"],
+      "dependencies" : ["com.typesafe.akka"]
    },
 
 
@@ -87,6 +164,13 @@
       "contents" : ["import org.junit."],
       "conditions" : [".java", ".groovy"],
       "dependencies" : ["org.junit", "cucumber-junit", "junit"]
+   }, {
+      "name" : "Jupiter",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.junit.jupiter."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.junit.jupiter"]
    }, {
       "name" : "Mockito",
       "ruleType" : "FILE_CONTENT",
@@ -281,6 +365,7 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
       "contents" : ["import fitnesse."],
+      "conditions" : [".java"],
       "dependencies" : ["org.fitnesse", "fitnesse.org"]
    }, {
       "name" : "JDave",
@@ -316,7 +401,7 @@
       "contents" : ["<name>org.eclipse.jdt.core.javabuilder</name>"],
       "conditions" : [".project"]
    }, {
-      "name" : "VSCode (Visual Studio Code)",
+      "name" : "Visual Studio",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
       "contents" : [".vscode"]
@@ -474,7 +559,7 @@
       "name" : "FindBugs",
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
-      "content" : "findbugs.xml",
+      "contents" : ["findbugs.xml"],
       "dependencies" : ["findbugs-maven-plugin", "apply plugin: 'findbugs'", "edu.umd.cs.findbugs.anttask.", "</findbugs>"]
    }, {
       "name" : "JMeter",
@@ -541,33 +626,10 @@
 
 
    {
-      "name" : "Yarn",
-      "ruleType" : "FILE_NAME",
-      "category" : "OTHER",
-      "contents" : ["yarn.lock", ".yarn.lock"]
-   }, {
       "name" : "JRebel",
       "ruleType" : "FILE_NAME",
       "category" : "OTHER",
       "contents" : ["rebel.xml"]
-   }, {
-      "name" : "NPM",
-      "ruleType" : "FILE_NAME",
-      "category" : "OTHER",
-      "contents" : [".npmrc"]
-   }, {
-      "name" : "Ivy",
-      "ruleType" : "FILE_NAME",
-      "category" : "OTHER",
-      "contents" : ["ivy.xml"]
-   }, {
-      "name" : "Azure Artifacts",
-      "category" : "OTHER",
-      "dependencies" : ["https://dev.azure.com/"]
-   }, {
-      "name" : "JFrog Artifactory",
-      "category" : "OTHER",
-      "dependencies" : ["org.jfrog.buildinfo", "artifactory-maven-plugin", "com.jfrog.artifactory", "org.jfrog:"]
    }, {
       "name" : "Logstash",
       "ruleType" : "FILE_NAME",
