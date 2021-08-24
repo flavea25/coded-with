@@ -155,7 +155,7 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "PACKAGE_MANAGER",
       "contents" : ["arn:aws:codeartifact", ".codeartifact."],
-      "conditions" : [".json", ".npmrc", ".yarnrc.yml", ".yarnrc.yaml"],
+      "conditions" : ["package.json", ".npmrc", ".yarnrc.yml", ".yarnrc.yaml"],
       "dependencies" : [".codeartifact."]
    }, {
       "name" : "Pip",
