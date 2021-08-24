@@ -23,7 +23,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         try {
             return gson.fromJson(request.execute().returnContent().asString(), Map.class);
         } catch (IOException ignored) {
-            log.error("Error while executing the request!: " + restUrl); //TODO analyze error: wrong request or request rate exceeded? : https://api.github.com/rate_limit
+            log.error("Error while executing the request!: " + restUrl);
             return null;
         }
     }
