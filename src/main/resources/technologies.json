@@ -124,152 +124,125 @@
 
 
    {
-      "name" : "Angular",
-      "ruleType" : "FILE_NAME",
-      "category" : "FRAMEWORK",
-      "contents" : ["angular.json"]
-   }, {
       "name" : "Spring",
       "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["<beans "],
       "conditions" : [".xml"],
       "dependencies" : ["org.springframework"]
    }, {
-      "name" : "Struts",
-      "ruleType" : "FILE_NAME",
-      "category" : "FRAMEWORK",
-      "contents" : ["struts-config.xml"]
-   }, {
-      "name" : "Wicket",
-      "category" : "FRAMEWORK",
-      "dependencies" : ["org.apache.wicket"]
-   }, {
       "name" : "Dropwizard",
       "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["import io.dropwizard."],
       "conditions" : [".java"],
       "dependencies" : ["io.dropwizard"]
    }, {
       "name" : "Django",
       "ruleType" : "FILE_NAME",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["manage.py"]
    }, {
-      "name" : "Rewrite",
+      "name" : "OCPsoft Rewrite",
       "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["@RewriteConfiguration"],
       "conditions" : [".java"],
       "dependencies" : ["org.ocpsoft.rewrite"]
    }, {
       "name" : "Rack",
       "ruleType" : "FILE_NAME",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["config.ru"]
-   }, {
-      "name" : "Electron",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
-      "contents" : ["require('electron')"],
-      "conditions" : [".js"]
-   }, {
-      "name" : "Vue",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
-      "contents" : ["\"vue\":", "\"vue\" :"],
-      "conditions" : ["package.json"]
-   }, {
-      "name" : "JavaFX",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
-      "contents" : ["import javafx."],
-      "conditions" : [".java"],
-      "dependencies" : ["org.openjfx"]
-   }, {
-      "name" : "SWT",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
-      "contents" : ["import org.eclipse.swt."],
-      "conditions" : [".java"]
    }, {
       "name" : "Blade",
       "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
+      "category" : "BACKEND",
       "contents" : ["import com.blade."],
       "conditions" : [".java"],
       "dependencies" : ["com.bladejava"]
-   },
-
-
-
-   {
+   }, {
       "name" : "JCTools",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
+      "category" : "BACKEND",
       "contents" : ["import org.jctools."],
       "conditions" : [".java"],
       "dependencies" : ["org.jctools"]
    }, {
-      "name" : "StreamEX",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
-      "contents" : ["import one.util.streamex."],
-      "conditions" : [".java"],
-      "dependencies" : ["<artifactId>streamex</artifactId>"]
-   }, {
-      "name" : "JNats",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
-      "contents" : ["import io.nats."],
-      "conditions" : [".java"],
-      "dependencies" : ["io.nats"]
-   }, {
       "name" : "ByteBuddy",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
+      "category" : "BACKEND",
       "contents" : ["new ByteBuddy(", "import net.bytebuddy."],
       "conditions" : [".java"],
       "dependencies" : ["net.bytebuddy"]
    }, {
       "name" : "Akka",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
+      "category" : "BACKEND",
       "contents" : ["import akka."],
       "conditions" : [".java", ".scala"],
       "dependencies" : ["com.typesafe.akka"]
    }, {
-      "name" : "Liquibase",
-      "ruleType" : "FILE_NAME",
-      "category" : "LIBRARY",
-      "contents" : ["liquibase.properties"],
-      "dependencies" : ["org.liquibase"]
-   }, {
-      "name" : "Pegdown",
-      "ruleType" : "FILE_NAME",
-      "category" : "LIBRARY",
-      "contents" : ["import org.pegdown."],
-      "conditions" : [".java"],
-      "dependencies" : ["org.pegdown"]
-   }, {
+      "name" : "TensorFlow",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import tensorflow", "from tensorflow"],
+      "conditions" : [".py"]
+   },
+
+
+
+   {
       "name" : "React",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
+      "category" : "FRONTEND",
       "contents" : ["\"react\":", "\"react\" :"],
       "conditions" : ["package.json"]
    }, {
       "name" : "Swing",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
+      "category" : "FRONTEND",
       "contents" : ["import javax.swing."],
       "conditions" : [".java"]
    }, {
-      "name" : "TensorFlow",
+      "name" : "Electron",
       "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
-      "contents" : ["import tensorflow", "from tensorflow"],
-      "conditions" : [".py"]
+      "category" : "FRONTEND",
+      "contents" : ["require('electron')"],
+      "conditions" : [".js"]
+   }, {
+      "name" : "Vue",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["\"vue\":", "\"vue\" :"],
+      "conditions" : ["package.json"]
+   }, {
+      "name" : "JavaFX",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["import javafx."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.openjfx"]
+   }, {
+      "name" : "SWT",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["import org.eclipse.swt."],
+      "conditions" : [".java"]
+   }, {
+      "name" : "Struts",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRONTEND",
+      "contents" : ["struts-config.xml"]
+   }, {
+      "name" : "Wicket",
+      "category" : "FRONTEND",
+      "dependencies" : ["org.apache.wicket"]
+   }, {
+      "name" : "Angular",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRONTEND",
+      "contents" : ["angular.json"]
    },
 
 
@@ -341,6 +314,12 @@
       "contents" : ["\"github.com/jinzhu/gorm\"", "\"gorm.io/gorm\""],
       "conditions" : [".go"],
       "dependencies" : ["io.gorm"]
+   }, {
+      "name" : "Liquibase",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["liquibase.properties"],
+      "dependencies" : ["org.liquibase"]
    },
 
 

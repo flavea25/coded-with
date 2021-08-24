@@ -54,30 +54,26 @@ CI_CD:
     AWS CodePipeline
     GolangCI-Lint
     JRebel
-LIBRARY:
-    ByteBuddy
-    JCTools
-    StreamEX
-    JNats
-    Akka
-    Liquibase
+FRONTEND:
     React
-    Pegdown
     Swing
-    TensorFlow
-FRAMEWORK:
-    AngularJS
-    Spring
+    Angular
     Struts
     Wicket
-    Django
-    Dropwizard
-    Rewrite
-    Rack
     Electron
     Vue
     JavaFX
     SWT
+BACKEND:
+    JCTools
+    ByteBuddy
+    Akka
+    TensorFlow
+    Spring
+    Django
+    Dropwizard
+    OCPsoft Rewrite
+    Rack
     Blade
 ORM:
     Hibernate
@@ -91,6 +87,7 @@ ORM:
     Doctrine 2
     MyBatis
     GORM
+    Liquibase
 IDE:
     JetBrains Suite
     Eclipse IDE
