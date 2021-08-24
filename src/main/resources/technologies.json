@@ -65,15 +65,68 @@
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["rollup.config.js"]
+   }, {
+      "name" : "MSBuild",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : [""],
+      "conditions" : [".csproj", ".vbproj", ".dbproj"]
+   }, {
+      "name" : "NAnt",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["<nant"],
+      "conditions" : [".build"]
+   }, {
+      "name" : "CMake",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["CMakeLists.txt"]
+   }, {
+      "name" : "Ninja",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.ninja"]
+   }, {
+      "name" : "Grunt",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["Gruntfile.js"]
+   }, {
+      "name" : "PyBuilder",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["from pybuilder"],
+      "conditions" : ["build.py"]
    },
 
 
 
    {
+      "name" : "Bower",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["bower.json"]
+   }, {
+      "name" : "Cargo",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Cargo.lock", "Cargo.toml"]
+   }, {
+      "name" : "Conan",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["conanfile.txt", "conanfile.py"]
+   }, {
+      "name" : "Buckaroo",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : [".buckconfig"]
+   }, {
       "name" : "Yarn",
       "ruleType" : "FILE_NAME",
       "category" : "PACKAGE_MANAGER",
-      "contents" : ["yarn.lock", ".yarn.lock", ".yarnrc.yml"]
+      "contents" : ["yarn.lock", ".yarn.lock", ".yarnrc.yml", ".yarnrc.yaml"]
    }, {
       "name" : "NuGet",
       "ruleType" : "FILE_NAME",
@@ -102,10 +155,10 @@
       "ruleType" : "FILE_CONTENT",
       "category" : "PACKAGE_MANAGER",
       "contents" : ["arn:aws:codeartifact", ".codeartifact."],
-      "conditions" : [".json", ".npmrc", ".yarnrc.yml"],
+      "conditions" : [".json", ".npmrc", ".yarnrc.yml", ".yarnrc.yaml"],
       "dependencies" : [".codeartifact."]
    }, {
-      "name" : "pip",
+      "name" : "Pip",
       "ruleType" : "FILE_NAME",
       "category" : "PACKAGE_MANAGER",
       "contents" : ["requirements.txt"]
@@ -119,6 +172,22 @@
       "ruleType" : "FILE_NAME",
       "category" : "PACKAGE_MANAGER",
       "contents" : ["Gemfile"]
+   }, {
+      "name" : "PEAR",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["pear.php.net"],
+      "conditions" : ["package.xml"]
+   }, {
+      "name" : "dep",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Gopkg.toml", "Gopkg.lock"]
+   }, {
+      "name" : "Glide",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["glide.yaml", "glide.yml", "glide.lock"]
    },
 
 
@@ -250,76 +319,81 @@
    {
       "name" : "Hibernate",
       "ruleType" : "FILE_NAME",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["hibernate.cfg.xml"],
       "dependencies" : ["org.hibernate"]
    }, {
       "name" : "Ebean",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "dependencies" : ["io.ebean"]
    }, {
       "name" : "Sequelize",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["require('sequelize')"],
       "conditions" : [".js"],
       "dependencies" : ["org.sequelize"]
    }, {
       "name" : "ent",
       "ruleType" : "FILE_NAME",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["ent", "ent.go"],
       "dependencies" : ["entgo.io", "io.entgo"]
    }, {
       "name" : "GreenDAO",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["import org.greenrobot.greendao."],
       "conditions" : [".java"],
       "dependencies" : ["org.greenrobot:greendao"]
    }, {
       "name" : "peewee",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["from peewee"],
       "conditions" : [".py"]
    }, {
       "name" : "Entity Framework",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["using Microsoft.EntityFrameworkCore"],
       "conditions" : [".cs"]
    }, {
       "name" : "SQLAlchemy",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["from sqlalchemy.orm"],
       "conditions" : [".py"]
    }, {
       "name" : "Doctrine 2",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["<doctrine-mapping", "use Doctrine\\ORM"],
       "conditions" : [".php", ".xml"]
    }, {
       "name" : "MyBatis",
       "ruleType" : "FILE_NAME",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["mybatis-config.xml"],
       "dependencies" : ["org.mybatis"]
    }, {
       "name" : "GORM",
       "ruleType" : "FILE_CONTENT",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["\"github.com/jinzhu/gorm\"", "\"gorm.io/gorm\""],
       "conditions" : [".go"],
       "dependencies" : ["io.gorm"]
    }, {
       "name" : "Liquibase",
       "ruleType" : "FILE_NAME",
-      "category" : "ORM",
+      "category" : "DATABASE",
       "contents" : ["liquibase.properties"],
       "dependencies" : ["org.liquibase"]
+   }, {
+      "name" : "Diesel CLI",
+      "ruleType" : "FILE_NAME",
+      "category" : "DATABASE",
+      "contents" : ["diesel.toml"]
    },
 
 
@@ -494,6 +568,11 @@
       "ruleType" : "FILE_NAME",
       "category" : "TESTING",
       "contents" : ["jest.config.js"]
+   }, {
+      "name" : "Testem",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["testem.json",".testem.json","testem.yml",".testem.yml","testem.yaml",".testem.yaml","testem.js"]
    },
 
 
@@ -638,6 +717,11 @@
 
 
    {
+      "name" : "Capistrano",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Capfile"]
+   }, {
       "name" : "GitHub Actions",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
@@ -657,17 +741,17 @@
       "name" : "BitBucket",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["bitbucket-pipelines.yml"]
+      "contents" : ["bitbucket-pipelines.yml", "bitbucket-pipelines.yaml"]
    }, {
       "name" : "Travis CI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : [".travis.yml"]
+      "contents" : [".travis.yml", ".travis.yaml"]
    }, {
       "name" : "CircleCI",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["config.yml"],
+      "contents" : ["config.yml", "config.yaml"],
       "conditions" : [".circleci"]
    }, {
       "name" : "TeamCity",
@@ -686,17 +770,17 @@
       "name" : "GitLab",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : [".gitlab-ci.yml"]
+      "contents" : [".gitlab-ci.yml", ".gitlab-ci.yaml"]
    }, {
       "name" : "Cirrus",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : [".cirrus.yml"]
+      "contents" : [".cirrus.yml", ".cirrus.yaml"]
    }, {
       "name" : "Azure Pipelines",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["azure-pipelines.yml", "azure-pipeline.yml"]
+      "contents" : ["azure-pipelines.yml", "azure-pipeline.yml", "azure-pipelines.yaml", "azure-pipeline.yaml"]
    }, {
       "name" : "GoCD",
       "category" : "CI_CD",
@@ -719,12 +803,12 @@
       "name" : "Buddy",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["buddy.yml"]
+      "contents" : ["buddy.yml", "buddy.yaml"]
    }, {
       "name" : "Semaphore",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["semaphore.yml"],
+      "contents" : ["semaphore.yml", "semaphore.yaml"],
       "conditions" : [".semaphore"]
    }, {
       "name" : "webapp.io (LayerCI)",
@@ -735,12 +819,12 @@
       "name" : "Drone",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : [".drone.yml"]
+      "contents" : [".drone.yml", ".drone.yaml"]
    }, {
       "name" : "Wercker",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["wercker.yml"]
+      "contents" : ["wercker.yml", "wercker.yaml"]
    }, {
       "name" : "Kubernetes",
       "ruleType" : "FILE_NAME",
@@ -750,7 +834,7 @@
       "name" : "CodeShip",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-services.yaml"]
+      "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-steps.yaml", "codeship-services.yaml"]
    }, {
       "name" : "CodeShip",
       "ruleType" : "FILE_NAME",
@@ -778,7 +862,7 @@
       "name" : "Mergify",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
-      "contents" : [".mergify.yml", "mergify.yml", ".mergify"]
+      "contents" : [".mergify.yml", "mergify.yml", ".mergify.yaml", "mergify.yaml", ".mergify"]
    }, {
       "name" : "AWS CodePipeline",
       "ruleType" : "FILE_CONTENT",
@@ -803,7 +887,7 @@
       "name" : "Code Climate",
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
-      "contents" : [".codeclimate.yml"]
+      "contents" : [".codeclimate.yml", ".codeclimate.yaml"]
    }, {
       "name" : "SonarSource",
       "category" : "ANALYSIS",
@@ -887,11 +971,16 @@
       "name" : "RuboCop",
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
-      "contents" : [".rubocop.yml"]
+      "contents" : [".rubocop.yml", ".rubocop.yaml"]
    }, {
       "name" : "ESLint",
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
       "contents" : [".eslintignore", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json"]
+   }, {
+      "name" : "LGTM",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["lgtm.yml", "lgtm.yaml"]
    }
 ]

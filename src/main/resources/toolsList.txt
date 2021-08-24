@@ -1,4 +1,4 @@
-BUILD: TODO add BUILD tools & PACKAGE_MANAGERS for: C#, C/C++, TypeScript, Python, Ruby, Rust, PHP, Kotlin, GO
+BUILD:
     Maven
     Gradle
     Gant
@@ -12,6 +12,12 @@ BUILD: TODO add BUILD tools & PACKAGE_MANAGERS for: C#, C/C++, TypeScript, Pytho
     Rake
     Babel
     Rollup
+    MSBuild
+    NAnt
+    CMake
+    Ninja
+    Grunt
+    PyBuilder
 PACKAGE_MANAGER:
     Yarn
     NPM
@@ -20,10 +26,18 @@ PACKAGE_MANAGER:
     JFrog Artifactory
     AWS CodeArtifact
     NuGet
-    pip
+    Pip
     RubyGems
     Composer
+    Buckaroo
+    Conan
+    Cargo
+    Bower
+    PEAR
+    dep
+    Glide
 CI_CD:
+    Capistrano
     GitHub
     BitBucket
     Jenkins
@@ -75,7 +89,7 @@ BACKEND:
     OCPsoft Rewrite
     Rack
     Blade
-ORM:
+DATABASE:
     Hibernate
     Ebean
     Sequelize
@@ -88,6 +102,7 @@ ORM:
     MyBatis
     GORM
     Liquibase
+    Diesel CLI
 IDE:
     JetBrains Suite
     Eclipse IDE
@@ -129,6 +144,7 @@ TESTING:
     Codeception
     RSpec
     Jest
+    Testem
 BDD:
     Karate
     Cucumber
@@ -158,6 +174,7 @@ ANALYSIS:
     Embold
     RuboCop
     ESLint
+    LGTM
 
 
 NO. OF TOOLS: lines - 10
