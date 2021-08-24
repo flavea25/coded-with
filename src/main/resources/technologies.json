@@ -45,6 +45,26 @@
       "ruleType" : "FILE_NAME",
       "category" : "BUILD",
       "contents" : ["jekaw", "jekaw.bat", "jeka", "jeka.bat", ".jeka"]
+   }, {
+      "name" : "AWS CodeBuild",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["buildspec.yml", "buildspec.yaml"]
+   }, {
+      "name" : "Rake",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["Rakefile"]
+   }, {
+      "name" : "Babel",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["babel.config.json", ".babelrc.json"]
+   }, {
+      "name" : "Rollup",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["rollup.config.js"]
    },
 
 
@@ -53,7 +73,12 @@
       "name" : "Yarn",
       "ruleType" : "FILE_NAME",
       "category" : "PACKAGE_MANAGER",
-      "contents" : ["yarn.lock", ".yarn.lock"]
+      "contents" : ["yarn.lock", ".yarn.lock", ".yarnrc.yml"]
+   }, {
+      "name" : "NuGet",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["nuget.config"]
    }, {
       "name" : "NPM",
       "ruleType" : "FILE_NAME",
@@ -72,6 +97,28 @@
       "name" : "JFrog Artifactory",
       "category" : "PACKAGE_MANAGER",
       "dependencies" : ["org.jfrog.buildinfo", "artifactory-maven-plugin", "com.jfrog.artifactory", "org.jfrog:"]
+   }, {
+      "name" : "AWS CodeArtifact",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["arn:aws:codeartifact", ".codeartifact."],
+      "conditions" : [".json", ".npmrc", ".yarnrc.yml"],
+      "dependencies" : [".codeartifact."]
+   }, {
+      "name" : "pip",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["requirements.txt"]
+   }, {
+      "name" : "Composer",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["composer.json"]
+   }, {
+      "name" : "RubyGems",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Gemfile"]
    },
 
 
@@ -94,12 +141,6 @@
       "category" : "FRAMEWORK",
       "contents" : ["struts-config.xml"]
    }, {
-      "name" : "Hibernate",
-      "ruleType" : "FILE_NAME",
-      "category" : "FRAMEWORK",
-      "contents" : ["hibernate.cfg.xml"],
-      "dependencies" : ["org.hibernate"]
-   }, {
       "name" : "Wicket",
       "category" : "FRAMEWORK",
       "dependencies" : ["org.apache.wicket"]
@@ -111,9 +152,54 @@
       "conditions" : [".java"],
       "dependencies" : ["io.dropwizard"]
    }, {
-      "name" : "Ebean",
+      "name" : "Django",
+      "ruleType" : "FILE_NAME",
       "category" : "FRAMEWORK",
-      "dependencies" : ["io.ebean"]
+      "contents" : ["manage.py"]
+   }, {
+      "name" : "Rewrite",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["@RewriteConfiguration"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.ocpsoft.rewrite"]
+   }, {
+      "name" : "Rack",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRAMEWORK",
+      "contents" : ["config.ru"]
+   }, {
+      "name" : "Electron",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["require('electron')"],
+      "conditions" : [".js"]
+   }, {
+      "name" : "Vue",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["\"vue\":", "\"vue\" :"],
+      "conditions" : ["package.json"]
+   }, {
+      "name" : "JavaFX",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["import javafx."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.openjfx"]
+   }, {
+      "name" : "SWT",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["import org.eclipse.swt."],
+      "conditions" : [".java"]
+   }, {
+      "name" : "Blade",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRAMEWORK",
+      "contents" : ["import com.blade."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.bladejava"]
    },
 
 
@@ -126,13 +212,6 @@
       "conditions" : [".java"],
       "dependencies" : ["org.jctools"]
    }, {
-      "name" : "StreamEX",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "LIBRARY",
-      "contents" : ["import one.util.streamex."],
-      "conditions" : [".java"],
-      "dependencies" : ["<artifactId>streamex</artifactId>"]
-   }, {
       "name" : "JNats",
       "ruleType" : "FILE_CONTENT",
       "category" : "LIBRARY",
@@ -142,17 +221,119 @@
    }, {
       "name" : "ByteBuddy",
       "ruleType" : "FILE_CONTENT",
-      "category" : "FRAMEWORK",
+      "category" : "LIBRARY",
       "contents" : ["new ByteBuddy(", "import net.bytebuddy."],
       "conditions" : [".java"],
       "dependencies" : ["net.bytebuddy"]
    }, {
       "name" : "Akka",
       "ruleType" : "FILE_CONTENT",
-      "category" : "BUILD",
+      "category" : "LIBRARY",
       "contents" : ["import akka."],
       "conditions" : [".java", ".scala"],
       "dependencies" : ["com.typesafe.akka"]
+   }, {
+      "name" : "Liquibase",
+      "ruleType" : "FILE_NAME",
+      "category" : "LIBRARY",
+      "contents" : ["liquibase.properties"],
+      "dependencies" : ["org.liquibase"]
+   }, {
+      "name" : "Pegdown",
+      "ruleType" : "FILE_NAME",
+      "category" : "LIBRARY",
+      "contents" : ["import org.pegdown."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.pegdown"]
+   }, {
+      "name" : "React",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["\"react\":", "\"react\" :"],
+      "conditions" : ["package.json"]
+   }, {
+      "name" : "Swing",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import javax.swing."],
+      "conditions" : [".java"]
+   }, {
+      "name" : "TensorFlow",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import tensorflow", "from tensorflow"],
+      "conditions" : [".py"]
+   },
+
+
+
+   {
+      "name" : "Hibernate",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["hibernate.cfg.xml"],
+      "dependencies" : ["org.hibernate"]
+   }, {
+      "name" : "Ebean",
+      "category" : "ORM",
+      "dependencies" : ["io.ebean"]
+   }, {
+      "name" : "Sequelize",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["require('sequelize')"],
+      "conditions" : [".js"],
+      "dependencies" : ["org.sequelize"]
+   }, {
+      "name" : "ent",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["ent", "ent.go"],
+      "dependencies" : ["entgo.io", "io.entgo"]
+   }, {
+      "name" : "GreenDAO",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["import org.greenrobot.greendao."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.greenrobot:greendao"]
+   }, {
+      "name" : "peewee",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["from peewee"],
+      "conditions" : [".py"]
+   }, {
+      "name" : "Entity Framework",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["using Microsoft.EntityFrameworkCore"],
+      "conditions" : [".cs"]
+   }, {
+      "name" : "SQLAlchemy",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["from sqlalchemy.orm"],
+      "conditions" : [".py"]
+   }, {
+      "name" : "Doctrine 2",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["<doctrine-mapping", "use Doctrine\\ORM"],
+      "conditions" : [".php", ".xml"]
+   }, {
+      "name" : "MyBatis",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["mybatis-config.xml"],
+      "dependencies" : ["org.mybatis"]
+   }, {
+      "name" : "GORM",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["\"github.com/jinzhu/gorm\"", "\"gorm.io/gorm\""],
+      "conditions" : [".go"],
+      "dependencies" : ["io.gorm"]
    },
 
 
@@ -317,6 +498,16 @@
       "ruleType" : "FILE_NAME",
       "category" : "TESTING",
       "contents" : ["codeception.yml", "codeception.yaml"]
+   }, {
+      "name" : "RSpec",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : [".rspec"]
+   }, {
+      "name" : "Jest",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["jest.config.js"]
    },
 
 
@@ -382,7 +573,7 @@
       "name" : "Concordion",
       "ruleType" : "FILE_CONTENT",
       "category" : "BDD",
-      "contents" : ["import org.concordion.", "@RunWith(ConcordionRunner.class)"],
+      "contents" : ["import org.concordion.", "@RunWith(ConcordionRunner.class)", "@ConcordionOptions"],
       "conditions" : [".java"],
       "dependencies" : ["org.concordion"]
    },
@@ -390,7 +581,7 @@
 
 
    {
-      "name" : "IntelliJ Idea",
+      "name" : "JetBrains Suite",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
       "contents" : [".idea"]
@@ -402,14 +593,60 @@
       "conditions" : [".project"]
    }, {
       "name" : "Visual Studio",
-      "ruleType" : "FOLDER_NAME",
+      "ruleType" : "FILE_NAME",
       "category" : "IDE",
-      "contents" : [".vscode"]
+      "contents" : [".vscode", ".csproj"]
    }, {
       "name" : "NetBeans",
       "ruleType" : "FOLDER_NAME",
       "category" : "IDE",
       "contents" : ["nbproject"]
+   }, {
+      "name" : "AWS Cloud9",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : [".c9"]
+   }, {
+      "name" : "Aptana",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : ["com.aptana"],
+      "conditions" : [".project"]
+   }, {
+      "name" : "Code::Blocks",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".cbp"]
+   }, {
+      "name" : "GNAT Studio",
+      "ruleType" : "FILE_NAME",
+      "category" : "IDE",
+      "contents" : ["gnat.adc", "Makefile.gnat"],
+      "conditions" : [".cbp"]
+   }, {
+      "name" : "Komodo Edit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".komodoproject"]
+   }, {
+      "name" : "XCode",
+      "ruleType" : "FILE_NAME",
+      "category" : "IDE",
+      "contents" : ["Podfile", "project.pbxproj", "project.xcworkspace", "contents.xcworkspacedata", "variables.xcconfig"]
+   }, {
+      "name" : "Sublime Text",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".sublime-settings", ".sublime-package"]
+   }, {
+      "name" : "Atom",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["\"atom-workspace\":", "\"atom-workspace\" :", "\"atom\":", "\"atom\" :"],
+      "conditions" : ["package.json"]
    },
 
 
@@ -534,6 +771,44 @@
       "category" : "CI_CD",
       "contents" : ["pipeline.yml", "pipeline.yaml"],
       "conditions" : ["buildkite"]
+   }, {
+      "name" : "Terraform",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : [""],
+      "conditions" : [".tf"]
+   }, {
+      "name" : "Ansible",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["uses: ansible/", "ansible_ssh_port", "hosts: tag_ansible_", "ansible-galaxy", "ansible_ssh_user"],
+      "conditions" : [".yml", ".yaml"]
+   }, {
+      "name" : "Vagrant",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Vagrantfile"]
+   }, {
+      "name" : "Mergify",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".mergify.yml", "mergify.yml", ".mergify"]
+   }, {
+      "name" : "AWS CodePipeline",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["AWS::CodePipeline::", "CodePipelineServiceRole:", "codepipeline.amazonaws.com", "CodePipelineArtifactStoreBucket", "arn:aws:s3:::codepipeline", "CodePipelineIAMRole"],
+      "conditions" : [".yml", ".yaml"]
+   }, {
+      "name" : "GolangCI-Lint",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".golangci.yml", ".golangci.yaml", ".golangci.toml", ".golangci.json"]
+   }, {
+      "name" : "JRebel",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["rebel.xml"]
    },
 
 
@@ -622,18 +897,15 @@
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
       "contents" : ["embold.yml", "embold.yaml"]
-   },
-
-
-   {
-      "name" : "JRebel",
-      "ruleType" : "FILE_NAME",
-      "category" : "OTHER",
-      "contents" : ["rebel.xml"]
    }, {
-      "name" : "Logstash",
+      "name" : "RuboCop",
       "ruleType" : "FILE_NAME",
-      "category" : "OTHER",
-      "contents" : ["logstash.yml", "logstash.yaml"]
+      "category" : "ANALYSIS",
+      "contents" : [".rubocop.yml"]
+   }, {
+      "name" : "ESLint",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".eslintignore", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json"]
    }
 ]

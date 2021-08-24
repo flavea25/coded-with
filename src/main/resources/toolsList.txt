@@ -8,13 +8,22 @@ BUILD: TODO add BUILD tools & PACKAGE_MANAGERS for: C#, C/C++, TypeScript, Pytho
     Pants
     Please
     Jeka (Jerkar)
+    AWS CodeBuild
+    Rake
+    Babel
+    Rollup
 PACKAGE_MANAGER:
     Yarn
     NPM
     Ivy
     Azure Artifacts
     JFrog Artifactory
-CI_CD: TODO add Terraform, Ansible, AWS (chestii)
+    AWS CodeArtifact
+    NuGet
+    pip
+    RubyGems
+    Composer
+CI_CD:
     GitHub
     BitBucket
     Jenkins
@@ -38,24 +47,63 @@ CI_CD: TODO add Terraform, Ansible, AWS (chestii)
     Kubernetes
     CodeShip
     Buildkite
+    Terraform
+    Ansible
+    Vagrant
+    Mergify
+    AWS CodePipeline
+    GolangCI-Lint
+    JRebel
 LIBRARY:
     ByteBuddy
     JCTools
     StreamEX
     JNats
     Akka
-FRAMEWORK: 7/20
-    Angular
+    Liquibase
+    React
+    Pegdown
+    Swing
+    TensorFlow
+FRAMEWORK:
+    AngularJS
     Spring
-    Hibernate TODO ORM
-    Ebean TODO ORM
     Struts
     Wicket
+    Django
     Dropwizard
+    Rewrite
+    Rack
+    Electron
+    Vue
+    JavaFX
+    SWT
+    Blade
+ORM:
+    Hibernate
+    Ebean
+    Sequelize
+    ent
+    GreenDAO
+    peewee
+    Entity Framework
+    SQLAlchemy
+    Doctrine 2
+    MyBatis
+    GORM
 IDE:
-    IntelliJ IDEa
+    JetBrains Suite
     Eclipse IDE
     Visual Studio
+    AWS Cloud9
+    NetBeans
+    Aptana
+    Code::Blocks
+    GNAT Studio
+    Komodo Edit
+    XCode
+    Sublime Text
+    Atom
 TESTING:
     JUnit
     Jupiter
@@ -82,6 +130,8 @@ TESTING:
     Arquillian
     PowerMock
     Codeception
+    RSpec
+    Jest
 BDD:
     Karate
     Cucumber
@@ -109,13 +159,11 @@ ANALYSIS:
     Coverity
     Codecov
     Embold
-OTHER:
-    JRebel TODO PRODUCTIVITY TOOL
-    Logstash TODO ETL TOOL
+    RuboCop
+    ESLint
 
 
 NO. OF TOOLS: lines - 10
-TODO add VISUALIZATION tools
 
 TEMPLATE:
 {
