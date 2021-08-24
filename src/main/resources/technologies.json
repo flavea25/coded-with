@@ -212,6 +212,13 @@
       "conditions" : [".java"],
       "dependencies" : ["org.jctools"]
    }, {
+      "name" : "StreamEX",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "LIBRARY",
+      "contents" : ["import one.util.streamex."],
+      "conditions" : [".java"],
+      "dependencies" : ["<artifactId>streamex</artifactId>"]
+   }, {
       "name" : "JNats",
       "ruleType" : "FILE_CONTENT",
       "category" : "LIBRARY",
