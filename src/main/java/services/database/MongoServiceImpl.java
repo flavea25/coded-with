@@ -24,6 +24,17 @@ public class MongoServiceImpl implements MongoService{
         return connectedToDatabase() && db != null;
     }
 
+    private boolean existsCollection(String name) {
+        boolean exists = false;
+        var collections = db.listCollectionNames().iterator();
+        while(collections.hasNext() && !exists) {
+            if(collections.next().equals(name)) {
+                exists = true;
+            }
+        }
+        return exists;
+    }
+
     @Override
     public void createConnection(String host, int port) {
         if(connectedToDatabase()) {
@@ -75,14 +86,14 @@ public class MongoServiceImpl implements MongoService{
 
     @Override
     public void createCollection(String name) {
-        if(usesDatabase()) {
+        if(usesDatabase() && !existsCollection(name)) {
             db.createCollection(name);
         }
     }
 
     @Override
     public void deleteCollection(String name) {
-        if(usesDatabase()) {
+        if(usesDatabase() && existsCollection(name)) {
             db.getCollection(name).drop();
         }
     }
@@ -90,23 +101,27 @@ public class MongoServiceImpl implements MongoService{
     @Override
     public void addDocumentToCollection(Document document, String collectionName) {
         if(usesDatabase()) {
+            if(!existsCollection(collectionName)) {
+                createCollection(collectionName);
+            }
             db.getCollection(collectionName).insertOne(document);
         }
     }
 
     @Override
     public void addDocumentToCollection(Map<String, Object> dimensions, String collectionName) {
-        if(usesDatabase()) {
-            Document doc = new Document();
-            doc.putAll(dimensions);
-            db.getCollection(collectionName).insertOne(doc);
-        }
+        addDocumentToCollection(new Document(dimensions), collectionName);
     }
 
     @Override
     public void updateDocumentInCollection(Document oldDocument, Document newDocument, String collectionName) {
         if(usesDatabase()) {
-            db.getCollection(collectionName).updateOne(oldDocument, newDocument);
+            if(existsCollection(collectionName)) {
+                db.getCollection(collectionName).updateMany(oldDocument, new Document(Map.of("$set", newDocument)));
+            }
+            else {
+                addDocumentToCollection(newDocument, collectionName);
+            }
         }
     }
 
@@ -122,21 +137,39 @@ public class MongoServiceImpl implements MongoService{
 
     @Override
     public MongoCursor<Document> findDocumentsFromCollection(Document searchQuery, String collectionName) {
-        return db.getCollection(collectionName).find(searchQuery).iterator();
+        if(usesDatabase() && existsCollection(collectionName)) {
+            return db.getCollection(collectionName).find(searchQuery).iterator();
+        }
+        return null;
     }
 
     @Override
     public MongoCursor<Document> findDocumentsFromCollection(Map<String, Object> dimensions, String collectionName) {
-        return db.getCollection(collectionName).find(new Document(dimensions)).iterator();
+        return findDocumentsFromCollection(new Document(dimensions), collectionName);
     }
 
     @Override
     public void deleteDocumentsFromCollection(Document searchQuery, String collectionName) {
-        db.getCollection(collectionName).deleteMany(searchQuery);
+        if(usesDatabase() && existsCollection(collectionName)) {
+            db.getCollection(collectionName).deleteMany(searchQuery);
+        }
     }
 
     @Override
     public void deleteDocumentsFromCollection(Map<String, Object> dimensions, String collectionName) {
         deleteDocumentsFromCollection(new Document(dimensions), collectionName);
+    }
+
+    @Override
+    public Long getNumberOfSpecificDocumentsFromCollection(Document searchQuery, String collectionName) {
+        if(usesDatabase() && existsCollection(collectionName)) {
+            return db.getCollection(collectionName).countDocuments(searchQuery);
+        }
+        return 0L;
+    }
+
+    @Override
+    public Long getNumberOfSpecificDocumentsFromCollection(Map<String, Object> dimensions, String collectionName) {
+        return getNumberOfSpecificDocumentsFromCollection(new Document(dimensions), collectionName);
     }
 }

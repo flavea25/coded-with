@@ -4,6 +4,8 @@ import com.google.inject.AbstractModule;
 import services.basic.BasicFileService;
 import services.basic.BasicFileServiceImpl;
 import services.basic.BasicTechnologyServiceImpl;
+import services.database.MongoService;
+import services.database.MongoServiceImpl;
 import services.repository.GithubFileServiceImpl;
 import services.repository.GithubTechnologyServiceImpl;
 import services.repository.RepositoryFileService;
@@ -17,5 +19,6 @@ public class MyInjector extends AbstractModule {
         bind(RepositoryFileService.class).to(GithubFileServiceImpl.class).asEagerSingleton();
         bind(RepositoryTechnologyService.class).to(GithubTechnologyServiceImpl.class).asEagerSingleton();
         bind(TechnologyService.class).to(BasicTechnologyServiceImpl.class).asEagerSingleton();
+        bind(MongoService.class).to(MongoServiceImpl.class).asEagerSingleton();
     }
 }
