@@ -12,6 +12,7 @@ public enum Category {
     FRONTEND,
     IDE,
     LIBRARY,
+    ORM,
     OTHER,
     PACKAGE_MANAGER,
     PRODUCTIVITY,

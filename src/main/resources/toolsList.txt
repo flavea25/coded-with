@@ -89,7 +89,8 @@ BACKEND:
     OCPsoft Rewrite
     Rack
     Blade
-DATABASE:
+    Firebase
+ORM:
     Hibernate
     Ebean
     Sequelize
@@ -101,9 +102,6 @@ DATABASE:
     Doctrine 2
     MyBatis
     GORM
-    Liquibase
-    Diesel CLI
-    Firebase
 IDE:
     JetBrains Suite
     Eclipse IDE

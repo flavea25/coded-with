@@ -257,6 +257,13 @@
       "category" : "BACKEND",
       "contents" : ["import tensorflow", "from tensorflow"],
       "conditions" : [".py"]
+   }, {
+      "name" : "Firebase",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import com.google.firebase.", "from firebase "],
+      "conditions" : [".java", ".py"],
+      "dependencies" : ["com.google.firebase"]
    },
 
 
@@ -319,88 +326,70 @@
    {
       "name" : "Hibernate",
       "ruleType" : "FILE_NAME",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["hibernate.cfg.xml"],
       "dependencies" : ["org.hibernate"]
    }, {
       "name" : "Ebean",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "dependencies" : ["io.ebean"]
    }, {
       "name" : "Sequelize",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["require('sequelize')"],
       "conditions" : [".js"],
       "dependencies" : ["org.sequelize"]
    }, {
       "name" : "ent",
       "ruleType" : "FILE_NAME",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["ent", "ent.go"],
       "dependencies" : ["entgo.io", "io.entgo"]
    }, {
       "name" : "GreenDAO",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["import org.greenrobot.greendao."],
       "conditions" : [".java"],
       "dependencies" : ["org.greenrobot:greendao"]
    }, {
       "name" : "peewee",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["from peewee"],
       "conditions" : [".py"]
    }, {
       "name" : "Entity Framework",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["using Microsoft.EntityFrameworkCore"],
       "conditions" : [".cs"]
    }, {
       "name" : "SQLAlchemy",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["from sqlalchemy.orm"],
       "conditions" : [".py"]
    }, {
       "name" : "Doctrine 2",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["<doctrine-mapping", "use Doctrine\\ORM"],
       "conditions" : [".php", ".xml"]
    }, {
       "name" : "MyBatis",
       "ruleType" : "FILE_NAME",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["mybatis-config.xml"],
       "dependencies" : ["org.mybatis"]
    }, {
       "name" : "GORM",
       "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
+      "category" : "ORM",
       "contents" : ["\"github.com/jinzhu/gorm\"", "\"gorm.io/gorm\""],
       "conditions" : [".go"],
       "dependencies" : ["io.gorm"]
-   }, {
-      "name" : "Liquibase",
-      "ruleType" : "FILE_NAME",
-      "category" : "DATABASE",
-      "contents" : ["liquibase.properties"],
-      "dependencies" : ["org.liquibase"]
-   }, {
-      "name" : "Diesel CLI",
-      "ruleType" : "FILE_NAME",
-      "category" : "DATABASE",
-      "contents" : ["diesel.toml"]
-   }, {
-      "name" : "Firebase",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "DATABASE",
-      "contents" : ["import com.google.firebase.", "from firebase "],
-      "conditions" : [".java", ".py"],
-      "dependencies" : ["com.google.firebase"]
    },
 
 
