@@ -103,6 +103,7 @@ DATABASE:
     GORM
     Liquibase
     Diesel CLI
+    Firebase
 IDE:
     JetBrains Suite
     Eclipse IDE

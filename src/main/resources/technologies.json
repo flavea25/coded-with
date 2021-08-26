@@ -394,6 +394,13 @@
       "ruleType" : "FILE_NAME",
       "category" : "DATABASE",
       "contents" : ["diesel.toml"]
+   }, {
+      "name" : "Firebase",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "DATABASE",
+      "contents" : ["import com.google.firebase.", "from firebase "],
+      "conditions" : [".java", ".py"],
+      "dependencies" : ["com.google.firebase"]
    },
 
 
