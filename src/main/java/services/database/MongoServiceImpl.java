@@ -24,7 +24,8 @@ public class MongoServiceImpl implements MongoService{
         return connectedToDatabase() && db != null;
     }
 
-    private boolean existsCollection(String name) {
+    @Override
+    public boolean existsCollection(String name) {
         boolean exists = false;
         MongoCursor<String> collections = db.listCollectionNames().iterator();
         while(collections.hasNext() && !exists) {

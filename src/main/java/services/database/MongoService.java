@@ -8,6 +8,8 @@ import java.util.Map;
 public interface MongoService extends DatabaseService{
     void useDatabase(String name);
 
+    boolean existsCollection(String name);
+
     void createCollection(String name);
     
     void deleteCollection(String name);

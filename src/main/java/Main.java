@@ -10,7 +10,6 @@ import services.TechnologyService;
 import services.database.MongoService;
 import technologies.Technology;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -23,8 +22,6 @@ public class Main {
     private static final Injector injector = Guice.createInjector(new MyInjector());
 
     private static final String DATABASE_NAME = "coded-with";
-
-    private static final String COLLECTION_NAME = "tools";
 
     private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
 
@@ -48,45 +45,50 @@ public class Main {
             MongoService dbService = injector.getInstance(MongoService.class);
             dbService.createDefaultConnection();
             dbService.useDatabase(DATABASE_NAME);
-            dbService.deleteCollection(collectionName);
-            dbService.createCollection(collectionName);
 
-            allTechnologies.forEach(t -> dbService.addDocumentToCollection(Map.of("category", t.getCategory().toString(),
-                                                                                  "name", t.getName(),
-                                                                                  "timesUsed", 0),
-                                                                           collectionName));
+            if(dbService.existsCollection(collectionName)) {
+                log.info("Collection already exists - check it first!");
+            }
+            else {
+                dbService.createCollection(collectionName);
 
-            try (CSVReader reader = new CSVReader(new FileReader(args[1]))) {
-                List<String[]> csvLines = reader.readAll();
-                csvLines.forEach(csvLine -> {
-                    String path = GITHUB_REPOSITORY_LINK_START + Arrays.stream(csvLine).toList().get(0);
-                    System.out.println(path);
-                    if(!path.endsWith("...")) {
-                        technologyService.getUsedTechnologies(path, allTechnologies).forEach(t -> {
-                            Map<String, Object> dimensions = new HashMap<>();
-                            dimensions.put("category", t.getCategory().toString());
-                            dimensions.put("name", t.getName());
+                allTechnologies.forEach(t -> dbService.addDocumentToCollection(Map.of("category", t.getCategory().toString(),
+                                "name", t.getName(),
+                                "timesUsed", 0),
+                        collectionName));
 
-                            MongoCursor<Document> foundDocuments = dbService.findDocumentsFromCollection(dimensions, COLLECTION_NAME);
-                            if(foundDocuments == null || !foundDocuments.hasNext()) {
-                                dimensions.put("timesUsed", 1);
-                                dbService.addDocumentToCollection(dimensions, COLLECTION_NAME);
-                            }
-                            else {
-                                while(foundDocuments.hasNext()) {
-                                    Document toUpdate = foundDocuments.next();
-                                    Document incremented = new Document(dimensions);
-                                    incremented.put("timesUsed", (int)toUpdate.get("timesUsed") + 1);
+                try (CSVReader reader = new CSVReader(new FileReader(args[1]))) {
+                    List<String[]> csvLines = reader.readAll();
+                    csvLines.forEach(csvLine -> {
+                        String path = GITHUB_REPOSITORY_LINK_START + Arrays.stream(csvLine).toList().get(0);
+                        System.out.println(path);
+                        if(!path.endsWith("...")) {
+                            technologyService.getUsedTechnologies(path, allTechnologies).forEach(t -> {
+                                Map<String, Object> dimensions = new HashMap<>();
+                                dimensions.put("category", t.getCategory().toString());
+                                dimensions.put("name", t.getName());
 
-                                    dbService.updateDocumentInCollection(toUpdate, incremented, COLLECTION_NAME);
+                                MongoCursor<Document> foundDocuments = dbService.findDocumentsFromCollection(dimensions, collectionName);
+                                if(foundDocuments == null || !foundDocuments.hasNext()) {
+                                    dimensions.put("timesUsed", 1);
+                                    dbService.addDocumentToCollection(dimensions, collectionName);
                                 }
-                            }
-                        });
-                    }
-                });
-            } catch (IOException | CsvException e) {
-                log.error("Exception occurred while parsing CSV file!");
-                e.printStackTrace();
+                                else {
+                                    while(foundDocuments.hasNext()) {
+                                        Document toUpdate = foundDocuments.next();
+                                        Document incremented = new Document(dimensions);
+                                        incremented.put("timesUsed", (int)toUpdate.get("timesUsed") + 1);
+
+                                        dbService.updateDocumentInCollection(toUpdate, incremented, collectionName);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } catch (IOException | CsvException e) {
+                    log.error("Exception occurred while parsing CSV file!");
+                    e.printStackTrace();
+                }
             }
 
             dbService.closeConnection();
