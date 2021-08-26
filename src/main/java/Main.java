@@ -19,16 +19,7 @@ public class Main {
     private static final String COLLECTION_NAME = "tools";
 
     public static void main(String[] args) {
-        log.info("Program started...");
-        if(args.length < 2) {
-            log.error("Not enough arguments!! - Please pass:\n\t 1. Path/link to analyzed project, and \n\t 2. Path to a JSON file containing the searched-for technologies!");
-        }
-        else if(args.length > 2) {
-            log.error("Too many arguments!! - Please pass:\n\t 1. Path/link to analyzed project, and \n\t 2. Path to a JSON file containing the searched-for technologies!");
-        }
-        else {
-            analyzeRepositoryAndUpdateDB(args);
-        }
+        analyzeRepositoryAndUpdateDB(args);
     }
 
     private static void analyzeRepositoryAndUpdateDB(String[] args) {
@@ -76,10 +67,19 @@ public class Main {
         dbService.closeConnection();
     }
 
-    private static void printTechnologiesByCategory(String pathToProject, String pathToTechnologies) {
-        TechnologyService technologyService = injector.getInstance(TechnologyService.class);
+    private static void printTechnologiesByCategory(String[] args) {
+        log.info("Program started...");
+        if(args.length < 2) {
+            log.error("Not enough arguments!! - Please pass:\n\t 1. Path/link to analyzed project, and \n\t 2. Path to a JSON file containing the searched-for technologies!");
+        }
+        else if(args.length > 2) {
+            log.error("Too many arguments!! - Please pass:\n\t 1. Path/link to analyzed project, and \n\t 2. Path to a JSON file containing the searched-for technologies!");
+        }
+        else {
+            TechnologyService technologyService = injector.getInstance(TechnologyService.class);
 
-        technologyService.getUsedTechnologiesByCategory(pathToProject, technologyService.getAllTechnologiesFromFile(pathToTechnologies))
-                .forEach((category, technologies) -> log.info(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
+            technologyService.getUsedTechnologiesByCategory(args[0], technologyService.getAllTechnologiesFromFile(args[1]))
+                    .forEach((category, technologies) -> log.info(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
+        }
     }
 }
