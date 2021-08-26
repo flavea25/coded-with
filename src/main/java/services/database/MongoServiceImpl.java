@@ -26,7 +26,7 @@ public class MongoServiceImpl implements MongoService{
 
     private boolean existsCollection(String name) {
         boolean exists = false;
-        var collections = db.listCollectionNames().iterator();
+        MongoCursor<String> collections = db.listCollectionNames().iterator();
         while(collections.hasNext() && !exists) {
             if(collections.next().equals(name)) {
                 exists = true;
