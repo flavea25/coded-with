@@ -5,10 +5,6 @@ import services.TechnologyService;
 
 @Slf4j
 public class Main {
-    //GitHub: "https://github.com/flavea25/licenta" OR /SVV
-    //ROOT: "C:/Users/flavi/IdeaProjects/firstmaven"
-    //SVV: "C:/Users/flavi/git/SVV"
-    //tools: "C:/Users/flavi/IdeaProjects/firstmaven/src/main/resources/technologies.json"
     public static void main(String[] args) {
         log.info("Program started...");
         if(args.length < 2) {
