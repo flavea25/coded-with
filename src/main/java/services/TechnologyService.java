@@ -18,6 +18,8 @@ public abstract class TechnologyService {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    private static final String PATH_TO_TECHNOLOGIES = "./src/main/resources/technologies.json";
+
     public abstract List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies);
 
     public Map<Category, List<Technology>> getUsedTechnologiesByCategory(String root, List<Technology> allTechnologies) {
@@ -54,7 +56,12 @@ public abstract class TechnologyService {
 
     public List<Technology> getAllTechnologiesFromFile(String path) {
         log.info("Loading all technologies...");
+
+        if("default".equals(path)) {
+            path = PATH_TO_TECHNOLOGIES;
+        }
         File source = new File(path);
+
         if(source.exists()) {
             try {
                 return Arrays.stream(GSON.fromJson(Files.readString(Path.of(path)), Technology[].class)).toList();

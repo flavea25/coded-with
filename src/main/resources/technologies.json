@@ -832,7 +832,7 @@
       "category" : "CI_CD",
       "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-steps.yaml", "codeship-services.yaml"]
    }, {
-      "name" : "CodeShip",
+      "name" : "BuildKite",
       "ruleType" : "FILE_NAME",
       "category" : "CI_CD",
       "contents" : ["pipeline.yml", "pipeline.yaml"],
@@ -972,7 +972,7 @@
       "name" : "ESLint",
       "ruleType" : "FILE_NAME",
       "category" : "ANALYSIS",
-      "contents" : [".eslintignore", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json"]
+      "contents" : [".eslintignore", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json", ".eslintrc"]
    }, {
       "name" : "LGTM",
       "ruleType" : "FILE_NAME",
