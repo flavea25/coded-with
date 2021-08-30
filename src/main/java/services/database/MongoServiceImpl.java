@@ -150,6 +150,17 @@ public class MongoServiceImpl implements MongoService{
     }
 
     @Override
+    public Document findDocumentFromCollection(Document searchQuery, String collectionName) {
+        MongoCursor<Document> cursor = findDocumentsFromCollection(searchQuery, collectionName);
+        return cursor == null ? null : cursor.hasNext() ? cursor.next() : new Document();
+    }
+
+    @Override
+    public Document findDocumentFromCollection(Map<String, Object> dimensions, String collectionName) {
+        return findDocumentFromCollection(new Document(dimensions), collectionName);
+    }
+
+    @Override
     public void deleteDocumentsFromCollection(Document searchQuery, String collectionName) {
         if(usesDatabase() && existsCollection(collectionName)) {
             db.getCollection(collectionName).deleteMany(searchQuery);
