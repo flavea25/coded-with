@@ -1,0 +1,982 @@
+[
+   {
+      "name" : "Maven",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["pom.xml"]
+   }, {
+      "name" : "Gradle",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.gradle"]
+   }, {
+      "name" : "Gant",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.gant"]
+   }, {
+      "name" : "Ant",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.xml"]
+   }, {
+      "name" : "Gulp",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["gulpfile.js", "gulpfile.ts", "gulpfile.babel.js", "Gulpfile.js"]
+   }, {
+      "name" : "SBT",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.sbt"]
+   }, {
+      "name" : "Please",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : [".plzconfig", "BUILD.plz"]
+   }, {
+      "name" : "Pants",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["patchy_pants'", "'squarepants"],
+      "conditions" : ["BUILD"]
+   }, {
+      "name" : "Jeka (Jerkar)",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["jekaw", "jekaw.bat", "jeka", "jeka.bat", ".jeka"]
+   }, {
+      "name" : "AWS CodeBuild",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["buildspec.yml", "buildspec.yaml"]
+   }, {
+      "name" : "Rake",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["Rakefile"]
+   }, {
+      "name" : "Babel",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["babel.config.json", ".babelrc.json"]
+   }, {
+      "name" : "Rollup",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["rollup.config.js"]
+   }, {
+      "name" : "MSBuild",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : [""],
+      "conditions" : [".csproj", ".vbproj", ".dbproj"]
+   }, {
+      "name" : "NAnt",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["<nant"],
+      "conditions" : [".build"]
+   }, {
+      "name" : "CMake",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["CMakeLists.txt"]
+   }, {
+      "name" : "Ninja",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["build.ninja"]
+   }, {
+      "name" : "Grunt",
+      "ruleType" : "FILE_NAME",
+      "category" : "BUILD",
+      "contents" : ["Gruntfile.js"]
+   }, {
+      "name" : "PyBuilder",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["from pybuilder"],
+      "conditions" : ["build.py"]
+   },
+
+
+
+   {
+      "name" : "Bower",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["bower.json"]
+   }, {
+      "name" : "Cargo",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Cargo.lock", "Cargo.toml"]
+   }, {
+      "name" : "Conan",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["conanfile.txt", "conanfile.py"]
+   }, {
+      "name" : "Buckaroo",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : [".buckconfig"]
+   }, {
+      "name" : "Yarn",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["yarn.lock", ".yarn.lock", ".yarnrc.yml", ".yarnrc.yaml"]
+   }, {
+      "name" : "NuGet",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["nuget.config"]
+   }, {
+      "name" : "NPM",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : [".npmrc"]
+   }, {
+      "name" : "Ivy",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["ivy.xml"]
+   }, {
+      "name" : "Azure Artifacts",
+      "category" : "PACKAGE_MANAGER",
+      "dependencies" : ["https://dev.azure.com/"]
+   }, {
+      "name" : "JFrog Artifactory",
+      "category" : "PACKAGE_MANAGER",
+      "dependencies" : ["org.jfrog.buildinfo", "artifactory-maven-plugin", "com.jfrog.artifactory", "org.jfrog:"]
+   }, {
+      "name" : "AWS CodeArtifact",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["arn:aws:codeartifact", ".codeartifact."],
+      "conditions" : ["package.json", ".npmrc", ".yarnrc.yml", ".yarnrc.yaml"],
+      "dependencies" : [".codeartifact."]
+   }, {
+      "name" : "Pip",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["requirements.txt"]
+   }, {
+      "name" : "Composer",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["composer.json"]
+   }, {
+      "name" : "RubyGems",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Gemfile"]
+   }, {
+      "name" : "PEAR",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["pear.php.net"],
+      "conditions" : ["package.xml"]
+   }, {
+      "name" : "dep",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["Gopkg.toml", "Gopkg.lock"]
+   }, {
+      "name" : "Glide",
+      "ruleType" : "FILE_NAME",
+      "category" : "PACKAGE_MANAGER",
+      "contents" : ["glide.yaml", "glide.yml", "glide.lock"]
+   },
+
+
+
+   {
+      "name" : "Spring",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["<beans "],
+      "conditions" : [".xml"],
+      "dependencies" : ["org.springframework"]
+   }, {
+      "name" : "Dropwizard",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import io.dropwizard."],
+      "conditions" : [".java"],
+      "dependencies" : ["io.dropwizard"]
+   }, {
+      "name" : "Django",
+      "ruleType" : "FILE_NAME",
+      "category" : "BACKEND",
+      "contents" : ["manage.py"]
+   }, {
+      "name" : "OCPsoft Rewrite",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["@RewriteConfiguration"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.ocpsoft.rewrite"]
+   }, {
+      "name" : "Rack",
+      "ruleType" : "FILE_NAME",
+      "category" : "BACKEND",
+      "contents" : ["config.ru"]
+   }, {
+      "name" : "Blade",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import com.blade."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.bladejava"]
+   }, {
+      "name" : "JCTools",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import org.jctools."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jctools"]
+   }, {
+      "name" : "ByteBuddy",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["new ByteBuddy(", "import net.bytebuddy."],
+      "conditions" : [".java"],
+      "dependencies" : ["net.bytebuddy"]
+   }, {
+      "name" : "Akka",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import akka."],
+      "conditions" : [".java", ".scala"],
+      "dependencies" : ["com.typesafe.akka"]
+   }, {
+      "name" : "TensorFlow",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import tensorflow", "from tensorflow"],
+      "conditions" : [".py"]
+   }, {
+      "name" : "Firebase",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BACKEND",
+      "contents" : ["import com.google.firebase.", "from firebase "],
+      "conditions" : [".java", ".py"],
+      "dependencies" : ["com.google.firebase"]
+   },
+
+
+
+   {
+      "name" : "React",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["\"react\":", "\"react\" :"],
+      "conditions" : ["package.json"]
+   }, {
+      "name" : "Swing",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["import javax.swing."],
+      "conditions" : [".java"]
+   }, {
+      "name" : "Electron",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["require('electron')"],
+      "conditions" : [".js"]
+   }, {
+      "name" : "Vue",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["\"vue\":", "\"vue\" :"],
+      "conditions" : ["package.json"]
+   }, {
+      "name" : "JavaFX",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["import javafx."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.openjfx"]
+   }, {
+      "name" : "SWT",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "FRONTEND",
+      "contents" : ["import org.eclipse.swt."],
+      "conditions" : [".java"]
+   }, {
+      "name" : "Struts",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRONTEND",
+      "contents" : ["struts-config.xml"]
+   }, {
+      "name" : "Wicket",
+      "category" : "FRONTEND",
+      "dependencies" : ["org.apache.wicket"]
+   }, {
+      "name" : "Angular",
+      "ruleType" : "FILE_NAME",
+      "category" : "FRONTEND",
+      "contents" : ["angular.json"]
+   },
+
+
+
+   {
+      "name" : "Hibernate",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["hibernate.cfg.xml"],
+      "dependencies" : ["org.hibernate"]
+   }, {
+      "name" : "Ebean",
+      "category" : "ORM",
+      "dependencies" : ["io.ebean"]
+   }, {
+      "name" : "Sequelize",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["require('sequelize')"],
+      "conditions" : [".js"],
+      "dependencies" : ["org.sequelize"]
+   }, {
+      "name" : "ent",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["ent", "ent.go"],
+      "dependencies" : ["entgo.io", "io.entgo"]
+   }, {
+      "name" : "GreenDAO",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["import org.greenrobot.greendao."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.greenrobot:greendao"]
+   }, {
+      "name" : "peewee",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["from peewee"],
+      "conditions" : [".py"]
+   }, {
+      "name" : "Entity Framework",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["using Microsoft.EntityFrameworkCore"],
+      "conditions" : [".cs"]
+   }, {
+      "name" : "SQLAlchemy",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["from sqlalchemy.orm"],
+      "conditions" : [".py"]
+   }, {
+      "name" : "Doctrine 2",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["<doctrine-mapping", "use Doctrine\\ORM"],
+      "conditions" : [".php", ".xml"]
+   }, {
+      "name" : "MyBatis",
+      "ruleType" : "FILE_NAME",
+      "category" : "ORM",
+      "contents" : ["mybatis-config.xml"],
+      "dependencies" : ["org.mybatis"]
+   }, {
+      "name" : "GORM",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ORM",
+      "contents" : ["\"github.com/jinzhu/gorm\"", "\"gorm.io/gorm\""],
+      "conditions" : [".go"],
+      "dependencies" : ["io.gorm"]
+   },
+
+
+
+   {
+      "name" : "JUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.junit."],
+      "conditions" : [".java", ".groovy"],
+      "dependencies" : ["org.junit", "cucumber-junit", "junit"]
+   }, {
+      "name" : "Jupiter",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.junit.jupiter."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.junit.jupiter"]
+   }, {
+      "name" : "Mockito",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.mockito."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.mockito"]
+   }, {
+      "name" : "WireMock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["new WireMockServer("],
+      "conditions" : [".java"],
+      "dependencies" : ["com.github.tomakehurst"]
+   }, {
+      "name" : "TestNG",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["testng.xml"],
+      "dependencies" : ["org.testng"]
+   }, {
+      "name" : "Selenium",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.openqa.selenium."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.seleniumhq.selenium"]
+   }, {
+      "name" : "Spock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import spock.", "import geb.spock."],
+      "conditions" : [".groovy"],
+      "dependencies" : ["org.spockframework", "geb.spock"]
+   }, {
+      "name" : "Geb",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import geb."],
+      "conditions" : [".groovy"],
+      "dependencies" : ["org.gebish"]
+   }, {
+      "name" : "HTTPUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import com.meterware.httpunit."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.meterware.httpunit", "org.kohsuke.httpunit", "httpunit"]
+   }, {
+      "name" : "HTMLUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["new HtmlUnitDriver("],
+      "conditions" : [".java"],
+      "dependencies" : ["net.sourceforge.htmlunit", "htmlunit-driver"]
+   }, {
+      "name" : "Gauge",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import com.thoughtworks.gauge."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.thoughtworks.gauge"]
+   }, {
+      "name" : "Awaitility",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.awaitility."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.awaitility"]
+   }, {
+      "name" : "DBUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.dbunit."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.dbunit"]
+   }, {
+      "name" : "Hamcrest",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.hamcrest."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.hamcrest"]
+   }, {
+      "name" : "JSONAssert",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["JSONAssert.assertEquals(", "import org.skyscreamer.jsonassert."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.skyscreamer"]
+   }, {
+      "name" : "Robot Framework",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : [""],
+      "conditions" : [".robot"],
+      "dependencies" : ["org.robotframework", "de.qualersoft.robotframework", "org.roboscratch.robot"]
+   }, {
+      "name" : "Katalon",
+      "category" : "TESTING",
+      "dependencies" : ["com.katalon"]
+   }, {
+      "name" : "Katalium",
+      "category" : "TESTING",
+      "dependencies" : ["<artifactId>katalium</artifactId>", "katalium-framework"]
+   }, {
+      "name" : "TestProject",
+      "category" : "TESTING",
+      "dependencies" : ["io.testproject"]
+   }, {
+      "name" : "SoapUI",
+      "category" : "TESTING",
+      "dependencies" : ["com.smartbear.soapui", "https://www.soapui.org"]
+   }, {
+      "name" : "JWebUnit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import net.sourceforge.jwebunit.", "import static net.sourceforge.jwebunit."],
+      "conditions" : [".java"],
+      "dependencies" : ["net.sourceforge.jwebunit"]
+   }, {
+      "name" : "Selenide",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import static com.codeborne.selenide.", "import com.codeborne.selenide."],
+      "conditions" : [".java"],
+      "dependencies" : ["<artifactId>selenide</artifactId>", "com.codeborne:selenide", "com.codeborne.selenide"]
+   }, {
+      "name" : "Arquillian",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.jboss.arquillian.", "@RunWith(Arquillian.class)"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jboss.arquillian"]
+   }, {
+      "name" : "PowerMock",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "TESTING",
+      "contents" : ["import org.powermock."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.powermock"]
+   }, {
+      "name" : "Codeception",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["codeception.yml", "codeception.yaml"]
+   }, {
+      "name" : "RSpec",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : [".rspec"]
+   }, {
+      "name" : "Jest",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["jest.config.js"]
+   }, {
+      "name" : "Testem",
+      "ruleType" : "FILE_NAME",
+      "category" : "TESTING",
+      "contents" : ["testem.json",".testem.json","testem.yml",".testem.yml","testem.yaml",".testem.yaml","testem.js"]
+   },
+
+
+
+   {
+      "name" : "Karate",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import com.intuit.karate."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.intuit.karate"]
+   }, {
+      "name" : "Cucumber",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import io.cucumber."],
+      "conditions" : [".java"],
+      "dependencies" : ["io.cucumber"]
+   }, {
+      "name" : "JBehave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import org.jbehave."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jbehave"]
+   }, {
+      "name" : "Serenity",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import net.serenitybdd."],
+      "conditions" : [".java"],
+      "dependencies" : ["net.serenity-bdd"]
+   }, {
+      "name" : "JDave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import jdave."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jdave"]
+   }, {
+      "name" : "EasyB",
+      "category" : "BDD",
+      "dependencies" : ["org.easyb"]
+   }, {
+      "name" : "FitNesse",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import fitnesse."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.fitnesse", "fitnesse.org"]
+   }, {
+      "name" : "JDave",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import jdave."],
+      "conditions" : [".java"],
+      "dependencies" : ["org.jdave"]
+   }, {
+      "name" : "Jnario",
+      "category" : "BDD",
+      "dependencies" : ["org.jnario"]
+   }, {
+      "name" : "Concordion",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BDD",
+      "contents" : ["import org.concordion.", "@RunWith(ConcordionRunner.class)", "@ConcordionOptions"],
+      "conditions" : [".java"],
+      "dependencies" : ["org.concordion"]
+   },
+
+
+
+   {
+      "name" : "JetBrains Suite",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : [".idea"]
+   }, {
+      "name" : "Eclipse IDE",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : ["<name>org.eclipse.jdt.core.javabuilder</name>"],
+      "conditions" : [".project"]
+   }, {
+      "name" : "Visual Studio",
+      "ruleType" : "FILE_NAME",
+      "category" : "IDE",
+      "contents" : [".vscode", ".csproj"]
+   }, {
+      "name" : "NetBeans",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : ["nbproject"]
+   }, {
+      "name" : "AWS Cloud9",
+      "ruleType" : "FOLDER_NAME",
+      "category" : "IDE",
+      "contents" : [".c9"]
+   }, {
+      "name" : "Aptana",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : ["com.aptana"],
+      "conditions" : [".project"]
+   }, {
+      "name" : "Code::Blocks",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".cbp"]
+   }, {
+      "name" : "GNAT Studio",
+      "ruleType" : "FILE_NAME",
+      "category" : "IDE",
+      "contents" : ["gnat.adc", "Makefile.gnat"],
+      "conditions" : [".cbp"]
+   }, {
+      "name" : "Komodo Edit",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".komodoproject"]
+   }, {
+      "name" : "XCode",
+      "ruleType" : "FILE_NAME",
+      "category" : "IDE",
+      "contents" : ["Podfile", "project.pbxproj", "project.xcworkspace", "contents.xcworkspacedata", "variables.xcconfig"]
+   }, {
+      "name" : "Sublime Text",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "IDE",
+      "contents" : [""],
+      "conditions" : [".sublime-settings", ".sublime-package"]
+   }, {
+      "name" : "Atom",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "BUILD",
+      "contents" : ["\"atom-workspace\":", "\"atom-workspace\" :", "\"atom\":", "\"atom\" :"],
+      "conditions" : ["package.json"]
+   },
+
+
+
+   {
+      "name" : "Capistrano",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Capfile"]
+   }, {
+      "name" : "GitHub Actions",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["workflows"],
+      "conditions" : [".github"]
+   }, {
+      "name" : "Docker",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Dockerfile", "Dockerfile.assets"]
+   }, {
+      "name" : "Jenkins",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Jenkinsfile"]
+   }, {
+      "name" : "BitBucket",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["bitbucket-pipelines.yml", "bitbucket-pipelines.yaml"]
+   }, {
+      "name" : "Travis CI",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".travis.yml", ".travis.yaml"]
+   }, {
+      "name" : "CircleCI",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["config.yml", "config.yaml"],
+      "conditions" : [".circleci"]
+   }, {
+      "name" : "TeamCity",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["settings.kts"],
+      "dependencies" : ["org.jetbrains.teamcity"]
+   }, {
+      "name" : "Bamboo",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["import com.atlassian.bamboo."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.atlassian.bamboo"]
+   }, {
+      "name" : "GitLab",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".gitlab-ci.yml", ".gitlab-ci.yaml"]
+   }, {
+      "name" : "Cirrus",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".cirrus.yml", ".cirrus.yaml"]
+   }, {
+      "name" : "Azure Pipelines",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["azure-pipelines.yml", "azure-pipeline.yml", "azure-pipelines.yaml", "azure-pipeline.yaml"]
+   }, {
+      "name" : "GoCD",
+      "category" : "CI_CD",
+      "dependencies" : ["go-maven-poller", "cd.go", "com.oneandone.go", "com.thoughtworks.go", "https://nexus.gocd.io/"]
+   }, {
+      "name" : "Mule 3",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["mule-app.properties"]
+   }, {
+      "name" : "Mule 4",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["mule-artifact.json"]
+   }, {
+      "name" : "Mule",
+      "category" : "CI_CD",
+      "dependencies" : ["http://repository.mulesoft.org/", "org.mule"]
+   }, {
+      "name" : "Buddy",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["buddy.yml", "buddy.yaml"]
+   }, {
+      "name" : "Semaphore",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["semaphore.yml", "semaphore.yaml"],
+      "conditions" : [".semaphore"]
+   }, {
+      "name" : "webapp.io (LayerCI)",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Layerfile"]
+   }, {
+      "name" : "Drone",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".drone.yml", ".drone.yaml"]
+   }, {
+      "name" : "Wercker",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["wercker.yml", "wercker.yaml"]
+   }, {
+      "name" : "Kubernetes",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["kubernetes.yaml", "kubernetes.yml"]
+   }, {
+      "name" : "CodeShip",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["codeship-steps.yml", "codeship-services.yml", "codeship-steps.yaml", "codeship-services.yaml"]
+   }, {
+      "name" : "BuildKite",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["pipeline.yml", "pipeline.yaml"],
+      "conditions" : ["buildkite"]
+   }, {
+      "name" : "Terraform",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : [""],
+      "conditions" : [".tf"]
+   }, {
+      "name" : "Ansible",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["uses: ansible/", "ansible_ssh_port", "hosts: tag_ansible_", "ansible-galaxy", "ansible_ssh_user"],
+      "conditions" : [".yml", ".yaml"]
+   }, {
+      "name" : "Vagrant",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["Vagrantfile"]
+   }, {
+      "name" : "Mergify",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".mergify.yml", "mergify.yml", ".mergify.yaml", "mergify.yaml", ".mergify"]
+   }, {
+      "name" : "AWS CodePipeline",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "CI_CD",
+      "contents" : ["AWS::CodePipeline::", "CodePipelineServiceRole:", "codepipeline.amazonaws.com", "CodePipelineArtifactStoreBucket", "arn:aws:s3:::codepipeline", "CodePipelineIAMRole"],
+      "conditions" : [".yml", ".yaml"]
+   }, {
+      "name" : "GolangCI-Lint",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : [".golangci.yml", ".golangci.yaml", ".golangci.toml", ".golangci.json"]
+   }, {
+      "name" : "JRebel",
+      "ruleType" : "FILE_NAME",
+      "category" : "CI_CD",
+      "contents" : ["rebel.xml"]
+   },
+
+
+
+   {
+      "name" : "Code Climate",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".codeclimate.yml", ".codeclimate.yaml"]
+   }, {
+      "name" : "SonarSource",
+      "category" : "ANALYSIS",
+      "dependencies" : ["org.sonarsource", "org.sonarqube"]
+   }, {
+      "name" : "Veracode",
+      "category" : "ANALYSIS",
+      "dependencies" : ["com.veracode"]
+   }, {
+      "name" : "SpotBugs",
+      "category" : "ANALYSIS",
+      "dependencies" : ["com.github.spotbugs", "spotbugs-maven-plugin", "com.h3xstream.findsecbugs", "</spotbugs>"]
+   }, {
+      "name" : "FindBugs",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["findbugs.xml"],
+      "dependencies" : ["findbugs-maven-plugin", "apply plugin: 'findbugs'", "edu.umd.cs.findbugs.anttask.", "</findbugs>"]
+   }, {
+      "name" : "JMeter",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : [""],
+      "conditions" : [".jmx"],
+      "dependencies" : ["jmeter-maven-plugin", "jmeter-analysis-maven-plugin", "com.lazerycode.jmeter", "jmeter-plugins", "jmeter-gradle-plugin", "org.jmeterplugins"]
+   },{
+      "name" : "Checkmarx",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import com.checkmarx."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.github.checkmarx-ltd", "org.checkmarx"]
+   }, {
+      "name" : "Gatling",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import io.gatling"],
+      "conditions" : [".scala"],
+      "dependencies" : ["io.gatling"]
+   }, {
+      "name" : "The Grinder",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["grinder.properties", "grinder.py"],
+      "dependencies" : ["net.grinder", "net.sf.grinder"]
+   }, {
+      "name" : "Checkstyle",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["checkstyle-suppressions.xml", "checkstyle.xml", "checkstyle_packages.xml"],
+      "dependencies" : ["plugin: 'checkstyle'", "maven-checkstyle-plugin", "com/puppycrawl/tools/checkstyle"]
+   }, {
+      "name" : "PMD",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["pmd.xml"],
+      "dependencies" : ["maven-pmd-plugin", "net.sourceforge.pmd", "id 'pmd'"]
+   }, {
+      "name" : "Codacy",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".codacyrc"]
+   }, {
+      "name" : "Coverity",
+      "ruleType" : "FILE_CONTENT",
+      "category" : "ANALYSIS",
+      "contents" : ["import com.synopsys.integration.coverity."],
+      "conditions" : [".java"],
+      "dependencies" : ["com.synopsys.integration.coverity", "com.synopsys.integration:coverity"]
+   }, {
+      "name" : "Codecov",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["codecov.yml", "codecov.yaml"]
+   }, {
+      "name" : "Embold",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["embold.yml", "embold.yaml"]
+   }, {
+      "name" : "RuboCop",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".rubocop.yml", ".rubocop.yaml"]
+   }, {
+      "name" : "ESLint",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : [".eslintignore", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json", ".eslintrc"]
+   }, {
+      "name" : "LGTM",
+      "ruleType" : "FILE_NAME",
+      "category" : "ANALYSIS",
+      "contents" : ["lgtm.yml", "lgtm.yaml"]
+   }
+]

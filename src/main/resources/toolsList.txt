@@ -1,0 +1,189 @@
+BUILD:
+    Maven
+    Gradle
+    Gant
+    Ant
+    Gulp
+    SBT (Simple Build Tool)
+    Pants
+    Please
+    Jeka (Jerkar)
+    AWS CodeBuild
+    Rake
+    Babel
+    Rollup
+    MSBuild
+    NAnt
+    CMake
+    Ninja
+    Grunt
+    PyBuilder
+PACKAGE_MANAGER:
+    Yarn
+    NPM
+    Ivy
+    Azure Artifacts
+    JFrog Artifactory
+    AWS CodeArtifact
+    NuGet
+    Pip
+    RubyGems
+    Composer
+    Buckaroo
+    Conan
+    Cargo
+    Bower
+    PEAR
+    dep
+    Glide
+CI_CD:
+    Capistrano
+    GitHub
+    BitBucket
+    Jenkins
+    Docker
+    CircleCI
+    Travis CI
+    TeamCity
+    Bamboo
+    GitLab
+    Cirrus
+    Azure Pipelines
+    GoCD
+    Mule 3
+    Mule 4
+    Mule
+    Buddy
+    Semaphore
+    webapp.io (LayerCI)
+    Drone.io
+    Wercker
+    Kubernetes
+    CodeShip
+    Buildkite
+    Terraform
+    Ansible
+    Vagrant
+    Mergify
+    AWS CodePipeline
+    GolangCI-Lint
+    JRebel
+FRONTEND:
+    React
+    Swing
+    Angular
+    Struts
+    Wicket
+    Electron
+    Vue
+    JavaFX
+    SWT
+BACKEND:
+    JCTools
+    ByteBuddy
+    Akka
+    TensorFlow
+    Spring
+    Django
+    Dropwizard
+    OCPsoft Rewrite
+    Rack
+    Blade
+    Firebase
+ORM:
+    Hibernate
+    Ebean
+    Sequelize
+    ent
+    GreenDAO
+    peewee
+    Entity Framework
+    SQLAlchemy
+    Doctrine 2
+    MyBatis
+    GORM
+IDE:
+    JetBrains Suite
+    Eclipse IDE
+    Visual Studio
+    AWS Cloud9
+    NetBeans
+    Aptana
+    Code::Blocks
+    GNAT Studio
+    Komodo Edit
+    XCode
+    Sublime Text
+    Atom
+TESTING:
+    JUnit
+    Jupiter
+    Mockito
+    WireMock
+    TestNG
+    Selenium
+    Spock
+    Geb
+    HTTPUnit
+    HTMLUnit
+    Gauge
+    Awaitility
+    DBUnit
+    Hamcrest
+    JSONAssert
+    Robot Framework
+    Katalon
+    Katalium
+    TestProject
+    SoapUI
+    JWebUnit
+    Selenide
+    Arquillian
+    PowerMock
+    Codeception
+    RSpec
+    Jest
+    Testem
+BDD:
+    Karate
+    Cucumber
+    JBehave
+    Serenity
+    JDave
+    EasyB
+    Fitnesse
+    JDave
+    Jnario
+    Concordion
+ANALYSIS:
+    Code Climate
+    SonarSource
+    Veracode
+    SpotBugs
+    FindBugs
+    JMeter
+    Checkmarx
+    Gatling
+    The Grinder
+    Checkstyle
+    PMD
+    Codacy
+    Coverity
+    Codecov
+    Embold
+    RuboCop
+    ESLint
+    LGTM
+
+
+NO. OF TOOLS: lines - 10
+
+TEMPLATE:
+{
+  "name" : "",
+  "ruleType" : "",
+  "category" : "",
+  "contents" : [""],
+  "conditions" : [""],
+  "dependencies" : [""]
+}
