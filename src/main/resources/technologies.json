@@ -705,7 +705,7 @@
    }, {
       "name" : "Atom",
       "ruleType" : "FILE_CONTENT",
-      "category" : "BUILD",
+      "category" : "IDE",
       "contents" : ["\"atom-workspace\":", "\"atom-workspace\" :", "\"atom\":", "\"atom\" :"],
       "conditions" : ["package.json"]
    },
