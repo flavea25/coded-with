@@ -53,7 +53,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
             }
         });
 
-        fileService.deleteClonedRepository();
+//        fileService.deleteClonedRepository();      //TODO uncomment
 
         return technologies;
     }

@@ -23,7 +23,7 @@ public class Main {
     private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
     private static final String ANALYSED_REPOSITORIES = "analysed-repositories";
     private static final String REPOSITORY_DB = "repoDB";
-    private static final String TOOLS_RANKING = "toolsRanking";
+    private static final String TOOLS_RANKING = "top2000"; //TODO change to toolsRanking
 
     private static final TechnologyService technologyService = injector.getInstance(TechnologyService.class);
 
@@ -33,7 +33,8 @@ public class Main {
         dbService.createDefaultConnection();
         dbService.useDatabase(DATABASE_NAME);
 
-        saveRepositoryData(args);
+        analyzeTopRepositories(args);
+//        saveRepositoryData(args);
 
         dbService.closeConnection();
     }
@@ -73,11 +74,11 @@ public class Main {
                             }
                         });
                         List<Technology> usedTechs = technologyService.getUsedTechnologies(repo, technologyService.getAllTechnologiesFromFile(args[1]));
-                        addRepoInDB(repo, usedTechs);
+                        addRepoInDB(repo, usedTechs, TOOLS_RANKING);
                     }
                 } else {
                     List<Technology> usedTools = technologyService.getUsedTechnologies(repo, technologyService.getAllTechnologiesFromFile(args[1]));
-                    addRepoInDB(repo, usedTools);
+                    addRepoInDB(repo, usedTools, TOOLS_RANKING);
                 }
             } else {
                 logTechnologiesByCategory(args);
@@ -95,7 +96,7 @@ public class Main {
                 csvLines.forEach(csvLine -> {
                     String path = GITHUB_REPOSITORY_LINK_START + Arrays.stream(csvLine).toList().get(0);
                     var usedTechs = technologyService.getUsedTechnologies(path, technologyService.getAllTechnologiesFromFile(args[1]));
-                    addRepoInDB(path, usedTechs);
+                    addRepoInDB(path, usedTechs, TOOLS_RANKING);
                 });
             } catch (IOException | CsvException e) {
                 log.error("Exception occurred while parsing CSV file!");
@@ -127,16 +128,16 @@ public class Main {
         return repos;
     }
 
-    private static void addRepoInDB(String repo, List<Technology> usedTools) {
+    private static void addRepoInDB(String repo, List<Technology> usedTools, String collection) {
         dbService.addDocumentToCollection(Map.of("repository", repo, "usedTools", usedTools.size()), ANALYSED_REPOSITORIES);
         dbService.addDocumentToCollection(Map.of("repository", repo, "date", LocalDate.now().toString(), "usedTools", usedTools.stream().map(Technology::getName).collect(Collectors.toList())), REPOSITORY_DB);
         usedTools.forEach(t -> {
-            Document tool = dbService.findDocumentFromCollection(Map.of("name", t.getName()), TOOLS_RANKING);
+            Document tool = dbService.findDocumentFromCollection(Map.of("name", t.getName()), collection);
             if(tool != null && !tool.isEmpty()) {
-                dbService.updateDocumentInCollection(tool, Map.of("timesUsed", (int) tool.get("timesUsed") + 1), TOOLS_RANKING);
+                dbService.updateDocumentInCollection(tool, Map.of("timesUsed", (int) tool.get("timesUsed") + 1), collection);
             }
             else {
-                dbService.addDocumentToCollection(Map.of("name", t.getName(), "category", t.getCategory().toString(), "timesUsed", 1), TOOLS_RANKING);
+                dbService.addDocumentToCollection(Map.of("name", t.getName(), "category", t.getCategory().toString(), "timesUsed", 1), collection);
             }
         });
     }
