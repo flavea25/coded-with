@@ -4,6 +4,8 @@ public final class CodedWithConstants {
 
     //databases
     public static final String DATABASE_NAME = "coded-with";
+    public static final String DEFAULT_HOST = "localhost";
+    public static final int DEFAULT_PORT = 27017;
     //collections
     public static final String ANALYSED_REPOSITORIES = "analysed-repositories";
     public static final String REPOSITORY_DB = "repoDB";

@@ -3,15 +3,12 @@ package services.database;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import helpers.CodedWithConstants;
 import org.bson.Document;
 
 import java.util.Map;
 
 public class MongoServiceImpl implements MongoService{
-    private final static String DEFAULT_HOST = "localhost";
-
-    private final static int DEFAULT_PORT = 27017;
-
     private static MongoClient mongoClient = null;
 
     private static MongoDatabase db = null;
@@ -46,7 +43,7 @@ public class MongoServiceImpl implements MongoService{
 
     @Override
     public void createDefaultConnection() {
-        createConnection(DEFAULT_HOST, DEFAULT_PORT);
+        createConnection(CodedWithConstants.DEFAULT_HOST, CodedWithConstants.DEFAULT_PORT);
     }
 
     @Override
