@@ -1,12 +1,10 @@
 package helpers;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
-import services.MyInjector;
 import services.TechnologyService;
 import services.database.MongoService;
 import technologies.Category;
@@ -19,11 +17,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class CodedWithProgram {
+public class CodedWithProgram implements MyHelper {
 
-    private static final Injector injector = Guice.createInjector(new MyInjector());
-    private static final TechnologyService technologyService = injector.getInstance(TechnologyService.class);
-    private static final MongoService dbService = injector.getInstance(MongoService.class);
+    @Inject
+    TechnologyService technologyService;
+    
+    @Inject
+    MongoService dbService;
 
     public void run(String[] args) {
         if(args.length != 2) {

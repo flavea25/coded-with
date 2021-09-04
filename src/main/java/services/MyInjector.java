@@ -1,6 +1,8 @@
 package services;
 
 import com.google.inject.AbstractModule;
+import helpers.CodedWithProgram;
+import helpers.MyHelper;
 import services.basic.BasicFileService;
 import services.basic.BasicFileServiceImpl;
 import services.basic.BasicTechnologyServiceImpl;
@@ -20,5 +22,6 @@ public class MyInjector extends AbstractModule {
         bind(RepositoryTechnologyService.class).to(GithubTechnologyServiceImpl.class).asEagerSingleton();
         bind(TechnologyService.class).to(BasicTechnologyServiceImpl.class).asEagerSingleton();
         bind(MongoService.class).to(MongoServiceImpl.class).asEagerSingleton();
+        bind(MyHelper.class).to(CodedWithProgram.class).asEagerSingleton();
     }
 }
