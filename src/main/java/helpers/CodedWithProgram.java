@@ -38,7 +38,8 @@ public class CodedWithProgram implements MyHelper {
             dbService.createDefaultConnection();
             dbService.useDatabase(CodedWithConstants.DATABASE_NAME);
 
-            if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START)) {
+            if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START) ||
+               path.startsWith(CodedWithConstants.BITBUCKET_REPOSITORY_LINK_START)) {
                 saveRepositoryData(path, searchedTools);
             }
             else {

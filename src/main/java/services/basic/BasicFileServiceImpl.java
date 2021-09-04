@@ -33,10 +33,10 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     @Override
     public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames){
-        boolean isRepository = source.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START);
+        boolean isRepository = source.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START) || source.startsWith(CodedWithConstants.BITBUCKET_REPOSITORY_LINK_START);
         if(isRepository) {
             PATH_TO_CLONE += RandomStringUtils.randomAlphanumeric(16) + "/";    //a randomly generated Base64 String to avoid overwriting existing folders
-            cloneRepositoryAtPath(source, PATH_TO_CLONE + source.substring(CodedWithConstants.GITHUB_REPOSITORY_LINK_START.length()) + "/");
+            cloneRepositoryAtPath(source, PATH_TO_CLONE);
             log.info("Finding files & folders...");
             findFilesAndFoldersLocally(PATH_TO_CLONE, filePaths, fileNames);
         }
