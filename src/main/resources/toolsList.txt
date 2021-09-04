@@ -152,7 +152,6 @@ BDD:
     JDave
     EasyB
     Fitnesse
-    JDave
     Jnario
     Concordion
 ANALYSIS:

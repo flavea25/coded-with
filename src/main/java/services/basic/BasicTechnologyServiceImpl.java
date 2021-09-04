@@ -54,7 +54,6 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         });
 
         fileService.deleteClonedRepository();
-
         return technologies;
     }
 
@@ -82,8 +81,7 @@ public class BasicTechnologyServiceImpl extends TechnologyService {
         try {
             fileContent = Files.readString(Path.of(path));
         } catch (IOException e) {
-            log.error("Exception occurred when reading lines from a file!");
-            e.printStackTrace();
+            log.error("Exception occurred when reading lines from a file: " + path);
         }
 
         if(fileContent != null && !fileContent.isBlank()) {

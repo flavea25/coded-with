@@ -620,13 +620,6 @@
       "conditions" : [".java"],
       "dependencies" : ["org.fitnesse", "fitnesse.org"]
    }, {
-      "name" : "JDave",
-      "ruleType" : "FILE_CONTENT",
-      "category" : "BDD",
-      "contents" : ["import jdave."],
-      "conditions" : [".java"],
-      "dependencies" : ["org.jdave"]
-   }, {
       "name" : "Jnario",
       "category" : "BDD",
       "dependencies" : ["org.jnario"]
@@ -705,7 +698,7 @@
    }, {
       "name" : "Atom",
       "ruleType" : "FILE_CONTENT",
-      "category" : "BUILD",
+      "category" : "IDE",
       "contents" : ["\"atom-workspace\":", "\"atom-workspace\" :", "\"atom\":", "\"atom\" :"],
       "conditions" : ["package.json"]
    },
