@@ -16,10 +16,10 @@ import java.util.*;
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
 
-    private static final String FOLDER = "D:/flavi/coded-with/"; //TODO change to clonedRepository/
+    private static final String DEFAULT_CLONING_FOLDER = "D:/flavi/coded-with/"; //TODO change to clonedRepository/
     private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
 
-    private static String PATH_TO_CLONE = FOLDER;
+    private static String PATH_TO_CLONE = DEFAULT_CLONING_FOLDER;
 
     @Override
     public boolean isAnyTextInFile(String root, List<String> texts) {
@@ -27,19 +27,18 @@ public class BasicFileServiceImpl implements BasicFileService{
             return Files.readAllLines(Path.of(root)).stream()
                     .anyMatch(l -> texts.stream().anyMatch(l::contains));
         } catch (IOException e) {
-            log.error("Exception occurred when reading lines from a file!");
-            e.printStackTrace();
+            log.error("Exception occurred when reading lines from a file: " + root);
         }
 
         return false;
     }
 
     @Override
-    public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames) {
+    public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames){
         boolean isRepository = source.startsWith(GITHUB_REPOSITORY_LINK_START);
         if(isRepository) {
 //            PATH_TO_CLONE += RandomStringUtils.randomAlphanumeric(16) + "/";    //a randomly generated Base64 String to avoid existing folders //TODO replace below
-            PATH_TO_CLONE = FOLDER + source.substring(GITHUB_REPOSITORY_LINK_START.length()) + "/" + RandomStringUtils.randomAlphanumeric(16) + "/";
+            PATH_TO_CLONE = DEFAULT_CLONING_FOLDER + source.substring(GITHUB_REPOSITORY_LINK_START.length()) + "/" + RandomStringUtils.randomAlphanumeric(16) + "/";
             cloneRepositoryAtPath(source, PATH_TO_CLONE);
             log.info("Finding files & folders...");
             findFilesAndFoldersLocally(PATH_TO_CLONE, filePaths, fileNames);
@@ -69,7 +68,6 @@ public class BasicFileServiceImpl implements BasicFileService{
     private void cloneRepositoryAtPath(String repositoryUrl, String path) {
         log.info("Cloning repository...");
         try {
-//            deleteDestinationIfExistent(path);
             Git git = Git.cloneRepository()
                          .setURI(repositoryUrl)
                          .setDirectory(Paths.get(path).toFile())
@@ -77,7 +75,6 @@ public class BasicFileServiceImpl implements BasicFileService{
             git.close();
         } catch (GitAPIException e) {
             log.error("Exception occurred while cloning repository!");
-            e.printStackTrace();
         }
     }
 
@@ -89,7 +86,6 @@ public class BasicFileServiceImpl implements BasicFileService{
                 FileUtils.delete(toDelete, 1);
             } catch (IOException e) {
                 log.error("Exception occurred while deleting folder!");
-                e.printStackTrace();
             }
         }
     }

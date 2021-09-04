@@ -22,14 +22,17 @@ public abstract class TechnologyService {
 
     public abstract List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies);
 
-    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(String root, List<Technology> allTechnologies) {
-        List<Technology> technologies = getUsedTechnologies(root, allTechnologies);
+    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(String root, List<Technology> allTechnologies){
+        return getUsedTechnologiesByCategory(getUsedTechnologies(root, allTechnologies));
+    }
+
+    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(List<Technology> usedTechnologies){
         Map<Category, List<Technology>> sortedTechnologies = new HashMap<>();
 
         log.info("Sorting used technologies...");
         Arrays.asList(Category.values()).forEach(c -> sortedTechnologies.put(c, new ArrayList<>()));
 
-        technologies.forEach(t -> {
+        usedTechnologies.forEach(t -> {
             Category c = t.getCategory() != null ? t.getCategory() : Category.OTHER;
             List<Technology> existingTechnologies = sortedTechnologies.get(c);
             existingTechnologies.add(t);
@@ -67,7 +70,6 @@ public abstract class TechnologyService {
                 return Arrays.stream(GSON.fromJson(Files.readString(Path.of(path)), Technology[].class)).toList();
             } catch (IOException e) {
                 log.error("Not a (correct) JSON file!");
-                e.printStackTrace();
             }
         }
         else {
