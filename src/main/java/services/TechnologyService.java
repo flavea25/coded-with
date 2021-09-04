@@ -2,6 +2,7 @@ package services;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import helpers.CodedWithConstants;
 import lombok.extern.slf4j.Slf4j;
 import technologies.Category;
 import technologies.Technology;
@@ -17,8 +18,6 @@ import java.util.concurrent.atomic.AtomicReference;
 public abstract class TechnologyService {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-    private static final String PATH_TO_TECHNOLOGIES = "./src/main/resources/technologies.json";
 
     public abstract List<Technology> getUsedTechnologies(String path, List<Technology> allTechnologies);
 
@@ -61,7 +60,7 @@ public abstract class TechnologyService {
         log.info("Loading all technologies...");
 
         if("default".equals(path)) {
-            path = PATH_TO_TECHNOLOGIES;
+            path = CodedWithConstants.PATH_TO_TECHNOLOGIES;
         }
         File source = new File(path);
 

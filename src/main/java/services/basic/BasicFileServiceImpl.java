@@ -1,5 +1,6 @@
 package services.basic;
 
+import helpers.CodedWithConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.eclipse.jgit.api.Git;
@@ -15,8 +16,6 @@ import java.util.*;
 
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
-
-    private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
 
     private static String PATH_TO_CLONE = "";
 
@@ -34,10 +33,10 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     @Override
     public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames){
-        boolean isRepository = source.startsWith(GITHUB_REPOSITORY_LINK_START);
+        boolean isRepository = source.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START);
         if(isRepository) {
             PATH_TO_CLONE += RandomStringUtils.randomAlphanumeric(16) + "/";    //a randomly generated Base64 String to avoid overwriting existing folders
-            cloneRepositoryAtPath(source, PATH_TO_CLONE + source.substring(GITHUB_REPOSITORY_LINK_START.length()) + "/");
+            cloneRepositoryAtPath(source, PATH_TO_CLONE + source.substring(CodedWithConstants.GITHUB_REPOSITORY_LINK_START.length()) + "/");
             log.info("Finding files & folders...");
             findFilesAndFoldersLocally(PATH_TO_CLONE, filePaths, fileNames);
         }

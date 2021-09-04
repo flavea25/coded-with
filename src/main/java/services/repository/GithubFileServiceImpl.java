@@ -2,6 +2,7 @@ package services.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import helpers.CodedWithConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.fluent.Request;
 
@@ -11,10 +12,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 public class GithubFileServiceImpl implements RepositoryFileService{
-
-    private static final String GITHUB_API_BASE_URL = "https://api.github.com/";
-
-    private static final String GITHUB_API_SEARCH_CODE_PATH = "search/code?q=";
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -35,7 +32,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         searchedTexts.forEach(t -> {
             if(!foundText.get()) {
                 String searchQuery = t + "+repo:" + repositoryName;
-                Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
+                Map<String, Object> searchResult = makeRESTCall(CodedWithConstants.GITHUB_API_BASE_URL + CodedWithConstants.GITHUB_API_SEARCH_CODE_PATH + searchQuery);
 
                 if(pathEndings == null || pathEndings.isEmpty()) {
                     if(searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0) {
@@ -64,7 +61,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
         fileNames.forEach(f -> {
             if(!foundFile.get()) {
                 String searchQuery = "filename:" + f + "+repo:" + repositoryName;
-                Map<String, Object> searchResult = makeRESTCall(GITHUB_API_BASE_URL + GITHUB_API_SEARCH_CODE_PATH + searchQuery);
+                Map<String, Object> searchResult = makeRESTCall(CodedWithConstants.GITHUB_API_BASE_URL + CodedWithConstants.GITHUB_API_SEARCH_CODE_PATH + searchQuery);
 
                 if(conditions == null || conditions.isEmpty()) {
                     if(searchResult != null && Double.parseDouble(searchResult.get("total_count").toString()) > 0) {
@@ -90,7 +87,7 @@ public class GithubFileServiceImpl implements RepositoryFileService{
     public Set<String> getDirectoriesFromRepository(String repositoryName) {
         Set<String> directories = new HashSet<>();
 
-        Map<String, Object> jsonMap = makeRESTCall(GITHUB_API_BASE_URL + "repos/" + repositoryName + "/branches/master");
+        Map<String, Object> jsonMap = makeRESTCall(CodedWithConstants.GITHUB_API_BASE_URL + "repos/" + repositoryName + "/branches/master");
 
         //Path in JSON = root > commit > commit > tree > url
         if(jsonMap != null) {
