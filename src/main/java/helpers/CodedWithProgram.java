@@ -67,7 +67,7 @@ public class CodedWithProgram implements MyHelper {
             char option = in.next().charAt(0);
             if (option == 'y') {
                 removeToolsFromDB(tools);
-                addRepoInDB(repo, allTechnologies);
+                replaceRepoInDB(repo, allTechnologies);
             }
         } else {
             addRepoInDB(repo, allTechnologies);
@@ -104,6 +104,16 @@ public class CodedWithProgram implements MyHelper {
 
         dbService.addDocumentToCollection(Map.of("repository", repo, "usedTools", usedTools.size()), CodedWithConstants.ANALYSED_REPOSITORIES);
         dbService.addDocumentToCollection(Map.of("repository", repo, "date", LocalDate.now().toString(), "usedTools", usedTools.stream().map(Technology::getName).collect(Collectors.toList())), CodedWithConstants.REPOSITORY_DB);
+        addToolsToDB(usedTools);
+
+        logTechnologiesByCategory(technologyService.getUsedTechnologiesByCategory(usedTools));
+    }
+
+    private void replaceRepoInDB(String repo, List<Technology> searchedTools) {
+        List<Technology> usedTools = technologyService.getUsedTechnologies(repo, searchedTools);
+
+        dbService.updateDocumentInCollection(Map.of("repository", repo), Map.of("usedTools", usedTools.size()), CodedWithConstants.ANALYSED_REPOSITORIES);
+        dbService.updateDocumentInCollection(Map.of("repository", repo), Map.of("date", LocalDate.now().toString(), "usedTools", usedTools.stream().map(Technology::getName).collect(Collectors.toList())), CodedWithConstants.REPOSITORY_DB);
         addToolsToDB(usedTools);
 
         logTechnologiesByCategory(technologyService.getUsedTechnologiesByCategory(usedTools));
