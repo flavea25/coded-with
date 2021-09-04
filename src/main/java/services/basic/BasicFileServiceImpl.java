@@ -16,10 +16,9 @@ import java.util.*;
 @Slf4j
 public class BasicFileServiceImpl implements BasicFileService{
 
-    private static final String DEFAULT_CLONING_FOLDER = "D:/flavi/coded-with/"; //TODO change to clonedRepository/
     private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
 
-    private static String PATH_TO_CLONE = DEFAULT_CLONING_FOLDER;
+    private static String PATH_TO_CLONE = "";
 
     @Override
     public boolean isAnyTextInFile(String root, List<String> texts) {
@@ -37,9 +36,8 @@ public class BasicFileServiceImpl implements BasicFileService{
     public void findFilesAndFolders(String source, List<String> filePaths, List<String> fileNames){
         boolean isRepository = source.startsWith(GITHUB_REPOSITORY_LINK_START);
         if(isRepository) {
-//            PATH_TO_CLONE += RandomStringUtils.randomAlphanumeric(16) + "/";    //a randomly generated Base64 String to avoid existing folders //TODO replace below
-            PATH_TO_CLONE = DEFAULT_CLONING_FOLDER + source.substring(GITHUB_REPOSITORY_LINK_START.length()) + "/" + RandomStringUtils.randomAlphanumeric(16) + "/";
-            cloneRepositoryAtPath(source, PATH_TO_CLONE);
+            PATH_TO_CLONE += RandomStringUtils.randomAlphanumeric(16) + "/";    //a randomly generated Base64 String to avoid overwriting existing folders
+            cloneRepositoryAtPath(source, PATH_TO_CLONE + source.substring(GITHUB_REPOSITORY_LINK_START.length()) + "/");
             log.info("Finding files & folders...");
             findFilesAndFoldersLocally(PATH_TO_CLONE, filePaths, fileNames);
         }
@@ -80,7 +78,7 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     private void deleteDestinationIfExistent(String path) {
         File toDelete = new File(path);
-        if(toDelete.exists()) {
+        if(!"".equals(path) && toDelete.exists()) {
             log.info("Deleting local copy of repository...");
             try {
                 FileUtils.delete(toDelete, 1);
@@ -92,6 +90,8 @@ public class BasicFileServiceImpl implements BasicFileService{
 
     @Override
     public void deleteClonedRepository() {
-        deleteDestinationIfExistent(PATH_TO_CLONE);
+        if(!"".equals(PATH_TO_CLONE)) {
+            deleteDestinationIfExistent(PATH_TO_CLONE);
+        }
     }
 }

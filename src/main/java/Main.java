@@ -24,8 +24,7 @@ public class Main {
     private static final String GITHUB_REPOSITORY_LINK_START = "https://github.com/";
     private static final String ANALYSED_REPOSITORIES = "analysed-repositories";
     private static final String REPOSITORY_DB = "repoDB";
-    private static final String TOP2000 = "top2000";
-    private static final String TOOLS_RANKING = "top2000"; //TODO change to toolsRanking
+    private static final String TOOLS_RANKING = "toolsRanking";
 
     private static final TechnologyService technologyService = injector.getInstance(TechnologyService.class);
 
