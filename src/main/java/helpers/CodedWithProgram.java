@@ -37,7 +37,7 @@ public class CodedWithProgram implements MyHelper {
 
     public void run(String[] args) {
         if(args.length != 2 && args.length != 0) {
-            log.error("Incorrect arguments!! - Please pass:\n\t 1. Path/link to project OR csv file with a list of repositories, and \n\t 2. Path to a JSON file containing the searched-for technologies (or \"default\")!");
+            log.error("\nIncorrect arguments!! \nTo analyse a repository, please pass:\n\t 1. Path/link to project OR csv file with a list of repositories, and \n\t 2. Path to a JSON file containing the searched-for technologies (or \"default\")!\nTo receive the top 10 tools, don't pass any arguments!");
         }
         else {
             log.info("Program started...");
@@ -77,7 +77,9 @@ public class CodedWithProgram implements MyHelper {
     }
 
     private void logTop10() {
-        var top10 = dbService.aggregateDocumentsFromCollection(List.of(new Document("$sort", Map.of("timesUsed", -1)), new Document("$limit", 10)), CodedWithConstants.TOOLS_RANKING);
+        var top10 = dbService.aggregateDocumentsFromCollection(List.of(new Document("$sort", Map.of("timesUsed", -1)),
+                                                                                            new Document("$limit", 10)),
+                                                                                    CodedWithConstants.TOOLS_RANKING);
         if(top10 != null) {
             log.info("TOP 10 TOOLS:");
             while(top10.hasNext()) {
