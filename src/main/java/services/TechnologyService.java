@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class TechnologyService {
@@ -46,6 +47,13 @@ public abstract class TechnologyService {
         });
 
         return actualSortedTechnologies;
+    }
+
+    public Map<Category, List<Technology>> getUsedTechnologiesByCategory(List<Technology> allTools, List<String> usedTools) {
+        return getUsedTechnologiesByCategory(usedTools.stream()
+                .map(toolName -> allTools.stream().filter(t -> t.getName().equals(toolName)).findFirst().orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList()));
     }
 
     public String getTechnologiesNames(List<Technology> technologies) {

@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import helpers.CodedWithConstants;
 import org.bson.Document;
 
+import java.util.List;
 import java.util.Map;
 
 public class MongoServiceImpl implements MongoService{
@@ -180,5 +181,13 @@ public class MongoServiceImpl implements MongoService{
     @Override
     public Long getNumberOfSpecificDocumentsFromCollection(Map<String, Object> dimensions, String collectionName) {
         return getNumberOfSpecificDocumentsFromCollection(new Document(dimensions), collectionName);
+    }
+
+    @Override
+    public MongoCursor<Document> aggregateDocumentsFromCollection(List<Document> conditions, String collectionName) {
+        if(usesDatabase() && existsCollection(collectionName)) {
+            return db.getCollection(collectionName).aggregate(conditions).iterator();
+        }
+        return null;
     }
 }

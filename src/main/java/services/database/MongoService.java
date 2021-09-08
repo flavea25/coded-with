@@ -3,6 +3,7 @@ package services.database;
 import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MongoService extends DatabaseService{
@@ -39,4 +40,6 @@ public interface MongoService extends DatabaseService{
     Long getNumberOfSpecificDocumentsFromCollection(Document searchQuery, String collectionName);
 
     Long getNumberOfSpecificDocumentsFromCollection(Map<String, Object> dimensions, String collectionName);
+
+    MongoCursor<Document> aggregateDocumentsFromCollection(List<Document> conditions, String collectionName);
 }

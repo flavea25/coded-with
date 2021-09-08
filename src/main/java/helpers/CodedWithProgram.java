@@ -1,5 +1,7 @@
 package helpers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -11,7 +13,9 @@ import technologies.Category;
 import technologies.Technology;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,33 +29,63 @@ public class CodedWithProgram implements MyHelper {
     @Inject
     MongoService dbService;
 
+    private static List<AnalysedRepository> analysedRepositories = new ArrayList<>();
+
+    Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .create();
+
     public void run(String[] args) {
-        if(args.length != 2) {
-            log.error("Incorrect arguments!! - Please pass:\n\t 1. Path/link to project OR csv file with a list of repositories, and \n\t 2. Path to a JSON file containing the searched-for technologies (or \"default\")!");
+        if(args.length != 2 && args.length != 0) {
+            log.error("\nIncorrect arguments!! \nTo analyse a repository, please pass:\n\t 1. Path/link to project OR csv file with a list of repositories, and \n\t 2. Path to a JSON file containing the searched-for technologies (or \"default\")!\nTo receive the top 10 tools, don't pass any arguments!");
         }
         else {
             log.info("Program started...");
-            String path = args[0];
-            List<Technology> searchedTools = technologyService.getAllTechnologiesFromFile(args[1]);
-
             log.info("Connecting to DB...");
             dbService.createDefaultConnection();
             dbService.useDatabase(CodedWithConstants.DATABASE_NAME);
 
-            if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START)) {
-                saveRepositoryData(path, searchedTools);
+            if(args.length == 0) {
+                logTop10();
             }
             else {
-                if(path.endsWith(".csv")) {
-                    analyseListOfRepositories(path, searchedTools);
+                String path = args[0];
+                List<Technology> searchedTools = technologyService.getAllTechnologiesFromFile(args[1]);
+
+                if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START)) {
+                    saveRepositoryData(path, searchedTools);
                 }
                 else {
-                    logTechnologiesByCategory(technologyService.getUsedTechnologiesByCategory(path, searchedTools));
+                    if(path.endsWith(".csv")) {
+                        analyseListOfRepositories(path, searchedTools);
+                    }
+                    else {
+                        deliverTechnologiesByCategory(path, technologyService.getUsedTechnologiesByCategory(path, searchedTools));
+                    }
+                }
+
+                try (Writer writer = new FileWriter("coded-with-results.json")){
+                    writer.write(gson.toJson(analysedRepositories.toArray()));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 
             log.info("Disconnecting from DB...");
             dbService.closeConnection();
+        }
+    }
+
+    private void logTop10() {
+        var top10 = dbService.aggregateDocumentsFromCollection(List.of(new Document("$sort", Map.of("timesUsed", -1)),
+                                                                                            new Document("$limit", 10)),
+                                                                                    CodedWithConstants.TOOLS_RANKING);
+        if(top10 != null) {
+            log.info("TOP 10 TOOLS:");
+            while(top10.hasNext()) {
+                Document item = top10.next();
+                log.info((String) item.get("name"));
+            }
         }
     }
 
@@ -67,6 +101,9 @@ public class CodedWithProgram implements MyHelper {
             char option = in.next().charAt(0);
             if (option == 'y') {
                 replaceRepoInDB(repo, allTechnologies, tools);
+            }
+            else {
+                analysedRepositories.add(new AnalysedRepository(repo, technologyService.getUsedTechnologiesByCategory(allTechnologies, tools)));
             }
         } else {
             addRepoInDB(repo, allTechnologies);
@@ -87,6 +124,9 @@ public class CodedWithProgram implements MyHelper {
                     if(found == null || found.isEmpty()) {
                         addRepoInDB(path, allTools);
                     }
+                    else {
+                        analysedRepositories.add(new AnalysedRepository(repo, technologyService.getUsedTechnologiesByCategory(allTools, (List<String>)found.get("usedTools"))));
+                    }
                 });
             }
         } catch (IOException | CsvException e) {
@@ -94,7 +134,9 @@ public class CodedWithProgram implements MyHelper {
         }
     }
 
-    private void logTechnologiesByCategory(Map<Category, List<Technology>> foundTools) {
+    private void deliverTechnologiesByCategory(String project, Map<Category, List<Technology>> foundTools) {
+        analysedRepositories.add(new AnalysedRepository(project, foundTools));
+        log.info("Project: " + project);
         foundTools.forEach((category, technologies) -> log.info(category.name() + ": " + technologyService.getTechnologiesNames(technologies)));
     }
 
@@ -105,7 +147,7 @@ public class CodedWithProgram implements MyHelper {
         dbService.addDocumentToCollection(Map.of("repository", repo, "date", LocalDate.now().toString(), "usedTools", usedTools.stream().map(Technology::getName).collect(Collectors.toList())), CodedWithConstants.REPOSITORY_DB);
         addToolsToDB(usedTools);
 
-        logTechnologiesByCategory(technologyService.getUsedTechnologiesByCategory(usedTools));
+        deliverTechnologiesByCategory(repo, technologyService.getUsedTechnologiesByCategory(usedTools));
     }
 
     private void replaceRepoInDB(String repo, List<Technology> searchedTools, List<String> oldTools) {
@@ -116,7 +158,7 @@ public class CodedWithProgram implements MyHelper {
         removeToolsFromDB(oldTools);
         addToolsToDB(usedTools);
 
-        logTechnologiesByCategory(technologyService.getUsedTechnologiesByCategory(usedTools));
+        deliverTechnologiesByCategory(repo, technologyService.getUsedTechnologiesByCategory(usedTools));
     }
 
     private void addToolsToDB(List<Technology> usedTools) {
