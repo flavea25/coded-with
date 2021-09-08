@@ -36,38 +36,54 @@ public class CodedWithProgram implements MyHelper {
             .create();
 
     public void run(String[] args) {
-        if(args.length != 2) {
+        if(args.length != 2 && args.length != 0) {
             log.error("Incorrect arguments!! - Please pass:\n\t 1. Path/link to project OR csv file with a list of repositories, and \n\t 2. Path to a JSON file containing the searched-for technologies (or \"default\")!");
         }
         else {
             log.info("Program started...");
-            String path = args[0];
-            List<Technology> searchedTools = technologyService.getAllTechnologiesFromFile(args[1]);
-
             log.info("Connecting to DB...");
             dbService.createDefaultConnection();
             dbService.useDatabase(CodedWithConstants.DATABASE_NAME);
 
-            if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START)) {
-                saveRepositoryData(path, searchedTools);
+            if(args.length == 0) {
+                logTop10();
             }
             else {
-                if(path.endsWith(".csv")) {
-                    analyseListOfRepositories(path, searchedTools);
+                String path = args[0];
+                List<Technology> searchedTools = technologyService.getAllTechnologiesFromFile(args[1]);
+
+                if(path.startsWith(CodedWithConstants.GITHUB_REPOSITORY_LINK_START)) {
+                    saveRepositoryData(path, searchedTools);
                 }
                 else {
-                    deliverTechnologiesByCategory(path, technologyService.getUsedTechnologiesByCategory(path, searchedTools));
+                    if(path.endsWith(".csv")) {
+                        analyseListOfRepositories(path, searchedTools);
+                    }
+                    else {
+                        deliverTechnologiesByCategory(path, technologyService.getUsedTechnologiesByCategory(path, searchedTools));
+                    }
                 }
-            }
 
-            try (Writer writer = new FileWriter("coded-with-results.json")){
-                writer.write(gson.toJson(analysedRepositories.toArray()));
-            } catch (IOException e) {
-                e.printStackTrace();
+                try (Writer writer = new FileWriter("coded-with-results.json")){
+                    writer.write(gson.toJson(analysedRepositories.toArray()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             log.info("Disconnecting from DB...");
             dbService.closeConnection();
+        }
+    }
+
+    private void logTop10() {
+        var top10 = dbService.aggregateDocumentsFromCollection(List.of(new Document("$sort", Map.of("timesUsed", -1)), new Document("$limit", 10)), CodedWithConstants.TOOLS_RANKING);
+        if(top10 != null) {
+            log.info("TOP 10 TOOLS:");
+            while(top10.hasNext()) {
+                Document item = top10.next();
+                log.info((String) item.get("name"));
+            }
         }
     }
 
